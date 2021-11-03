@@ -26,5 +26,5 @@ const VendorSchema = new Schema({
     }
   });
 
-  const Vendor = mongoose.model('vendor',UserSchema);
+  const Vendor = mongoose.model('vendor',VendorSchema);
   module.exports=Vendor;
