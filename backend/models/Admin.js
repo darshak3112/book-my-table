@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const AdminSchema = new Schema({
     ResName: {
         type: mongoose.Schema.Types.Contact,
-        ref:'restaurant_information'
+        ref:'restaurant_information',
+        require: true
     },
     Rating: {
         type: Decimal128,
