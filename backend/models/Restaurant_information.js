@@ -40,5 +40,5 @@ const Restaurant_informationSchema = new Schema({
     }
 });
 
-const Restaurant_information = mongoose.model('restaurant_information', Restaurant_informationSchema);
+const Restaurant_information = mongoose.model('Restaurant_information', Restaurant_informationSchema);
 module.exports = Restaurant_information;

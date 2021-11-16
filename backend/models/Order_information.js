@@ -24,5 +24,5 @@ const Order_informationSchema = new Schema({
     }
 });
 
-const Order_information = mongoose.model('order_information', Order_informationSchema);
+const Order_information = mongoose.model('Order_information', Order_informationSchema);
 module.exports = Order_information;

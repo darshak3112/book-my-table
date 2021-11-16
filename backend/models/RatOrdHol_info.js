@@ -20,5 +20,5 @@ const RatOrdHol_infoSchema = new Schema({
     }   
 });
 
-const RatOrdHol_info = mongoose.model('ratOrdHol_info', RatOrdHol_infoSchema);
+const RatOrdHol_info = mongoose.model('RatOrdHol_info', RatOrdHol_infoSchema);
 module.exports = RatOrdHol_info;
