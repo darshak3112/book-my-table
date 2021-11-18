@@ -16,9 +16,10 @@ const UserSchema = new Schema({
         require : true
     },
     Mobile_no:{
-        type:String,
+        type:Number,
         require : true,
         unique:true
+        
     },
     Date : {
         type : Date,

@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('../models/User');
 const router = express.Router();
-const { body, validationResult } = require('express-validator');
+const { body, validationResult, sanitize } = require('express-validator');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser');
@@ -12,8 +12,8 @@ const JWT_SECRET = 'Harryisagoodb$oy';
 router.post('/createuser', [
   body('Name', 'Enter a valid name').isLength({ min: 3 }),
   body('Email', 'Enter a valid email').isEmail(),
-  body('Mobile_no', 'Enter a valid email').isMobilePhone(),
-  body('Password', 'Password must be atleast 6 characters').isLength({ min: 6 }),
+  body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 }),
+  body('Password', 'Password must be atleast 6 characters').isLength({ min: 6 })
 ], async (req, res) => {
   // If there are errors, return Bad request and the errors
   const errors = validationResult(req);
@@ -30,14 +30,24 @@ router.post('/createuser', [
     if (user) {
       return res.status(400).json({ error: "Sorry a user with this mobile number already exists" })
     }
+
+
     const salt = await bcrypt.genSalt(10);
-    const secPass = await bcrypt.hash(req.body.password, salt);
+    const pass = await bcrypt.hash(req.body.Password, salt);
+    
+   // console.log(await bcrypt.hash(req.body.Password, salt));
+    // res.send({secPass});
+
+
+
+
 
     // Create a new user
     user = await User.create({
-      name: req.body.name,
-      password: secPass,
-      email: req.body.email,
+      Name: req.body.Name,
+      Password: pass,
+      Email: req.body.Email,
+      Mobile_no: req.body.Mobile_no
     });
     const data = {
       user: {
@@ -59,8 +69,8 @@ router.post('/createuser', [
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
 router.post('/login', [
-  body('email', 'Enter a valid email').isEmail(),
-  body('password', 'Password cannot be blank').exists(),
+  body('Mobile_no', 'Enter a valid mobile number').isLength({min:3}),
+  body('Password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
   let success = false;
   // If there are errors, return Bad request and the errors
@@ -102,11 +112,11 @@ router.post('/login', [
 
 
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login required
-router.post('/getuser', fetchuser,  async (req, res) => {
+router.post('/getuser', fetchuser, async (req, res) => {
 
   try {
-    userId = req.user.id;
-    const user = await User.findById(userId).select("-password")
+    userId = req.user._id;
+    const user = await User.findById(userId)
     res.send(user)
   } catch (error) {
     console.error(error.message);
