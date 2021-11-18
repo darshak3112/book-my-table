@@ -5,8 +5,9 @@ const { body, validationResult, sanitize } = require('express-validator');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser');
+require('dotenv').config()
 
-const JWT_SECRET = 'Harryisagoodb$oy';
+const JWT_SECRET =  process.env.JWT_SECRET;
 
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
 router.post('/createuser', [
@@ -79,15 +80,15 @@ router.post('/login', [
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { email, password } = req.body;
+  const { Mobile_no, Password } = req.body;
   try {
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ Mobile_no });
     if (!user) {
       success = false
       return res.status(400).json({ error: "Please try to login with correct credentials" });
     }
 
-    const passwordCompare = await bcrypt.compare(password, user.password);
+    const passwordCompare = await bcrypt.compare(Password, user.Password);
     if (!passwordCompare) {
       success = false
       return res.status(400).json({ success, error: "Please try to login with correct credentials" });
