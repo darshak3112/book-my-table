@@ -96,12 +96,12 @@ router.post('/login', [
 
     const data = {
       user: {
-        id: user.id
+        id: user._id
       }
     }
     const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
-    res.json({ success, authtoken })
+    res.status(200).json({ success, authtoken })
 
   } catch (error) {
     console.error(error.message);
@@ -116,9 +116,11 @@ router.post('/login', [
 router.post('/getuser', fetchuser, async (req, res) => {
 
   try {
-    userId = req.user._id;
-    const user = await User.findById(userId)
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    console.log(user);
     res.send(user)
+    
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");

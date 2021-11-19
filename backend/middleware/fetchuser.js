@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken');
+require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const fetchuser = (req, res, next) => {
@@ -7,13 +8,15 @@ const fetchuser = (req, res, next) => {
     if (!token) {
         res.status(401).send({ error: "Please authenticate using a valid token 1" })
     }
+   // console.log(data.user)
     try {
         const data = jwt.verify(token, JWT_SECRET);
         req.user = data.user;
         next();
-    } catch (error) {
-        res.status(401).send({ error: "Please authenticate using a valid token 2" })
+    } catch (err) {
+        res.status(401).send({ error: err })
     }
+
 
 }
 
