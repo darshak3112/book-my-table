@@ -12,6 +12,7 @@ app.use(express.json());
 
 // //availabel routes 
 app.use('/api/userAuth',require('./routes/userAuth'))
+app.use('/api/vendorAuth',require('./routes/vendorAuth'))
 // app.use('/api/notes',require('./routes/notes'))
 
 

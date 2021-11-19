@@ -69,7 +69,7 @@ router.post('/createuser', [
 
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
-router.post('/login', [
+router.post('/loginuser', [
   body('Mobile_no', 'Enter a valid mobile number').isLength({min:3}),
   body('Password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
