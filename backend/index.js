@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json());
 
 // //availabel routes 
-app.use('/api/auth',require('./routes/auth'))
+app.use('/api/userAuth',require('./routes/userAuth'))
 // app.use('/api/notes',require('./routes/notes'))
 
 
