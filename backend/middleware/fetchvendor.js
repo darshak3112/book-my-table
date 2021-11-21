@@ -17,8 +17,6 @@ const fetchvendor = (req, res, next) => {
         res.status(401).send({ error: err })
     }
 
-
 }
-
 
 module.exports = fetchvendor;
