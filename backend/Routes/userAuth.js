@@ -120,10 +120,11 @@ router.post('/getuser', fetchuser, async (req, res) => {
     const user = await User.findById(userId);
     console.log(user);
     res.send(user)
-    
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
   }
 })
+
 module.exports = router
