@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser');
 require('dotenv').config()
 
-const JWT_SECRET =  process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
 router.post('/createuser', [
@@ -35,8 +35,8 @@ router.post('/createuser', [
 
     const salt = await bcrypt.genSalt(10);
     const pass = await bcrypt.hash(req.body.Password, salt);
-    
-   // console.log(await bcrypt.hash(req.body.Password, salt));
+
+    // console.log(await bcrypt.hash(req.body.Password, salt));
     // res.send({secPass});
 
 
@@ -70,7 +70,7 @@ router.post('/createuser', [
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
 router.post('/loginuser', [
-  body('Mobile_no', 'Enter a valid mobile number').isLength({min:3}),
+  body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 3 }),
   body('Password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
   let success = false;

@@ -113,15 +113,15 @@ router.get('/loginvendor', [
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login required
 router.post('/getvendor', fetchvendor, async (req, res) => {
 
-  try {
-    const vendorId = req.vendor.id;
-    const vendor = await Vendor.findById(vendorId);
-    console.log(vendor);
-    res.send(vendor)
+    try {
+        const vendorId = req.vendor.id;
+        const vendor = await Vendor.findById(vendorId);
+        console.log(vendor);
+        res.send(vendor)
 
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Internal Server Error");
-  }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
 })
 module.exports = router
