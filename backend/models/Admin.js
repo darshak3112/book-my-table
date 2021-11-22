@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const AdminSchema = new Schema({
     ResName: {
         type: mongoose.Schema.Types.Contact,
-        ref:'restaurant_information',
+        ref: 'restaurant_information',
         require: true
     },
     Rating: {
@@ -18,7 +18,7 @@ const AdminSchema = new Schema({
     Holiday_details: {
         type: String,
         require: true
-    }   
+    }
 });
 
 const Admin = mongoose.model('Admin', AdminSchema);
