@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const Restaurant_informationSchema = new Schema({
-    Mobile_no: {
-        type: mongoose.Schema.Types.Mobile_no,
-        ref: 'vendor'
+    User: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Vendor'
     },
     Name: {
         type: String,
@@ -18,8 +18,12 @@ const Restaurant_informationSchema = new Schema({
         type: String,
         require: true
     },
-    Time: {
-        type: Timestamp,
+    TimeOpen: {
+        type: String,
+        require: true
+    },
+    TimeClose: {
+        type: String,
         require: true
     },
     Contact: {
@@ -28,6 +32,7 @@ const Restaurant_informationSchema = new Schema({
     },
     Facility:{
         type:String,
+        default:false,
         require:true
     },
     Status:{

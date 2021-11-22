@@ -68,7 +68,7 @@ router.post('/createvendor', [
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
 router.get('/loginvendor', [
-    body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 3 }),
+    body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 }),
     body('Password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
     let success = false;
@@ -111,7 +111,7 @@ router.get('/loginvendor', [
 
 
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login required
-router.post('/getvendor', fetchvendor, async (req, res) => {
+router.get('/getvendor', fetchvendor, async (req, res) => {
 
     try {
         const vendorId = req.vendor.id;

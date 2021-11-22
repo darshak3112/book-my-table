@@ -67,7 +67,7 @@ router.post('/createuser', [
 
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
-router.post('/loginuser', [
+router.get('/loginuser', [
   body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 3 }),
   body('Password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
@@ -111,7 +111,7 @@ router.post('/loginuser', [
 
 
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login required
-router.post('/getuser', fetchuser, async (req, res) => {
+router.get('/getuser', fetchuser, async (req, res) => {
 
   try {
     const userId = req.user.id;

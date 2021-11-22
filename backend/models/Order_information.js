@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const Order_informationSchema = new Schema({
     Mobile_no: {
         type: mongoose.Schema.Types.Mobile_no,
-        ref: 'user'
+        ref: 'User'
     },
     Members: {
         type: Int32,

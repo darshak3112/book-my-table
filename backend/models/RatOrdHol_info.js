@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const RatOrdHol_infoSchema = new Schema({
     ResName: {
         type: mongoose.Schema.Types.Contact,
-        ref:'restaurant_information'
+        ref:'Restaurant_information'
     },
     Rating: {
         type: Decimal128,
