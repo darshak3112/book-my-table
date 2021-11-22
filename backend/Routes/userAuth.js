@@ -21,7 +21,7 @@ router.post('/createuser', [
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-<<<<<<< HEAD
+
     try {
         // Check whether the user with this email exists already
         let user = await User.findOne({ Email: req.body.Email });
@@ -63,7 +63,7 @@ router.post('/createuser', [
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
-=======
+
     user = await User.findOne({ Mobile_no: req.body.Mobile_no });
     if (user) {
       return res.status(400).json({ error: "Sorry a user with this mobile number already exists" })
@@ -87,21 +87,15 @@ router.post('/createuser', [
       user: {
         id: user.id
       }
->>>>>>> 7a95d47b640a9939a3c16da943b0e3758bb4ab1a
+
     }
 })
 
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
-<<<<<<< HEAD
-router.get('/loginuser', [
-    body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 3 }),
-    body('Password', 'Password cannot be blank').exists(),
-=======
 router.post('/loginuser', [
   body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 3 }),
   body('Password', 'Password cannot be blank').exists(),
->>>>>>> 7a95d47b640a9939a3c16da943b0e3758bb4ab1a
 ], async (req, res) => {
     let success = false;
     // If there are errors, return Bad request and the errors
