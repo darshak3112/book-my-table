@@ -21,7 +21,6 @@ router.post('/createuser', [
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     try {
         // Check whether the user with this email exists already
         let user = await User.findOne({ Email: req.body.Email });
@@ -63,31 +62,6 @@ router.post('/createuser', [
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
-
-    user = await User.findOne({ Mobile_no: req.body.Mobile_no });
-    if (user) {
-      return res.status(400).json({ error: "Sorry a user with this mobile number already exists" })
-    }
-
-
-    const salt = await bcrypt.genSalt(10);
-    const pass = await bcrypt.hash(req.body.Password, salt);
-
-    // console.log(await bcrypt.hash(req.body.Password, salt));
-    // res.send({secPass});
-
-    // Create a new user
-    user = await User.create({
-      Name: req.body.Name,
-      Password: pass,
-      Email: req.body.Email,
-      Mobile_no: req.body.Mobile_no
-    });
-    const data = {
-      user: {
-        id: user.id
-      }
-
     }
 })
 
