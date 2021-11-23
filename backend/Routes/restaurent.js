@@ -32,6 +32,7 @@ router.post('/addres', fetchvendor, [
     }
 })
 
+
 //get all restaurent to a perticular user
 router.get('/fetchallres', fetchvendor, async (req, res) => {
     try {
@@ -97,3 +98,5 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
 
 
 module.exports = router;
+
+
