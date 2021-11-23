@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const Restaurant_informationSchema = new Schema({
-    User: {
+    Vendor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Vendor'
     },
@@ -38,6 +38,10 @@ const Restaurant_informationSchema = new Schema({
     Status:{
         type:Boolean,
         require:true
+    },
+    Active:{
+        type:Boolean,
+        default:false
     },
     Date: {
         type: Date,
