@@ -200,5 +200,5 @@ router.delete('/deletevendor/:id', fetchvendor, async (req, res) => {
         res.status(500).send("some error occured");
     }
 })
-
+// test
 module.exports = router
