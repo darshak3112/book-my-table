@@ -179,4 +179,26 @@ router.patch('/updatevendor/:id', fetchvendor, [
     }
 })
 
+//delete vendor
+router.delete('/deletevendor/:id', fetchvendor, async (req, res) => {
+    try {
+
+        //delete
+        let dVendor = await Vendor.findById(req.params.id);
+        if (!dVendor) { return res.status(404).send("not found") }
+        console.log(dVendor.id===req.params.id)
+        console.log(dVendor.id)
+        console.log(req.vendor.id)
+        if (dVendor.id !== req.vendor.id) {
+            return res.status(401).send("not allowed");
+        }
+
+        dVendor = await Vendor.findByIdAndDelete(req.params.id);
+        res.json({ "success": "note has been deleted", dVendor: dVendor });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
+
 module.exports = router
