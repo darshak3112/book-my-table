@@ -9,8 +9,6 @@ require('dotenv').config()
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Hii this is rihil sanghani login to github from laptop
-
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
 router.post('/createvendor', [
     body('Name', 'Enter a valid name').isLength({ min: 2 }),
