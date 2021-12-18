@@ -46,6 +46,10 @@ const Restaurant_informationSchema = new Schema({
     Date: {
         type: Date,
         default: Date.now
+    },
+    Table_require:{
+        type:Number,
+        require:true,
     }
 });
 

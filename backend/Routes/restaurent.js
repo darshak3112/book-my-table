@@ -20,7 +20,7 @@ router.post('/addres', fetchvendor, [
         }
 
         const restaurant = new Restaurant({
-            Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Vendor: req.vendor.id
+            Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Vendor: req.vendor.id, Table_require
         })
         const savedRes = await restaurant.save();
 
@@ -47,7 +47,7 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active } = req.body;
+        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
         //new object
         const newRes = {};
         if (Name) { newRes.Name = Name };
@@ -58,6 +58,7 @@ router.patch('/updateres/:id', fetchvendor, async (req, res) => {
         if (Contact) { newRes.Contact = Contact };
         if (Facility) { newRes.Facility = Facility };
         if (Active) { newRes.Active = Active };
+        if (Table_require) { newRes.Table_require = Table_require }
 
         let uRes = await Restaurant.findById(req.params.id);
         if (!uRes) { return res.status(404).send("not found") }
