@@ -13,7 +13,7 @@ router.post('/addres', fetchvendor, [
     body('Contact', 'Enter a valid mobile number').isLength({ min: 10 }),
 ], async (req, res) => {
     try {
-        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active } = req.body;
+        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
