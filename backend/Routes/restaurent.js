@@ -97,6 +97,16 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
     }
 })
 
+// get all resturent
+router.get('/getallrest', async (req, res) => {
+    try {
+        const allres = await Restaurant.find({});
+        res.json(allres);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
 
 module.exports = router;
 
