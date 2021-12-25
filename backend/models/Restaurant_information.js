@@ -41,7 +41,7 @@ const Restaurant_informationSchema = new Schema({
         require:true
     },
     Food_type:{
-        type:String,
+        type:String, // veg , non-veg ,both
         require:true
     },
     Active:{
