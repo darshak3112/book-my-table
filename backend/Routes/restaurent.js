@@ -5,7 +5,6 @@ const { body, validationResult } = require('express-validator');
 const router = express.Router();
 
 // add restaurent details login required
-
 router.post('/addres', fetchvendor, [
     body('Name', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('City', 'name should be atlest 2 char').isLength({ min: 2 }),
