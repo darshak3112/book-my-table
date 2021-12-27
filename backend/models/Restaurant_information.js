@@ -6,7 +6,7 @@ const Restaurant_informationSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Vendor'
     },
-    Rest_Name: {
+    Name: {
         type: String,
         require: true
     },
@@ -37,11 +37,6 @@ const Restaurant_informationSchema = new Schema({
     },
     Status:{
         type:Boolean,
-        default:false,
-        require:true
-    },
-    Food_type:{
-        type:String, // veg , non-veg ,both
         require:true
     },
     Active:{

@@ -7,20 +7,20 @@ const router = express.Router();
 // add restaurent details login required
 
 router.post('/addres', fetchvendor, [
-    body('Food_type', 'Food_type should be atlest 2 char').isLength({ min: 2 }),
+    body('Name', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('City', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('Area', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('Contact', 'Enter a valid mobile number').isLength({ min: 10 }),
 ], async (req, res) => {
     try {
-        const { Rest_Name, City, Area, TimeOpen, TimeClose, Contact, Facility,Food_type, Active, Table_require } = req.body;
+        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
         const restaurant = new Restaurant({
-            Rest_Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active,Food_type, Vendor: req.vendor.id, Table_require
+            Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Vendor: req.vendor.id, Table_require
         })
         const savedRes = await restaurant.save();
 
@@ -47,10 +47,10 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Rest_Name, City, Area, TimeOpen, TimeClose, Contact, Facility,Food_type, Active, Table_require } = req.body;
+        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
         //new object
         const newRes = {};
-        if (Rest_Name) { newRes.Rest_Name = Rest_Name };
+        if (Name) { newRes.Name = Name };
         if (City) { newRes.City = City };
         if (Area) { newRes.Area = Area };
         if (TimeOpen) { newRes.TimeOpen = TimeOpen };
@@ -58,7 +58,6 @@ router.patch('/updateres/:id', fetchvendor, async (req, res) => {
         if (Contact) { newRes.Contact = Contact };
         if (Facility) { newRes.Facility = Facility };
         if (Active) { newRes.Active = Active };
-        if (Food_type) { newRes.Food_type = Food_type };
         if (Table_require) { newRes.Table_require = Table_require }
 
         let uRes = await Restaurant.findById(req.params.id);
