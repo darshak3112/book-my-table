@@ -1,0 +1,23 @@
+{
+  "name": "book-my-table",
+  "version": "1.0.0",
+  "description": "this project for table booking system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darshak3112/book-my-table.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darshak3112/book-my-table/issues"
+  },
+  "homepage": "https://github.com/darshak3112/book-my-table#readme",
+  "dependencies": {
+    "node-modules": "^1.0.1"
+  }
+}
