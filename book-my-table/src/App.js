@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import NavBar from './components/Navbar';
+import About from './components/About';
+import Home from './components/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Sing_Up from "./components/Sing_Up";
+import Sign_In from "./components/Sign_In";
+import Rasturent from "./components/Rasturent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          hello this is react app hii rihil sanghani
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <NavBar />
+        <div className="pages">
+          <Switch>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route path="/SignUp">
+              <Sing_Up/>
+            </Route>
+            <Route path="/reasturent">
+              <Rasturent/>
+            </Route>
+            <Route path="/SignIn">
+              <Sign_In/>
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </>
   );
 }
 
