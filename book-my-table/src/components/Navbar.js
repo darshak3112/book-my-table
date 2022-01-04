@@ -1,84 +1,42 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import "./css/Nav.css";
-
-function NavBar() {
-    const [click, setClick] = useState(false);
-
-    const handleClick = () => setClick(!click);
+import { Link, useLocation } from "react-router-dom";
+const Navbar = () => {
+    let location = useLocation();
     return (
         <>
-            <nav className="navbar">
-                <div className="container-fluid" style={{ height: "60px" }}>
-                    <NavLink exact to="/" className="nav-logo">
-                        BookMyTable
-                        <i className="fas fa-code"></i>
-                    </NavLink>
-
-                    <ul className={click ? "nav-menu active" : "nav-menu"}>
-                        <li className="nav-item">
-                            <NavLink
-                                exact
-                                to="/"
-                                activeClassName="active"
-                                className="nav-links"
-                                onClick={handleClick}
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                exact
-                                to="/about"
-                                activeClassName="active"
-                                className="nav-links"
-                                onClick={handleClick}
-                            >
-                                About
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                exact
-                                to="/reasturent"
-                                activeClassName="active"
-                                className="nav-links"
-                                onClick={handleClick}
-                            >
-                                Reasturent
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                exact
-                                to="/SignUp"
-                                activeClassName="active"
-                                className="nav-links"
-                                onClick={handleClick}
-                            >
-                                Sign Up
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                exact
-                                to="/SignIn"
-                                activeClassName="active"
-                                className="nav-links"
-                                onClick={handleClick}
-                            >
-                                Sign In
-                            </NavLink>
-                        </li>
-                    </ul>
-                    <div className="nav-icon" onClick={handleClick}>
-                        <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div className="container-fluid">
+                    <Link className="navbar-brand" to="/">BookMyTable</Link>
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Reasturent</Link>
+                            </li>
+                        </ul>
+                        <form className="d-flex">
+                            <Link className="btn btn-outline-success mx-1" to="SignUp">SignUp</Link>
+                            <Link className="btn btn-outline-success mx-1" to="SignIn">SignIn</Link>
+                        </form>
                     </div>
                 </div>
             </nav>
         </>
-    );
+    )
 }
 
-export default NavBar;
+export default Navbar

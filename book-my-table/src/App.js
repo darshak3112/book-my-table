@@ -8,8 +8,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Sing_Up from "./components/Sing_Up";
-import Sign_In from "./components/Sign_In";
+import SingUp from "./components/SingUp";
+import SignIn from "./components/SignIn";
 import Rasturent from "./components/Rasturent";
 
 function App() {
@@ -23,13 +23,13 @@ function App() {
               <About />
             </Route>
             <Route path="/SignUp">
-              <Sing_Up/>
+              <SingUp/>
             </Route>
             <Route path="/reasturent">
               <Rasturent/>
             </Route>
             <Route path="/SignIn">
-              <Sign_In/>
+              <SignIn/>
             </Route>
             <Route path="/">
               <Home />
