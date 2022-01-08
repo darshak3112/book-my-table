@@ -5,7 +5,7 @@ import "./css/Nav.css";
 const Footer = () => {
     return (
         <div>
-            <footer>
+            <footer className='fixed-bottom'>
                 <div id="footer1" className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 text-center">
