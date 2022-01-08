@@ -11,6 +11,9 @@ import {
 import SingUp from "./components/SingUp";
 import SignIn from "./components/SignIn";
 import Rasturent from "./components/Rasturent";
+import Footer from "./components/Footer";
+import VendorSingIn from "./components/VendorSingIn";
+import VendorSighUp from "./components/VendorSighUp";
 
 function App() {
   return (
@@ -22,20 +25,27 @@ function App() {
             <Route exact path="/about">
               <About />
             </Route>
-            <Route path="/SignUp">
-              <SingUp/>
+            <Route exact path="/SignUp">
+              <SingUp />
             </Route>
-            <Route path="/reasturent">
-              <Rasturent/>
+            <Route exact path="/reasturent">
+              <Rasturent />
             </Route>
-            <Route path="/SignIn">
-              <SignIn/>
+            <Route exact path="/SignIn">
+              <SignIn />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/vSignin">
+              <VendorSingIn />
+            </Route>
+            <Route exact path="/vSignup">
+              <VendorSighUp />
             </Route>
           </Switch>
         </div>
+        <Footer />
       </Router>
     </>
   );
