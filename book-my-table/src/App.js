@@ -14,6 +14,8 @@ import Rasturent from "./components/Rasturent";
 import Footer from "./components/Footer";
 import VendorSingIn from "./components/VendorSingIn";
 import VendorSighUp from "./components/VendorSighUp";
+import Tablebooking from "./components/Tablebooking";
+import Addrasturent from "./components/Addrasturent";
 
 function App() {
   return (
@@ -42,6 +44,12 @@ function App() {
             </Route>
             <Route exact path="/vSignup">
               <VendorSighUp />
+            </Route>
+            <Route exact path="/tablebooking">
+              <Tablebooking/>
+            </Route>
+            <Route exact path="/addRast">
+              <Addrasturent/>
             </Route>
           </Switch>
         </div>
