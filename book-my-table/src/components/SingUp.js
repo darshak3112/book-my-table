@@ -4,7 +4,7 @@ import image1 from "./Img/Login.png"
 export const SingUp = () => {
   return (
     <>
-      <div className="container" style={{width:"800px", height:"800px"}}>
+      <div className="container" style={{height:"800px"}} >
         <div className="card my-3">
           <div className="card-body">
             <form>
