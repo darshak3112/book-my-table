@@ -32,10 +32,10 @@ const VendorSighUp = () => {
                 <label for="exampleInputPassword1" className="form-label">Password</label>
                 <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Password' />
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <center><button type="submit" className="btn btn-primary">Submit</button></center>
             </form>
-            <label style={{marginTop:"5px"}} for="signin" className="form-label">Already have account? </label>
-            <Link className="card-link my-2" to="/vSignin"> Sign In</Link><br/>
+            <center><label style={{marginTop:"5px"}} for="signin" className="form-label">Already have account? </label>
+            <Link className="card-link my-2" to="/vSignin"> Sign In</Link><br/></center>
           </div>
         </div>
       </div>
