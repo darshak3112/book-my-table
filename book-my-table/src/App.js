@@ -11,7 +11,7 @@ import {
 import SignUp from "./components/SingUp";
 import SignIn from "./components/SignIn";
 import Rasturent from "./components/Rasturent";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import VendorSingIn from "./components/VendorSingIn";
 import VendorSighUp from "./components/VendorSighUp";
 import Tablebooking from "./components/Tablebooking";
