@@ -8,7 +8,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import SingUp from "./components/SingUp";
+import SignUp from "./components/SingUp";
 import SignIn from "./components/SignIn";
 import Rasturent from "./components/Rasturent";
 import Footer from "./components/Footer";
@@ -16,6 +16,8 @@ import VendorSingIn from "./components/VendorSingIn";
 import VendorSighUp from "./components/VendorSighUp";
 import Tablebooking from "./components/Tablebooking";
 import Addrasturent from "./components/Addrasturent";
+import CheckingUp from "./components/CheckingUp";
+import CheckingIn from "./components/CheckingIn";
 
 function App() {
   return (
@@ -28,13 +30,19 @@ function App() {
               <About />
             </Route>
             <Route exact path="/SignUp">
-              <SingUp />
+              <SignUp />
+              </Route>
+              <Route exact path="/SignIn">
+              <SignIn />
+              </Route>
+            <Route exact path="/CheckingIn">
+              <CheckingIn />
             </Route>
             <Route exact path="/reasturent">
               <Rasturent />
             </Route>
-            <Route exact path="/SignIn">
-              <SignIn />
+            <Route exact path="/CheckingUp">
+              <CheckingUp />
             </Route>
             <Route exact path="/">
               <Home />

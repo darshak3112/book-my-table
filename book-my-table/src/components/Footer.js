@@ -12,7 +12,7 @@ const Footer = () => {
                         <div className="col-xs-12 col-sm-12 col-md-12 text-center">
                             <p>
                                 <Link className="footerlinks mx-2" to="/vSignin">Vendor SignIn</Link>
-                                <Link className="footerlinks mx-2" to="/vSignup">Vendor SignUp</Link>
+                                
                                 <Link className="footerlinks mx-2" to="/addRast">Add Rasturent</Link>
                             </p>
                         </div>

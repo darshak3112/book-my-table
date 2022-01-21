@@ -23,8 +23,8 @@ const Navbar = (props) => {
                                 </li>
                             </ul>
                             <form className="d-flex">
-                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/SignUp">SignUp</Link>
-                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/SignIn">SignIn</Link>
+                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
+                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/CheckingIn">SignIn</Link>
                             </form>
                         </div>
                     </div>
