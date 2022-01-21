@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import "./css/Nav.css";
 
+
 const Footer = () => {
     return (
-        <div>
-            <footer>
+        <div style={{position:"sticky"}}>
+            <footer className='fixed-bottom'>
                 <div id="footer1" className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -20,8 +21,8 @@ const Footer = () => {
                 <div id="footer2" className="container-fluid">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <p>
-                                <Link className="footerlinks" to="#">Wellcome in Our site</Link>
+                            <p style={{color:"white"}}>
+                                Welcome in Our site
                             </p>
                         </div>
                     </div>

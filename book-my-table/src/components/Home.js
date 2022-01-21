@@ -13,7 +13,7 @@ export const Home = () => {
     return (
         <>
             <div className="container my-1">
-                <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+                <div style={{marginTop:"30px"}} id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <img src={image1} className="d-block w-100 h-10" alt="..." />

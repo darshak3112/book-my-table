@@ -1,12 +1,13 @@
 import React from "react";
 import "./css/Nav.css";
 import { Link, useLocation } from "react-router-dom";
-const Navbar = () => {
+
+const Navbar = (props) => {
     let location = useLocation();
     return (
         <>
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{height:"45px", position:"sticky"}}>
                     <div className="container-fluid">
                         <Link className="navbar-brand" to="/">BookMyTable</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,8 +23,8 @@ const Navbar = () => {
                                 </li>
                             </ul>
                             <form className="d-flex">
-                                <Link className="btn btn-outline-light mx-1" to="/SignUp">SignUp</Link>
-                                <Link className="btn btn-outline-light mx-1" to="/SignIn">SignIn</Link>
+                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/SignUp">SignUp</Link>
+                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/SignIn">SignIn</Link>
                             </form>
                         </div>
                     </div>
