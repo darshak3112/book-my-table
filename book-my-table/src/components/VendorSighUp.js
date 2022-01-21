@@ -1,10 +1,12 @@
 import React from 'react'
 import image1 from "./Img/Login.png"
+import { Link } from "react-router-dom";
+
 
 const VendorSighUp = () => {
     return (
         <>
-      <div className="container">
+      <div className="container w-50 h-75" style={{marginBottom:"20px", minWidth:"350px"}} >
         <div className="card my-5">
           <div className="card-body">
             <form>
@@ -32,6 +34,8 @@ const VendorSighUp = () => {
               </div>
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            <label style={{marginTop:"5px"}} for="signin" className="form-label">Already have account? </label>
+            <Link className="card-link my-2" to="/vSignin"> Sign In</Link><br/>
           </div>
         </div>
       </div>

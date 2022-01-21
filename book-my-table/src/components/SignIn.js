@@ -1,11 +1,12 @@
 import React from 'react'
 import image1 from "./Img/Login.png"
+import { Link } from "react-router-dom";
 
 
 const SignIn = () => {
     return (
         <>
-            <div className="container">
+            <div className="container w-25" style={{marginBottom:"20px", minWidth:"350px"}} >
                 <div className="card my-5">
                     <div className="card-body">
                         <form>
@@ -24,6 +25,8 @@ const SignIn = () => {
                             </div>
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
+                        <label style={{marginTop:"5px"}} for="signin" className="form-label">Don't have the account? </label>
+                        <Link className="card-link my-2" to="/Signup"> Sign Up</Link><br/>
                     </div>
                 </div>
             </div>

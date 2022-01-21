@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const SingUp = () => {
   return (
     <>
-      <div className="container w-50 h-75" style={{marginBottom:"20px", minWidth:"350px", minHeight:"800px"}} >
+      <div className="container w-50 h-75" style={{marginBottom:"20px", minWidth:"350px"}} >
         <div className="card my-3">
           <div className="card-body">
             <form>
@@ -33,9 +33,8 @@ export const SingUp = () => {
               </div>
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-            <label for="signin" className="form-label">Already have account? </label>
-            <Link className="card-link my-2" to="/vSignin"> Sign In</Link><br/>
-            <Link className="card-link my-2" to="/vSignup">Vendor SignUp</Link>
+            <label style={{marginTop:"5px"}} for="signin" className="form-label">Already have account? </label>
+            <Link className="card-link my-2" to="/Signin"> Sign In</Link><br/>
           </div>
         </div>
       </div>

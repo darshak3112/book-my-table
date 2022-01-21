@@ -5,8 +5,8 @@ const CheckingUp = () => {
   return (
     <div className='container'>
         <center><h1 style={{marginTop:"100px"}}>Select Your SignIn</h1>
-        <Link type="button" class="btn btn-secondary mx-3 my-3" to="/SignIn">Customer SignIn</Link>
-        <Link type="button" class="btn btn-secondary mx-3 my-3" to="/vSignIn">Vendor SignIn</Link></center>
+        <Link type="button" class="btn btn-secondary mx-2 my-3" to="/SignIn">Customer SignIn</Link>
+        <Link type="button" class="btn btn-secondary mx-2 my-3" to="/vSignIn">Vendor SignIn</Link></center>
     </div>
   )
 };
