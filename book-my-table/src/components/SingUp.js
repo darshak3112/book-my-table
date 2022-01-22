@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import image1 from "./Img/Login.png"
 import { Link } from "react-router-dom";
 
 export const SingUp = () => {
+  const [credentials, setCredentials] = useState({ name: "", email: "", pass: "", mobile_no: "" });
+
   const handleSubmit = async (e) => {
       e.preventDefault();
-
       const {name, email, mobile_no, pass} = credentials;
       const response = await fetch("http://localhost:5000/api/auth/userAuth/createuser", {
         method: 'POST',
         headers : {
           'Content-Type' : 'application/json',
         },
-        body : JSON.stringify({ naem, email, pass, mobile_no })
+        body : JSON.stringify({ name, email, pass, mobile_no })
       });
 
       const json = await response.json();
