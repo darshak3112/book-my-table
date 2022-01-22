@@ -13,9 +13,9 @@ const SignIn = () => {
       const response = await fetch("http://localhost:5000/api/userAuth/loginuser", {
         method: 'POST',
         body : JSON.stringify({Mobile_no, Password }),
-        headers : {
-          'Content-Type': 'application/json'
-        }
+        headers : { 
+            'Content-Type': 'application/json'
+           }
       });
       
       const json = await response.json();
@@ -25,7 +25,7 @@ const SignIn = () => {
   const onChange =  (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
-
+  
     return (
         <>
             <div className="container w-25" style={{marginBottom:"20px", minWidth:"350px"}} >
