@@ -3,12 +3,27 @@ import image1 from "./Img/Login.png"
 import { Link } from "react-router-dom";
 
 export const SingUp = () => {
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const {name, email, mobile_no, pass} = credentials;
+      const response = await fetch("http://localhost:5000/api/auth/userAuth/createuser", {
+        method: 'POST',
+        headers : {
+          'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify({ naem, email, pass, mobile_no })
+      });
+
+      const json = await response.json();
+      console.log(json);
+  }
   return (
     <>
       <div className="container w-50 h-75" style={{marginBottom:"20px", minWidth:"350px"}} >
         <div className="card my-3">
           <div className="card-body">
-            <form>
+            <form onSubmit={handleSubmit}>
               <center>
                 <img width="150px" src={image1} alt="..." />
               </center>
