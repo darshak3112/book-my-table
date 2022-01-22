@@ -3,22 +3,28 @@ import image1 from "./Img/Login.png"
 import { Link } from "react-router-dom";
 
 export const SingUp = () => {
-  const [credentials, setCredentials] = useState({ name: "", email: "", pass: "", mobile_no: "" });
+  const [credentials, setCredentials] = useState({ Name: "", Email: "", Password: "", Mobile_no: "" });
 
   const handleSubmit = async (e) => {
+    
       e.preventDefault();
-      const {name, email, mobile_no, pass} = credentials;
-      const response = await fetch("http://localhost:5000/api/auth/userAuth/createuser", {
+      const {Name, Email, Mobile_no, Password} = credentials;
+      const response = await fetch("http://localhost:5000/api/userAuth/createuser", {
         method: 'POST',
+        body : JSON.stringify({ Name, Email, Mobile_no, Password }),
         headers : {
-          'Content-Type' : 'application/json',
-        },
-        body : JSON.stringify({ name, email, pass, mobile_no })
+          'Content-Type': 'application/json'
+        }
       });
-
+      
       const json = await response.json();
       console.log(json);
   }
+
+  const onChange =  (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  }
+
   return (
     <>
       <div className="container w-50 h-75" style={{marginBottom:"20px", minWidth:"350px"}} >
@@ -31,21 +37,21 @@ export const SingUp = () => {
               <center><h1>User SignUp</h1></center>
               <div className="mb-3">
                 <label for="exampleInputName" className="form-label">User Name</label>
-                <input type="text" className="form-control" name="Name" id="exampleInputName" placeholder='Enter User Name' />
+                <input type="text" className="form-control" name="Name" id="exampleInputName" onChange={onChange} placeholder='Enter User Name' />
               </div>
               <div className="mb-3">
                 <label for="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control"  name="Email" id="exampleInputEmail1" placeholder="Enter E-Mail Id" aria-describedby="emailHelp" />
+                <input type="email" className="form-control"  name="Email" id="exampleInputEmail1" onChange={onChange} placeholder="Enter E-Mail Id" aria-describedby="emailHelp" />
                 <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
               </div>
               <div className="mb-3">
                 <label for="exampleInputPhone" className="form-label">Phone No</label>
-                <input type="text" className="form-control"  name="mobile_no" id="exampleInputPhone" placeholder='Enter phone No' aria-describedby="phoneHelp"/>
+                <input type="text" className="form-control"  name="Mobile_no" id="exampleInputPhone" onChange={onChange} placeholder='Enter phone No' aria-describedby="phoneHelp"/>
                 <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
               </div>
               <div className="mb-3">
                 <label for="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" className="form-control"  name="pass" id="exampleInputPassword1" placeholder='Password' />
+                <input type="password" className="form-control"  name="Password" id="exampleInputPassword1" onChange={onChange} placeholder='Password' />
               </div>
               <center><button type="submit" className="btn btn-primary">Submit</button></center>
             </form>
