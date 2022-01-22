@@ -1,7 +1,6 @@
 import React from "react";
 import "./css/Nav.css";
 import { Link, useLocation } from "react-router-dom";
-import image1 from "./Img/logo.PNG"
 
 const Navbar = (props) => {
     let location = useLocation();
