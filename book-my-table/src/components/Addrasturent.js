@@ -17,47 +17,58 @@ const Addrasturent = () => {
                                 <label for="exampleInputName" className="form-label">Rasturent Name</label>
                                 <input type="text" className="form-control" id="exampleInputName" placeholder='Enter Rasturent Name' />
                             </div>
-                            <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Opening Time</label>
-                                <select style={{marginLeft:10}} name="Otime" id="Otime">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="11">12</option>
-                                </select>
-                                <select style={{marginLeft:10}} name="am" id="am">
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                                </select>
-                            </div>
-                            <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Closing Time</label>
-                                <select style={{marginLeft:10}} name="Otime" id="Otime">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="11">12</option>
-                                </select>
-                                <select style={{marginLeft:10}} name="am" id="am">
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                                </select>
+
+                            <div className="row">
+                                <div className="col-6">
+                                    <center>
+                                        <div className="mb-3">
+                                            <label for="exampleInputName" className="form-label mx-2">Opening Time :</label>
+                                            <select style={{ marginLeft: 10,width:"130px" }} className='btn btn-outline-dark' name="Otime" id="Otime">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="11">12</option>
+                                            </select>
+                                            <select style={{ marginLeft: 10 }} className='btn btn-outline-dark' name="OTimeZone" id="OTimeZone">
+                                                <option value="AM">AM</option>
+                                                <option value="PM">PM</option>
+                                            </select>
+                                        </div>
+                                    </center>
+                                </div>
+                                <div className="col-6">
+                                    <center>
+                                        <div className="mb-3">
+                                            <label for="exampleInputName" className="form-label mx-2">Closing Time :</label>
+                                            <select style={{ marginLeft: 10,width:"130px" }} className='btn btn-outline-dark' name="Ctime" id="Ctime">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="11">12</option>
+                                            </select>
+                                            <select style={{ marginLeft: 10 }} className='btn btn-outline-dark' name="CTimeZone" id="CTimeZone">
+                                                <option value="AM">AM</option>
+                                                <option value="PM">PM</option>
+                                            </select>
+                                        </div>
+                                    </center>
+                                </div>
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputName" className="form-label">Facility</label>
