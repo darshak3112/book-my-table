@@ -19,11 +19,11 @@ const Addrasturent = () => {
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputName" className="form-label">Opening Time</label>
-                                <input type="text" className="form-control" id="exampleInputName" placeholder='Enter Rasturent Opneing' />
+                                <input type="text" className="form-control" id="exampleInputName" placeholder='Opening time (hh:mm:yyyy)' />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Closeing Time</label>
-                                <input type="text" className="form-control" id="exampleInputName" placeholder='Enter Rasturent Closeing' />
+                                <label for="exampleInputName" className="form-label">Closing Time</label>
+                                <input type="text" className="form-control" id="exampleInputName" placeholder='Closing time (hh:mm:yyyy)' />
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputName" className="form-label">Facility</label>
