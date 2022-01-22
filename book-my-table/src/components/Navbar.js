@@ -1,6 +1,7 @@
 import React from "react";
 import "./css/Nav.css";
 import { Link, useLocation } from "react-router-dom";
+import image1 from "./Img/logo.PNG"
 
 const Navbar = (props) => {
     let location = useLocation();
@@ -9,7 +10,8 @@ const Navbar = (props) => {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                        <Link className="navbar-brand" style={{fontFamily:"math"}} to="/">BookMyTable</Link>
+                        <img width="150px" src={image1} alt="..." />
+                        <Link className="navbar-brand" style={{ fontFamily: "math" }} to="/">BookMyTable</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -26,8 +28,8 @@ const Navbar = (props) => {
                                 </li>
                             </ul>
                             <form className="d-flex">
-                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
-                                <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/CheckingIn">SignIn</Link>
+                                <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
+                                <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingIn">SignIn</Link>
                             </form>
                         </div>
                     </div>
