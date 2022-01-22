@@ -4,7 +4,7 @@ import image1 from "./Img/addrast.png"
 const Addrasturent = () => {
     return (
         <>
-            <div className="container  w-50 h-75" style={{marginBottom:"20px", minWidth:"350px"}}>
+            <div className="container  w-50 h-75" style={{ marginBottom: "20px", minWidth: "350px" }}>
                 <div className="card my-5">
                     <div className="card-body">
                         <form>
@@ -19,11 +19,45 @@ const Addrasturent = () => {
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputName" className="form-label">Opening Time</label>
-                                <input type="text" className="form-control" id="exampleInputName" placeholder='Opening time (hh:mm:yyyy)' />
+                                <select style={{marginLeft:10}} name="Otime" id="Otime">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="11">12</option>
+                                </select>
+                                <select style={{marginLeft:10}} name="am" id="am">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputName" className="form-label">Closing Time</label>
-                                <input type="text" className="form-control" id="exampleInputName" placeholder='Closing time (hh:mm:yyyy)' />
+                                <select style={{marginLeft:10}} name="Otime" id="Otime">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="11">12</option>
+                                </select>
+                                <select style={{marginLeft:10}} name="am" id="am">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputName" className="form-label">Facility</label>
@@ -51,7 +85,7 @@ const Addrasturent = () => {
                     </div>
                 </div>
             </div>
-            <div style={{height:"40px"}}></div>
+            <div style={{ height: "40px" }}></div>
         </>
     );
 };
