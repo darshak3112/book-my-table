@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const ReasturentItems = () => {
     return (
         <>
-            <div className="card border-dark my-2" style={{ height: "240px", border: "light" }}>
+            <div className="card border-dark my-2" style={{border: "light" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
                         <center><img src={image1} className="img-fluid rounded-start" alt="..." style={{ height: "230px", width: "300px" }} /></center>
@@ -19,7 +19,7 @@ export const ReasturentItems = () => {
                                 </div>
                                 <div className="col-3">
                                     <div style={{ textAlign: "end" }}>
-                                        <span className="badge bg-success my-2">Active</span>
+                                        <span className="badge bg-success">Active</span>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@ export const ReasturentItems = () => {
                 </div>
             </div>
 
-            <div className="card border-dark my-2" style={{ height: "240px", border: "light" }}>
+            <div className="card border-dark my-2" style={{ border: "light" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
                         <center><img src={image1} className="img-fluid rounded-start" alt="..." style={{ height: "230px", width: "300px" }} /></center>
@@ -50,7 +50,7 @@ export const ReasturentItems = () => {
                                 </div>
                                 <div className="col-3">
                                     <div style={{ textAlign: "end" }}>
-                                        <span className="badge bg-success my-2">Active</span>
+                                        <span className="badge bg-success">Active</span>
                                     </div>
                                 </div>
                             </div>
