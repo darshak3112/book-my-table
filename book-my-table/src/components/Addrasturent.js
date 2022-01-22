@@ -23,7 +23,7 @@ const Addrasturent = () => {
                                     <center>
                                         <div className="mb-3">
                                             <label for="exampleInputName" className="form-label mx-2">Opening Time :</label>
-                                            <select style={{ marginLeft: 10,width:"130px" }} className='btn btn-outline-dark' name="Otime" id="Otime">
+                                            <select style={{ marginLeft: 10,width:"100px" }} className='btn btn-outline-dark' name="Otime" id="Otime">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -48,7 +48,7 @@ const Addrasturent = () => {
                                     <center>
                                         <div className="mb-3">
                                             <label for="exampleInputName" className="form-label mx-2">Closing Time :</label>
-                                            <select style={{ marginLeft: 10,width:"130px" }} className='btn btn-outline-dark' name="Ctime" id="Ctime">
+                                            <select style={{ marginLeft: 10,width:"100px" }} className='btn btn-outline-dark' name="Ctime" id="Ctime">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
