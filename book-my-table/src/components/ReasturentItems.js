@@ -67,7 +67,7 @@ export const ReasturentItems = () => {
                     </div>
                 </div>
             </div>
-            <div style={{height:"40px"}}></div>
+            
         </>
     );
 };
