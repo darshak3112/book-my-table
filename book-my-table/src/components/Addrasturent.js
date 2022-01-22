@@ -4,7 +4,7 @@ import image1 from "./Img/addrast.png"
 const Addrasturent = () => {
     return (
         <>
-            <div className="container">
+            <div className="container  w-50 h-75" style={{marginBottom:"20px", minWidth:"350px"}}>
                 <div className="card my-5">
                     <div className="card-body">
                         <form>
@@ -46,7 +46,7 @@ const Addrasturent = () => {
                                 <input type="text" className="form-control" id="exampleInputPhone" placeholder='Enter Contact No' aria-describedby="phoneHelp" />
                                 <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                             </div>
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <center><button type="submit" className="btn btn-primary">Submit</button></center>
                         </form>
                     </div>
                 </div>

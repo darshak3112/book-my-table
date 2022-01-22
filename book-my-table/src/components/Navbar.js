@@ -21,6 +21,9 @@ const Navbar = (props) => {
                                 <li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Restaurants</Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/addRast' ? "active" : ""}`} to="/addRast">Add Rasturent</Link>
+                                </li>
                             </ul>
                             <form className="d-flex">
                                 <Link style={{height:"30px"}} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
