@@ -13,14 +13,14 @@ router.post('/addres', fetchvendor, [
     body('Contact', 'Enter a valid mobile number').isLength({ min: 10 }),
 ], async (req, res) => {
     try {
-        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
+        const { Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
         const restaurant = new Restaurant({
-            Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Vendor: req.vendor.id, Table_require
+            Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require, Vendor: req.vendor.id
         })
         const savedRes = await restaurant.save();
 
@@ -47,16 +47,19 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
+        const { Name, City, Area,FoodCategory,FoodType, TimeOpen, TimeClose, Contact, Facility, Holiday,Active, Table_require } = req.body;
         //new object
         const newRes = {};
         if (Name) { newRes.Name = Name };
         if (City) { newRes.City = City };
         if (Area) { newRes.Area = Area };
+        if (FoodCategory) { newRes.FoodCategory = FoodCategory };
+        if (FoodType) { newRes.FoodType = FoodType };
         if (TimeOpen) { newRes.TimeOpen = TimeOpen };
         if (TimeClose) { newRes.TimeClose = TimeClose };
         if (Contact) { newRes.Contact = Contact };
         if (Facility) { newRes.Facility = Facility };
+        if (Holiday) { newRes.Holiday = Holiday };
         if (Active) { newRes.Active = Active };
         if (Table_require) { newRes.Table_require = Table_require }
 
