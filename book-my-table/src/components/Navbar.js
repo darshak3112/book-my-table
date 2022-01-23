@@ -24,6 +24,9 @@ const Navbar = (props) => {
                                 <li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === '/addRast' ? "active" : ""}`} to="/addRast">Add Rasturent</Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/image' ? "active" : ""}`} to="/image">Images</Link>
+                                </li>
                             </ul>
                             <form className="d-flex">
                                 <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>

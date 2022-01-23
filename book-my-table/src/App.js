@@ -18,6 +18,7 @@ import Tablebooking from "./components/Tablebooking";
 import Addrasturent from "./components/Addrasturent";
 import CheckingUp from "./components/CheckingUp";
 import CheckingIn from "./components/CheckingIn";
+import Upload from "./components/Upload";
 
 function App() {
   return (
@@ -58,6 +59,9 @@ function App() {
             </Route>
             <Route exact path="/addRast">
               <Addrasturent/>
+            </Route>
+            <Route exact path="/image">
+              <Upload/>
             </Route>
           </Switch>
         </div>

@@ -11,10 +11,12 @@ app.use(cors())
 app.use(express.json());
 
 // //availabel routes 
+
+const userRouter = require('./routes/Upload');
+app.use('/image', userRouter);
 app.use('/api/userAuth', require('./routes/userAuth'))
 app.use('/api/vendorAuth', require('./routes/vendorAuth'))
 app.use('/api/restaurent',require('./routes/restaurent'))
-app.use("/api/img",require ('./routes/resImg'));
 
 
 app.get('/', (req, res) => {
