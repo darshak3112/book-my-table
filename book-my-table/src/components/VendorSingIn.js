@@ -18,7 +18,14 @@ const VendorSingIn = () => {
       });
       
       const json = await response.json();
-      console.log(json);
+      if (json.authtoken) {
+          localStorage.setItem('vToken', json.authtoken);
+          console.log(json);
+
+      }
+      else {
+          console.log("deny");
+      }
   }
 
   const onChange =  (e) => {
