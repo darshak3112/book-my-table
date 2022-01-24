@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
+import Map from './Map';
 
-const Addrasturent = () => {
+
+const Addrasturent = (props) => {
 
     const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
 
@@ -110,9 +112,17 @@ const Addrasturent = () => {
                                         </label>
                                     </div>
                                 </div>
-
                             </div>
-                            <div className="row">
+                            <div className="mb-3 my-2">
+                                <Map
+                                    google={props.google}
+                                    center={{ lat: 21.170240, lng: 72.831062 }}
+                                    height='300px'
+                                    zoom={15}
+                                />
+                            </div>
+                            <br/>
+                            <div className="row my-2">
                                 <div className="col-6">
                                     <center>
                                         <div className="mb-3">
