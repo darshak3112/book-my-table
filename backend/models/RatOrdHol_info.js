@@ -13,11 +13,7 @@ const RatOrdHol_infoSchema = new Schema({
     Order: {
         type: Int32,
         require: true,
-    },
-    Holiday_details: {
-        type: String,
-        require: true
-    }   
+    }
 });
 
 const RatOrdHol_info = mongoose.model('RatOrdHol_info', RatOrdHol_infoSchema);

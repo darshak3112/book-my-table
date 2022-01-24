@@ -14,9 +14,17 @@ const Restaurant_informationSchema = new Schema({
         type: String,
         require: true,
     },
-    Area: {
+    Area: { //landmark
         type: String,
         require: true
+    },
+    FoodType: { //veg , non-veg ,both
+        type: String,
+        require: true
+    },
+    FoodCategory: { //punjabi ,italian ,gujarati ,etc......
+        type: String,
+        require:true
     },
     TimeOpen: {
         type: String,
@@ -32,11 +40,10 @@ const Restaurant_informationSchema = new Schema({
     },
     Facility:{
         type:String,
-        default:false,
         require:true
     },
-    Status:{
-        type:Boolean,
+    Holiday:{
+        type:String,
         require:true
     },
     Active:{
