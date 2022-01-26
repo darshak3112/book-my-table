@@ -21,7 +21,7 @@ export const ReasturentItems = (props) => {
                                 </div>
                                 <div className="col-3">
                                     <div style={{ textAlign: "end" }}>
-                                        <span className={`badge bg-${RestItem.Active?"success":"danger"}`}>{RestItem.Active?"Active":"Pading"}</span>
+                                        <span className={`badge bg-${RestItem.Active?"success":"danger"}`}>{RestItem.Active?"Active":"Panding"}</span>
                                     </div>
                                 </div>
                             </div>
