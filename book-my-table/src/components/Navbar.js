@@ -1,9 +1,19 @@
 import React from "react";
 import "./css/Nav.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const Navbar = (props) => {
     let location = useLocation();
+    let history = useHistory();
+    const handleLogout=()=>{
+        if (localStorage.getItem("vToken")) {
+            localStorage.removeItem("vToken")
+            history.push("/");
+        }
+        if (localStorage.getItem("uToken")) {
+            localStorage.removeItem("uToken")
+        }
+      }
     return (
         <>
             <div>
@@ -28,10 +38,10 @@ const Navbar = (props) => {
                                     <Link className={`nav-link ${location.pathname === '/image' ? "active" : ""}`} to="/image">Images</Link>
                                 </li>
                             </ul>
-                            <form className="d-flex">
+                            {!localStorage.getItem("vToken") && !localStorage.getItem("uToken")  ? <form className="d-flex">
                                 <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
                                 <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingIn">SignIn</Link>
-                            </form>
+                            </form> : <button className="btn btn-sm btn-outline-light mx-1" onClick={handleLogout}>Logout</button>}
                         </div>
                     </div>
                 </nav>
