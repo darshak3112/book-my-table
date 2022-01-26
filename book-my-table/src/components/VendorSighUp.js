@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import image1 from "./Img/Login.png"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 const VendorSighUp = () => {
   const [credentials, setCredentials] = useState({ Name: "", Email: "", Password: "", Mobile_no: "" });
+  let history = useHistory();
 
   const handleSubmit = async (e) => {
 
@@ -23,7 +24,8 @@ const VendorSighUp = () => {
     if (json.authtoken) {
       console.log(json.authtoken);
       localStorage.setItem('vToken', json.authtoken);
-      console.log(json);
+      history.push("/VendorSignUp");
+      //console.log(json);
 
     }
     else {

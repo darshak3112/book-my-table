@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import image1 from "./Img/Login.png"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 const SignIn = () => {
     const [credentials, setCredentials] = useState({ Password: "", Mobile_no: "" });
+    let history = useHistory();
 
     const handleSubmit = async (e) => {
 
@@ -22,7 +23,7 @@ const SignIn = () => {
         if (json.authtoken) {
             localStorage.setItem('uToken', json.authtoken);
             console.log(json);
-
+            history.push("/");
         }
         else {
             console.log("deny");
