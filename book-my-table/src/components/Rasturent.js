@@ -5,25 +5,9 @@ import ReasturentItems from "./ReasturentItems";
 export const Rasturent = () => {
   const RestInitial = []
   const [RestList, setRestList] = useState(RestInitial);
-  // const [RestItem, setRestRestItem] = useState({
-  //   _id: "",
-  //   Vendor: "",
-  //   Name: "",
-  //   City: "",
-  //   Area: "",
-  //   FoodType: "",
-  //   FoodCategory: "",
-  //   TimeOpen: "",
-  //   TimeClose: "",
-  //   Contact: "",
-  //   Facility: "",
-  //   Holiday: "",
-  //   Active: "",
-  //   Table_require: "",
-  // });
 
   const getRestaurant = async () => {
-    //Api call Fatch all restaurant
+    //Api call Fetch all restaurant
     const response = await fetch("http://localhost:5000/api/restaurent/getallrest", {
       method: "GET",
       headers: {
@@ -35,15 +19,9 @@ export const Rasturent = () => {
   };
 
   useEffect(() => {
-    // if(localStorage.getItem("token")){
     getRestaurant();
-    // }
-    // else{
-    //   history.push("/login")
-    // }
-    // eslint-disable-next-line
   }, []);
-
+  
   return (
     <>
       <div className="container">
