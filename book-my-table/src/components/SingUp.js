@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import image1 from "./Img/Login.png"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export const SingUp = () => {
   const [credentials, setCredentials] = useState({ Name: "", Email: "", Password: "", Mobile_no: "" });
+  let history = useHistory();
 
   const handleSubmit = async (e) => {
 
@@ -21,6 +22,7 @@ export const SingUp = () => {
     if (json.authtoken) {
       localStorage.setItem('uToken', json.authtoken);
       console.log(json);
+      history.push("/SignIn");
 
     }
     else {
