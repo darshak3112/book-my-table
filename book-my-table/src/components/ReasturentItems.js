@@ -3,7 +3,9 @@ import image1 from "./Img/rastLogo.jpg";
 import { Link } from "react-router-dom";
 
 
-export const ReasturentItems = () => {
+export const ReasturentItems = (props) => {
+    const {RestItem} = props;
+    
     return (
         <>
             <div className="card border-dark my-2" style={{border: "light" }}>
@@ -15,23 +17,25 @@ export const ReasturentItems = () => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-9">
-                                    <h5 className="card-title">Rasturent Name</h5>
+                                    <h5 className="card-title">{RestItem.Name}</h5>
                                 </div>
                                 <div className="col-3">
                                     <div style={{ textAlign: "end" }}>
-                                        <span className="badge bg-success">Active</span>
+                                        <span className={`badge bg-${RestItem.Active?"success":"danger"}`}>{RestItem.Active?"Active":"Pading"}</span>
                                     </div>
                                 </div>
                             </div>
-                            <p className="card-text">Food Type: Veg/Non-Veg/Both<br />
+                            <div className="card-text">Food Type: {RestItem.FoodType}<br />
+                                FoodCategory:{RestItem.FoodCategory}<br/>
                                 Facility:Entrance Lobby,Queue,Serving Area,Cashier Station,Dining<br />
-                                Opening Time: 6 pm<br />
-                                Table require: 5<br />
-                                Address: Sarthan ,Surat<br />
-                                <div className="my-2">
-                                    <Link type="button" className="btn btn-dark" to="/tablebooking">Book Table</Link>
-                                </div>
-                            </p>
+                                Opening Time: {RestItem.TimeOpen}<br />
+                                Cloding Time: {RestItem.TimeClose}<br/>
+                                Table require: {RestItem.Table_require}<br />
+                                Address: {RestItem.City},{RestItem.Area}<br />
+                                Contact No : {RestItem.Contact}<br/>
+                                Holiday: {RestItem.Holiday}<br/>
+                                <Link type="button" className="btn btn-dark my-2" to="/tablebooking">Book Table</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
