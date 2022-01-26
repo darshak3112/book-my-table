@@ -57,7 +57,7 @@ export const ReasturentItems = (props) => {
                                     <div className="card-text"><b>Contact No :</b> {RestItem.Contact}</div>
                                 </div>
                             </div>
-                            <div className="row card-text"><b>Facility:</b>{RestItem.Facility}</div>
+                            <div className="card-text"><b>Facility:</b> {RestItem.Facility}</div>
                             <div className="card-text">                      
                                 <Link type="button" className="btn btn-dark my-2" to="/tablebooking">Book Table</Link>
                             </div>
