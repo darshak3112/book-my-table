@@ -36,7 +36,7 @@ export const ReasturentItems = (props) => {
                                     <tr><td><b> Address :</b> {RestItem.City},{RestItem.Area}<br /></td>
                                         <td><div style={{marginLeft:"10px"}}><b> Contact No :</b> {RestItem.Contact}</div></td></tr>
                                     <tr><td><b> Holiday :</b> {RestItem.Holiday}</td></tr>
-                                    <tr><td><Link type="button" className="btn btn-dark my-2" to="/tablebooking">Book Table</Link></td></tr>
+                                    <tr><td><Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken")?"disabled":""}`} to="/tablebooking">Book Table</Link></td></tr>
                                 </table>
                             </div>
                         </div>
