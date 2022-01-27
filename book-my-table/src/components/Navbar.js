@@ -12,6 +12,7 @@ const Navbar = (props) => {
         }
         if (localStorage.getItem("uToken")) {
             localStorage.removeItem("uToken")
+            history.push("/");
         }
     }
     return (
