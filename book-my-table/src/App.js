@@ -19,6 +19,7 @@ import Addrasturent from "./components/Addrasturent";
 import CheckingUp from "./components/CheckingUp";
 import CheckingIn from "./components/CheckingIn";
 import Upload from "./components/Upload";
+import YourRest from "./components/YourRest";
 
 function App() {
   return (
@@ -62,6 +63,9 @@ function App() {
             </Route>
             <Route exact path="/image">
               <Upload/>
+            </Route>
+            <Route exact path="/yourRest">
+              <YourRest/>
             </Route>
           </Switch>
         </div>
