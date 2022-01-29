@@ -10,8 +10,14 @@ const Navbar = (props) => {
             localStorage.removeItem("vToken")
             history.push("/");
         }
+        if (localStorage.getItem("vTokenUp")) {
+            localStorage.removeItem("vTokenUp")
+        }
         if (localStorage.getItem("uToken")) {
             localStorage.removeItem("uToken")
+        }
+        if (localStorage.getItem("uTokenUp")) {
+            localStorage.removeItem("uTokenUp")
         }
     }
     return (
