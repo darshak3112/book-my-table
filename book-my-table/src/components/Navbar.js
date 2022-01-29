@@ -15,6 +15,7 @@ const Navbar = (props) => {
         }
         if (localStorage.getItem("uToken")) {
             localStorage.removeItem("uToken")
+            history.push("/");
         }
         if (localStorage.getItem("uTokenUp")) {
             localStorage.removeItem("uTokenUp")
@@ -34,15 +35,20 @@ const Navbar = (props) => {
                                 <li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
                                 </li>
+                                {!localStorage.getItem("vToken") ?
                                 <li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Restaurants</Link>
                                 </li>
-                                <li className="nav-item">
+                                :<><li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === '/addRast' ? "active" : ""}`} to="/addRast">Add Restaurant</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className={`nav-link ${location.pathname === '/image' ? "active" : ""}`} to="/image">Images</Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link ${location.pathname === '/yourRest' ? "active" : ""}`} to="/yourRest">Your Restaurant</Link>
+                                </li></>}
+
                             </ul>
                             <form className="d-flex">
                                 {!localStorage.getItem("vToken") && !localStorage.getItem("uToken")
