@@ -19,7 +19,7 @@ const YourRest = (props) => {
             <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
             </button>
-            <div className="modal fade" id="exampleModal" style={{paddingRight:"344px"}} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content" style={{width:"178%"}}>
                         <div className="modal-header">
