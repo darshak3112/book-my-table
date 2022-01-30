@@ -23,8 +23,8 @@ const VendorSighUp = () => {
     //console.log(json.authtoken);
     if (json.authtoken) {
       console.log(json.authtoken);
-      localStorage.setItem('vToken', json.authtoken);
-      history.push("/VendorSignUp");
+      localStorage.setItem('vTokenUp', json.authtoken);
+      history.push("/VendorSingIn");
       //console.log(json);
 
     }

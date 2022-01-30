@@ -20,7 +20,7 @@ export const SingUp = () => {
 
     const json = await response.json();
     if (json.authtoken) {
-      localStorage.setItem('uToken', json.authtoken);
+      localStorage.setItem('uTokenUp', json.authtoken);
       console.log(json);
       history.push("/SignIn");
 
