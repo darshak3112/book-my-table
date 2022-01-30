@@ -26,7 +26,7 @@ const Addrasturent = (props) => {
 
     const onChange = (e) => {
         setInfo({ ...info, [e.target.name]: e.target.value });
-      }
+    }
 
     return (
         <>

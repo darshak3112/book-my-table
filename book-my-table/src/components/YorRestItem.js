@@ -1,7 +1,7 @@
 import React from 'react';
 import image1 from "./Img/rastLogo.jpg";
 
-const YorRestItem = () => {
+const YorRestItem = (props) => {
     return (
         <>
             <div className="card border-dark my-3" style={{ border: "light" }}>
@@ -34,7 +34,7 @@ const YorRestItem = () => {
                                     <tr className="my-3"><td><b> Holiday :</b> RestItem.Holiday</td></tr>
                                 </table>
                                 <div style={{ textAlign: "end" }} className="row mx-3 my-3">
-                                    <i className="fas fa-edit mx-2"></i>
+                                    <i className="fas fa-edit mx-2" onClick={props.updateRest}></i>
                                 </div>
                             </div>
                         </div>
