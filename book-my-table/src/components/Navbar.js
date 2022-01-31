@@ -62,6 +62,7 @@ const Navbar = (props) => {
                     </div>
                 </nav>
             </div>
+            
         </>
     )
 }
