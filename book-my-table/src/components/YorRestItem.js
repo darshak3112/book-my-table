@@ -34,7 +34,7 @@ const YorRestItem = () => {
                                     <tr className="my-3"><td><b> Holiday :</b> RestItem.Holiday</td></tr>
                                 </table>
                                 <div style={{ textAlign: "end" }} className="row mx-3 my-3">
-                                    <i className="fas fa-edit mx-2"></i>
+                                    <i style={{cursor:"pointer" ,textDecoration: "underline" }} className="fas fa-edit mx-2"></i>
                                 </div>
                             </div>
                         </div>

@@ -36,7 +36,7 @@ router.post('/addres', fetchvendor, [
 //get all restaurent to a perticular user
 router.get('/fetchallres', fetchvendor, async (req, res) => {
     try {
-        const allres = await Restaurant.find({ vendor: req.vendor.id });
+        const allres = await Restaurant.find({ Vendor: req.vendor.id });
         res.json(allres);
     } catch (error) {
         console.error(error.message);

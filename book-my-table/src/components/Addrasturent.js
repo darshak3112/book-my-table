@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
-import Map from './Map';
+//import Map from './Map';
 
 
 const Addrasturent = (props) => {
@@ -113,14 +113,14 @@ const Addrasturent = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-3 my-2">
+                            {/* <div className="mb-3 my-2">
                                 <Map
                                     google={props.google}
                                     center={{ lat: 21.170240, lng: 72.831062 }}
                                     height='300px'
                                     zoom={15}
                                 />
-                            </div>
+                            </div> */}
                             <br/>
                             <div className="row my-2">
                                 <div className="col-6">
