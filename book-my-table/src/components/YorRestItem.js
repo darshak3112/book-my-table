@@ -34,11 +34,10 @@ const YorRestItem = (props) => {
                                     <tr className="my-3"><td><b> Holiday :</b> RestItem.Holiday</td></tr>
                                 </table>
                                 <div style={{ textAlign: "end" }} className="row mx-3 my-3">
-<<<<<<< HEAD
-                                    <i style={{cursor:"pointer" ,textDecoration: "underline" }} className="fas fa-edit mx-2"></i>
-=======
+                                    <i style={{ cursor: "pointer", textDecoration: "underline" }} className="fas fa-edit mx-2"></i>
+
                                     <i className="fas fa-edit mx-2" onClick={props.updateRest}></i>
->>>>>>> 06e472dcf786c6d27b97d96a1d9e803267cedee3
+
                                 </div>
                             </div>
                         </div>
