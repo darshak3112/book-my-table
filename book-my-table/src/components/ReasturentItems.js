@@ -29,7 +29,7 @@ export const ReasturentItems = (props) => {
                                 <table>
                                     <tr><td><b> Food Type :</b> {RestItem.FoodType}</td>
                                         <td><div style={{marginLeft:"10px"}}><b> FoodCategory : </b>{RestItem.FoodCategory}</div></td></tr>
-                                    <tr><td><b> Facility : </b>Entrance Lobby,Queue,Serving Area,Cashier Station,Dining</td>
+                                    <tr><td><b> Facility : </b>{RestItem.Facility}</td>
                                         <td><div style={{marginLeft:"10px"}}><b> Opening Time :</b> {RestItem.TimeOpen}</div></td></tr>
                                     <tr><td><b> Cloding Time :</b> {RestItem.TimeClose}</td>
                                         <td><div style={{marginLeft:"10px"}}><b> Table require :</b> {RestItem.Table_require}</div></td></tr>
