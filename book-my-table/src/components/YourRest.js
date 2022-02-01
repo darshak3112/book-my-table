@@ -1,12 +1,27 @@
 import React, { useRef,useState,useEffect } from 'react';
 import YorRestItem from './YorRestItem';
 import image1 from "./Img/addrast.png"
-import Map from './Map';
+// import Map from './Map';
 
 const YourRest = (props) => {
 
-    const RestInitial = []
+  const RestInitial = []
   const [YourRestList, YoursetRestList] = useState(RestInitial);
+  const [UpDateRest, setUpDateRest] = useState({
+    id:"",
+    Name:"",
+    City:"", 
+    Area:"", 
+    FoodType:"", 
+    FoodCategory:"", 
+    TimeOpen:"", 
+    TimeClose:"", 
+    Contact:"", 
+    Facility:"", 
+    Holiday:"", 
+    Active:false, 
+    Table_require:"", 
+  });
 
   const getYourRestaurant = async () => {
     //Api call Fetch all restaurant
@@ -26,18 +41,30 @@ const YourRest = (props) => {
     getYourRestaurant();
   }, []);
 
-
-
-
     const ref = useRef(null);
-    const updateRest = () => {
+    const updateRest = (currentRest) => {
         ref.current.click();
+        setUpDateRest({
+            id:currentRest._id,
+            Name:currentRest.Name,
+            City:currentRest.City,
+            Area:currentRest.Area,
+            FoodType:currentRest.FoodType,
+            FoodCategory:currentRest.FoodCategory,
+            TimeOpen:currentRest.TimeOpen,
+            TimeClose:currentRest.TimeClose,
+            Contact:currentRest.Contact,
+            Facility:currentRest.Facility,
+            Holiday:currentRest.Holiday,
+            Active:false,
+            Table_require:currentRest.Table_require
+        })
     }
     const handleSubmit = () => {
 
     }
     const onChange = (e) => {
-        // setInfo({ ...info, [e.target.name]: e.target.value });
+        setUpDateRest({ ...UpDateRest, [e.target.name]: e.target.value });
     }
     return (
         <>
@@ -55,28 +82,28 @@ const YourRest = (props) => {
                             <div className="container">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <form onSubmit={handleSubmit} >
+                                        <form>
                                             <center>
                                                 <img width="150px" src={image1} alt="..." />
                                             </center>
-                                            <center><h1>Add Rasturent</h1></center>
+                                            <center><h1>Update Your Rasturent</h1></center>
                                             <hr />
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Rasturent Name</label>
-                                                <input type="text" name="Name" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Name' />
+                                                <input type="text" name="Name" className="form-control" onChange={onChange} value={UpDateRest.Name} id="exampleInputName" placeholder='Enter Rasturent Name' />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">City</label>
-                                                <input type="text" name="City" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter City' />
+                                                <input type="text" name="City" className="form-control" onChange={onChange} value={UpDateRest.City} id="exampleInputName" placeholder='Enter City' />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Area</label>
-                                                <input type="text" name="Area" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Area' />
+                                                <input type="text" name="Area" className="form-control" onChange={onChange} value={UpDateRest.Area} id="exampleInputName" placeholder='Enter Area' />
                                             </div>
                                             <div className="mb-3">
                                                 <label style={{ marginRight: 10 }} htmlFor="exampleInputName" className="form-label">Food-Type : </label>
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio1" value="Veg" />
+                                                    <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio1" value="Veg"/>
                                                     <label className="form-check-label" htmlFor="inlineRadio1">Veg</label>
                                                 </div>
                                                 <div className="form-check form-check-inline">
@@ -135,14 +162,14 @@ const YourRest = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="mb-3 my-2">
+                                            {/* <div className="mb-3 my-2">
                                                 <Map
                                                     google={props.google}
                                                     center={{ lat: 21.170240, lng: 72.831062 }}
                                                     height='300px'
                                                     zoom={15}
                                                 />
-                                            </div>
+                                            </div> */}
                                             <br />
                                             <div className="row my-2">
                                                 <div className="col-6">
@@ -211,16 +238,16 @@ const YourRest = (props) => {
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputPhone" className="form-label">contact No</label>
-                                                <input type="text" name="Contact" onChange={onChange} className="form-control" id="exampleInputPhone" placeholder='Enter Contact No' aria-describedby="phoneHelp" />
+                                                <input type="text" name="Contact" onChange={onChange} className="form-control" id="exampleInputPhone" value={UpDateRest.Contact} placeholder='Enter Contact No' aria-describedby="phoneHelp" />
                                                 <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Facility</label>
-                                                <input type="text" name="Facility" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Facility' />
+                                                <input type="text" name="Facility" onChange={onChange} className="form-control" value={UpDateRest.Facility} id="exampleInputName" placeholder='Enter Facility' />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Number of table</label>
-                                                <input type="text" name="Table_require" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
+                                                <input type="text" name="Table_require" onChange={onChange} className="form-control" value={UpDateRest.Table_require} id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
                                             </div>
                                         </form>
                                     </div>
@@ -229,7 +256,7 @@ const YourRest = (props) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-dark" onClick={handleSubmit}>Save changes</button>
                         </div>
                     </div>
                 </div>
