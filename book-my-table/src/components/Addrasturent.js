@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
+import {useHistory } from "react-router-dom";
 //import Map from './Map';
 
 
 const Addrasturent = (props) => {
-
+    let history = useHistory();
     const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
         const { Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
         const response = await fetch("http://localhost:5000/api/restaurent/addres", {
@@ -19,9 +19,10 @@ const Addrasturent = (props) => {
                 "auth-token-vendor": localStorage.getItem("vToken")
             }
         });
-
         const json = await response.json();
         console.log(json);
+        history.push("/");
+
     }
 
     const onChange = (e) => {

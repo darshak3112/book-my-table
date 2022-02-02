@@ -5,7 +5,7 @@ const YorRestItem = (props) => {
     const { YourRestItem,updateRest } = props;
     return (
         <>
-            <div className="card border-dark my-3" style={{ border: "light" }}>
+            <div className="card border-dark my-3 mx-2" style={{ border: "light" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
                         <center><img src={image1} className="img-fluid rounded-start" alt="..." style={{ height: "230px", width: "300px" }} /></center>
