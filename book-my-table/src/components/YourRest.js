@@ -1,68 +1,124 @@
-import React, { useRef,useState,useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import YorRestItem from './YorRestItem';
 import image1 from "./Img/addrast.png"
 // import Map from './Map';
 
 const YourRest = (props) => {
 
-  const RestInitial = []
-  const [YourRestList, YoursetRestList] = useState(RestInitial);
-  const [UpDateRest, setUpDateRest] = useState({
-    id:"",
-    Name:"",
-    City:"", 
-    Area:"", 
-    FoodType:"", 
-    FoodCategory:"", 
-    TimeOpen:"", 
-    TimeClose:"", 
-    Contact:"", 
-    Facility:"", 
-    Holiday:"", 
-    Active:false, 
-    Table_require:"", 
-  });
+    const RestInitial = []
+    const [YourRestList, YoursetRestList] = useState(RestInitial);
 
-  const getYourRestaurant = async () => {
-    //Api call Fetch all restaurant
-    const response = await fetch("http://localhost:5000/api/restaurent/fetchallres", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token-vendor":localStorage.getItem("vToken")
-      },
+    const [UpDateRest, setUpDateRest] = useState({
+        id: "",
+        Name: "",
+        City: "",
+        Area: "",
+        FoodType: "",
+        FoodCategory: "",
+        TimeOpen: "",
+        TimeClose: "",
+        Contact: "",
+        Facility: "",
+        Holiday: "",
+        Active: "",
+        Table_require: "",
     });
-    const json = await response.json();
-    console.log(json);
-    YoursetRestList(json);
-  };
 
-  useEffect(() => {
-    getYourRestaurant();
-  }, []);
+    const getYourRestaurant = async () => {
+        //Api call Fetch all restaurant
+        const response = await fetch("http://localhost:5000/api/restaurent/fetchallres", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-vendor": localStorage.getItem("vToken")
+            },
+        });
+        const json = await response.json();
+        // console.log(json);
+        YoursetRestList(json);
+    };
+
+    useEffect(() => {
+        getYourRestaurant();
+    }, []);
 
     const ref = useRef(null);
+    const refClose = useRef(null);
+
     const updateRest = (currentRest) => {
         ref.current.click();
         setUpDateRest({
-            id:currentRest._id,
-            Name:currentRest.Name,
-            City:currentRest.City,
-            Area:currentRest.Area,
-            FoodType:currentRest.FoodType,
-            FoodCategory:currentRest.FoodCategory,
-            TimeOpen:currentRest.TimeOpen,
-            TimeClose:currentRest.TimeClose,
-            Contact:currentRest.Contact,
-            Facility:currentRest.Facility,
-            Holiday:currentRest.Holiday,
-            Active:false,
-            Table_require:currentRest.Table_require
+            id: currentRest._id,
+            Name: currentRest.Name,
+            City: currentRest.City,
+            Area: currentRest.Area,
+            FoodType: currentRest.FoodType,
+            FoodCategory: currentRest.FoodCategory,
+            TimeOpen: currentRest.TimeOpen,
+            TimeClose: currentRest.TimeClose,
+            Contact: currentRest.Contact,
+            Facility: currentRest.Facility,
+            Holiday: currentRest.Holiday,
+            Active: currentRest.Active,
+            Table_require: currentRest.Table_require
         })
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        UpdateRest(UpDateRest.id,
+            UpDateRest.Name,
+            UpDateRest.City,
+            UpDateRest.Area,
+            UpDateRest.FoodType,
+            UpDateRest.FoodCategory,
+            UpDateRest.TimeOpen,
+            UpDateRest.TimeClose,
+            UpDateRest.Contact,
+            UpDateRest.Facility,
+            UpDateRest.Holiday,
+            UpDateRest.Active,
+            UpDateRest.Table_require);
+        refClose.current.click();
 
     }
+
+    const UpdateRest = async (id, Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require) => {
+        // Api call
+        const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-vendor": localStorage.getItem("vToken"),
+            },
+            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
+        });
+        const json = await response.json();
+        console.log(json);
+        let newRest = JSON.parse(JSON.stringify(YourRestList))
+        for (let index = 0; index < newRest.length; index++) {
+            const element = newRest[index];
+            if (element._id === id) {
+                newRest[index].Name = Name;
+                newRest[index].City = City;
+                newRest[index].Area = Area;
+                newRest[index].FoodType = FoodType;
+                newRest[index].FooFoodCategory = FoodCategory;
+                newRest[index].TimeOpen = TimeOpen;
+                newRest[index].TimeClose = TimeClose;
+                newRest[index].Contact = Contact;
+                newRest[index].Facility = Facility;
+                newRest[index].Holiday = Holiday;
+                newRest[index].Active = Active;
+                newRest[index].Table_require = Table_require;
+                newRest[index].Holiday = Holiday;
+                break;
+            }
+        }
+        YoursetRestList(newRest);
+        // useEffect(() => {
+            getYourRestaurant();
+        // }, []);
+    };
+
     const onChange = (e) => {
         setUpDateRest({ ...UpDateRest, [e.target.name]: e.target.value });
     }
@@ -73,7 +129,7 @@ const YourRest = (props) => {
             </button>
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
-                    <div className="modal-content" style={{width:"178%"}}>
+                    <div className="modal-content" style={{ width: "178%" }}>
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">Update Your Restaurant Datails</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -103,7 +159,7 @@ const YourRest = (props) => {
                                             <div className="mb-3">
                                                 <label style={{ marginRight: 10 }} htmlFor="exampleInputName" className="form-label">Food-Type : </label>
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio1" value="Veg"/>
+                                                    <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio1" value="Veg" />
                                                     <label className="form-check-label" htmlFor="inlineRadio1">Veg</label>
                                                 </div>
                                                 <div className="form-check form-check-inline">
@@ -255,24 +311,24 @@ const YourRest = (props) => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" ref={refClose} data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-dark" onClick={handleSubmit}>Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="container">
-        <div className="row">
-          <h1><center>Your Rasturent List</center></h1>
-          <hr />
-          <div className="container mx-3">
-            {YourRestList.length === 0 && 'No Restaurant Added'}
-          </div>
-          {YourRestList.map((YourRestItem) => {
-            return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} updateRest={updateRest}/>
-          })}
-        </div>
-      </div>
+                <div className="row">
+                    <h1><center>Your Rasturent List</center></h1>
+                    <hr />
+                    <div className="container mx-3">
+                        {YourRestList.length === 0 && 'No Restaurant Added'}
+                    </div>
+                    {YourRestList.map((YourRestItem) => {
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} updateRest={updateRest} />
+                    })}
+                </div>
+            </div>
             <div style={{ height: "40px" }}></div>
         </>
     );
