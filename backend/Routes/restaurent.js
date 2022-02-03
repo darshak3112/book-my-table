@@ -60,7 +60,7 @@ router.patch('/updateres/:id', fetchvendor, async (req, res) => {
         if (Contact) { newRes.Contact = Contact };
         if (Facility) { newRes.Facility = Facility };
         if (Holiday) { newRes.Holiday = Holiday };
-        if (Active) { newRes.Active = Active };
+        newRes.Active = false;
         if (Table_require) { newRes.Table_require = Table_require }
 
         let uRes = await Restaurant.findById(req.params.id);
@@ -103,7 +103,7 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
 // get all resturent
 router.get('/getallrest', async (req, res) => {
     try {
-        const allres = await Restaurant.find({});
+        const allres = await Restaurant.find({Active:true});
         res.json(allres);
     } catch (error) {
         console.error(error.message);
