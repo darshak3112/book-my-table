@@ -119,6 +119,24 @@ const YourRest = (props) => {
         // }, []);
     };
 
+
+    const deleteRest = async (id) =>{
+         // Api call 
+    const response = await fetch(`http://localhost:5000/api/restaurent/deleteres/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token-vendor": localStorage.getItem("vToken"),
+        },
+      });
+      const json = await response.json();
+      console.log(json);
+      const newrestlist = YourRestList.filter((rest) => {
+        return rest._id !== id;
+      });
+      YoursetRestList(newrestlist);
+    }
+
     const onChange = (e) => {
         setUpDateRest({ ...UpDateRest, [e.target.name]: e.target.value });
     }
@@ -325,7 +343,7 @@ const YourRest = (props) => {
                         {YourRestList.length === 0 && 'No Restaurant Added'}
                     </div>
                     {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} updateRest={updateRest} />
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} updateRest={updateRest} deleteRest={deleteRest}/>
                     })}
                 </div>
             </div>
