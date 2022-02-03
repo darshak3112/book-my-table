@@ -35,7 +35,7 @@ const YorRestItem = (props) => {
                                     <tr className="my-3"><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
                                 </table>
                                 <div style={{ textAlign: "end" }} className="row mx-3 my-3">
-                                    <i className="fas fa-edit mx-2" onClick={()=>updateRest(YourRestItem)}></i>
+                                    <i style={{cursor:'pointer'}} className="fas fa-edit mx-2" onClick={()=>updateRest(YourRestItem)}></i>
                                 </div>
                             </div>
                         </div>
