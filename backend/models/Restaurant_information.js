@@ -8,7 +8,8 @@ const Restaurant_informationSchema = new Schema({
     },
     Name: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     City: {
         type: String,
@@ -24,7 +25,11 @@ const Restaurant_informationSchema = new Schema({
     },
     FoodCategory: { //punjabi ,italian ,gujarati ,etc......
         type: String,
-        require:true
+        require: true
+    },
+    Address: {
+        type: String,
+        require: true
     },
     TimeOpen: {
         type: String,
@@ -36,27 +41,27 @@ const Restaurant_informationSchema = new Schema({
     },
     Contact: {
         type: String,
-        require:true
+        require: true
     },
-    Facility:{
-        type:String,
-        require:true
+    Facility: {
+        type: String,
+        require: true
     },
-    Holiday:{
-        type:String,
-        require:true
+    Holiday: {
+        type: String,
+        require: true
     },
-    Active:{
-        type:Boolean,
-        default:false
+    Active: {
+        type: Boolean,
+        default: false
     },
     Date: {
         type: Date,
         default: Date.now
     },
-    Table_require:{
-        type:Number,
-        require:true,
+    Table_require: {
+        type: Number,
+        require: true,
     }
 });
 

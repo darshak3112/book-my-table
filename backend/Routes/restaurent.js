@@ -11,16 +11,23 @@ router.post('/addres', fetchvendor, [
     body('City', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('Area', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('Contact', 'Enter a valid mobile number').isLength({ min: 10 }),
+    body('Address', 'Enter a valid Address').isLength({ min: 10 }),
 ], async (req, res) => {
     try {
-        const { Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
+        const { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
         const errors = validationResult(req);
+        let res = await Restaurant.findOne({ Contact: req.body.Contact });
+
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
+        if (res) {
+            return res.status(400).json({ error: "Sorry a user with this Mobile num already exists" })
+        }
+
         const restaurant = new Restaurant({
-            Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require, Vendor: req.vendor.id
+            Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require, Vendor: req.vendor.id
         })
         const savedRes = await restaurant.save();
 
@@ -47,7 +54,7 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Name, City, Area,FoodCategory,FoodType, TimeOpen, TimeClose, Contact, Facility, Holiday,Active, Table_require } = req.body;
+        const { Name, City, Area, FoodCategory, FoodType, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = req.body;
         //new object
         const newRes = {};
         if (Name) { newRes.Name = Name };
@@ -55,6 +62,7 @@ router.patch('/updateres/:id', fetchvendor, async (req, res) => {
         if (Area) { newRes.Area = Area };
         if (FoodCategory) { newRes.FoodCategory = FoodCategory };
         if (FoodType) { newRes.FoodType = FoodType };
+        if (Address) { newRes.Address = Address };
         if (TimeOpen) { newRes.TimeOpen = TimeOpen };
         if (TimeClose) { newRes.TimeClose = TimeClose };
         if (Contact) { newRes.Contact = Contact };
@@ -103,7 +111,7 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
 // get all resturent
 router.get('/getallrest', async (req, res) => {
     try {
-        const allres = await Restaurant.find({Active:true});
+        const allres = await Restaurant.find({ Active: true });
         res.json(allres);
     } catch (error) {
         console.error(error.message);
