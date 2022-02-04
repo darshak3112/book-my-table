@@ -15,6 +15,7 @@ const YourRest = (props) => {
         Area: "",
         FoodType: "",
         FoodCategory: "",
+        Address:"",
         TimeOpen: "",
         TimeClose: "",
         Contact: "",
@@ -54,6 +55,7 @@ const YourRest = (props) => {
             Area: currentRest.Area,
             FoodType: currentRest.FoodType,
             FoodCategory: currentRest.FoodCategory,
+            Address:currentRest.Address,
             TimeOpen: currentRest.TimeOpen,
             TimeClose: currentRest.TimeClose,
             Contact: currentRest.Contact,
@@ -70,6 +72,7 @@ const YourRest = (props) => {
             UpDateRest.Area,
             UpDateRest.FoodType,
             UpDateRest.FoodCategory,
+            UpDateRest.Address,
             UpDateRest.TimeOpen,
             UpDateRest.TimeClose,
             UpDateRest.Contact,
@@ -81,7 +84,7 @@ const YourRest = (props) => {
 
     }
 
-    const UpdateRest = async (id, Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require) => {
+    const UpdateRest = async (id, Name, City, Area, FoodType, FoodCategory,Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require) => {
         // Api call
         const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
             method: "PATCH",
@@ -89,7 +92,7 @@ const YourRest = (props) => {
                 "Content-Type": "application/json",
                 "auth-token-vendor": localStorage.getItem("vToken"),
             },
-            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
+            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
         });
         const json = await response.json();
         console.log(json);
@@ -102,6 +105,7 @@ const YourRest = (props) => {
                 newRest[index].Area = Area;
                 newRest[index].FoodType = FoodType;
                 newRest[index].FooFoodCategory = FoodCategory;
+                newRest[index].Address = Address;
                 newRest[index].TimeOpen = TimeOpen;
                 newRest[index].TimeClose = TimeClose;
                 newRest[index].Contact = Contact;
@@ -115,26 +119,26 @@ const YourRest = (props) => {
         }
         YoursetRestList(newRest);
         // useEffect(() => {
-            getYourRestaurant();
+        getYourRestaurant();
         // }, []);
     };
 
 
-    const deleteRest = async (id) =>{
-         // Api call 
-    const response = await fetch(`http://localhost:5000/api/restaurent/deleteres/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token-vendor": localStorage.getItem("vToken"),
-        },
-      });
-      const json = await response.json();
-      console.log(json);
-      const newrestlist = YourRestList.filter((rest) => {
-        return rest._id !== id;
-      });
-      YoursetRestList(newrestlist);
+    const deleteRest = async (id) => {
+        // Api call 
+        const response = await fetch(`http://localhost:5000/api/restaurent/deleteres/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-vendor": localStorage.getItem("vToken"),
+            },
+        });
+        const json = await response.json();
+        console.log(json);
+        const newrestlist = YourRestList.filter((rest) => {
+            return rest._id !== id;
+        });
+        YoursetRestList(newrestlist);
     }
 
     const onChange = (e) => {
@@ -245,6 +249,10 @@ const YourRest = (props) => {
                                                 />
                                             </div> */}
                                             <br />
+                                            <div className="mb-3">
+                                                <label htmlFor="exampleInputName" className="form-label">Address</label>
+                                                <input type="text" name="Address" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
+                                            </div>
                                             <div className="row my-2">
                                                 <div className="col-6">
                                                     <center>
@@ -343,7 +351,7 @@ const YourRest = (props) => {
                         {YourRestList.length === 0 && 'No Restaurant Added'}
                     </div>
                     {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} updateRest={updateRest} deleteRest={deleteRest}/>
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} updateRest={updateRest} deleteRest={deleteRest} />
                     })}
                 </div>
             </div>

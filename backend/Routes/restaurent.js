@@ -16,13 +16,13 @@ router.post('/addres', fetchvendor, [
     try {
         const { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
         const errors = validationResult(req);
-        let res = await Restaurant.findOne({ Contact: req.body.Contact });
+        let fRes = await Restaurant.findOne({ Contact: req.body.Contact });
 
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        if (res) {
+        if (fRes) {
             return res.status(400).json({ error: "Sorry a user with this Mobile num already exists" })
         }
 
@@ -93,15 +93,15 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
     try {
 
         //delete
-        let dNote = await Restaurant.findById(req.params.id);
-        if (!dNote) { return res.status(404).send("not found") }
+        let dRes = await Restaurant.findById(req.params.id);
+        if (!dRes) { return res.status(404).send("not found") }
 
-        if (dNote.Vendor.toString() !== req.vendor.id) {
+        if (dRes.Vendor.toString() !== req.vendor.id) {
             return res.status(401).send("not allowed");
         }
 
-        dNote = await Restaurant.findByIdAndDelete(req.params.id);
-        res.json({ "success": "note has been deleted", dNote: dNote });
+        dRes = await Restaurant.findByIdAndDelete(req.params.id);
+        res.json({ "success": "note has been deleted", dRes: dRes });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("some error occured");

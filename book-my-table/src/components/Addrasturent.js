@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
-import {useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 //import Map from './Map';
 
 
 const Addrasturent = (props) => {
     let history = useHistory();
-    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
+    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", Address:"",TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
+        const { Name, City, Area, FoodType, FoodCategory,Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
         const response = await fetch("http://localhost:5000/api/restaurent/addres", {
             method: 'POST',
-            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
+            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
             headers: {
                 'Content-Type': 'application/json',
                 "auth-token-vendor": localStorage.getItem("vToken")
@@ -21,7 +21,8 @@ const Addrasturent = (props) => {
         });
         const json = await response.json();
         console.log(json);
-        history.push("/");
+        if (!Error)
+            history.push("/");
 
     }
 
@@ -122,7 +123,11 @@ const Addrasturent = (props) => {
                                     zoom={15}
                                 />
                             </div> */}
-                            <br/>
+                            <br />
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputName" className="form-label">Address</label>
+                                <input type="text" name="Address" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
+                            </div>
                             <div className="row my-2">
                                 <div className="col-6">
                                     <center>
