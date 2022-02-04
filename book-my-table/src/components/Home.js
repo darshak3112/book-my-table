@@ -1,4 +1,5 @@
 import React from "react";
+import {Carousel} from 'react-bootstrap';
 import image1 from "./Img/1.jpg"
 import image2 from "./Img/2.jpg"
 import image3 from "./Img/3.jpg"
@@ -10,35 +11,71 @@ import image8 from "./Img/t & c.jpg"
 
 
 export const Home = () => {
+
     return (
-        <>
             <div className="container my-1">
-                <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img src={image1} className="d-block w-100 h-10" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={image2} className="d-block w-100 h-10" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={image3} className="d-block w-100 h-10" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={image4} className="d-block w-100 h-10" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={image5} className="d-block w-100 h-10" alt="..." />
-                        </div>
-                    </div>
-                </div>
+                <center>
+                <Carousel>
+                  <Carousel.Item style={{color:"black", fontSize:"15px"}}>
+                    <img
+                      className="d-block w-100" style={{minHeight:"100px", maxHeight:"600px", maxWidth:"1200px"}}
+                      src={image1}
+                      alt="First slide"
+                    />
+                    <Carousel.Caption>
+                      <h3>First slide label</h3>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item style={{color:"black", fontSize:"15px"}}>
+                    <img
+                      className="d-block w-100" style={{minHeight:"100px", maxHeight:"600px", maxWidth:"1200px"}}
+                      src={image2}
+                      alt="Second slide"
+                    />
+
+                    <Carousel.Caption>
+                      <h3>Second slide label</h3>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item style={{color:"black", fontSize:"15px"}}>
+                    <img
+                      className="d-block w-100" style={{minHeight:"100px", maxHeight:"600px", maxWidth:"1200px"}}
+                      src={image3}
+                      alt="Third slide"
+                    />
+
+                    <Carousel.Caption>
+                      <h3>Third slide label</h3>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item style={{color:"black", fontSize:"15px"}}>
+                    <img
+                      className="d-block w-100" style={{minHeight:"100px", maxHeight:"600px", maxWidth:"1200px"}}
+                      src={image4}
+                      alt="First slide"
+                    />
+                    <Carousel.Caption>
+                      <h3>Fourth slide label</h3>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item style={{color:"black", fontSize:"15px"}}>
+                    <img
+                      className="d-block w-100" style={{minHeight:"100px", maxHeight:"600px", maxWidth:"1200px"}}
+                      src={image5}
+                      alt="First slide"
+                    />
+                    <Carousel.Caption>
+                      <h3>Fifth slide label</h3>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                </Carousel>
+                </center>
                 <div className="row">
                     <div className="col-md-12">
                         <center>
-                            <h2>Our features</h2>
+                            <h2 style={{fontFamily:"times new roman", marginTop:"15px"}}><b>Our features</b></h2>
                         </center>
                     </div>
-                </div>
                 <div className="row">
                     <div className="col-md-4">
                         <center>
@@ -71,7 +108,8 @@ export const Home = () => {
                     </div>
                 </div>
             </div>
-        </>
+            <div style={{height:"40px"}}></div>
+            </div>
     );
 };
 

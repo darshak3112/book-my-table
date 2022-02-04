@@ -11,16 +11,23 @@ router.post('/addres', fetchvendor, [
     body('City', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('Area', 'name should be atlest 2 char').isLength({ min: 2 }),
     body('Contact', 'Enter a valid mobile number').isLength({ min: 10 }),
+    body('Address', 'Enter a valid Address').isLength({ min: 10 }),
 ], async (req, res) => {
     try {
-        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
+        const { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
         const errors = validationResult(req);
+        let fRes = await Restaurant.findOne({ Contact: req.body.Contact });
+
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
+        if (fRes) {
+            return res.status(400).json({ error: "Sorry a user with this Mobile num already exists" })
+        }
+
         const restaurant = new Restaurant({
-            Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Vendor: req.vendor.id, Table_require
+            Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require, Vendor: req.vendor.id
         })
         const savedRes = await restaurant.save();
 
@@ -36,7 +43,7 @@ router.post('/addres', fetchvendor, [
 //get all restaurent to a perticular user
 router.get('/fetchallres', fetchvendor, async (req, res) => {
     try {
-        const allres = await Restaurant.find({ vendor: req.vendor.id });
+        const allres = await Restaurant.find({ Vendor: req.vendor.id });
         res.json(allres);
     } catch (error) {
         console.error(error.message);
@@ -47,17 +54,21 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Name, City, Area, TimeOpen, TimeClose, Contact, Facility, Active, Table_require } = req.body;
+        const { Name, City, Area, FoodCategory, FoodType, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = req.body;
         //new object
         const newRes = {};
         if (Name) { newRes.Name = Name };
         if (City) { newRes.City = City };
         if (Area) { newRes.Area = Area };
+        if (FoodCategory) { newRes.FoodCategory = FoodCategory };
+        if (FoodType) { newRes.FoodType = FoodType };
+        if (Address) { newRes.Address = Address };
         if (TimeOpen) { newRes.TimeOpen = TimeOpen };
         if (TimeClose) { newRes.TimeClose = TimeClose };
         if (Contact) { newRes.Contact = Contact };
         if (Facility) { newRes.Facility = Facility };
-        if (Active) { newRes.Active = Active };
+        if (Holiday) { newRes.Holiday = Holiday };
+        newRes.Active = false;
         if (Table_require) { newRes.Table_require = Table_require }
 
         let uRes = await Restaurant.findById(req.params.id);
@@ -82,15 +93,15 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
     try {
 
         //delete
-        let dNote = await Restaurant.findById(req.params.id);
-        if (!dNote) { return res.status(404).send("not found") }
+        let dRes = await Restaurant.findById(req.params.id);
+        if (!dRes) { return res.status(404).send("not found") }
 
-        if (dNote.Vendor.toString() !== req.vendor.id) {
+        if (dRes.Vendor.toString() !== req.vendor.id) {
             return res.status(401).send("not allowed");
         }
 
-        dNote = await Restaurant.findByIdAndDelete(req.params.id);
-        res.json({ "success": "note has been deleted", dNote: dNote });
+        dRes = await Restaurant.findByIdAndDelete(req.params.id);
+        res.json({ "success": "note has been deleted", dRes: dRes });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("some error occured");
@@ -100,7 +111,7 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
 // get all resturent
 router.get('/getallrest', async (req, res) => {
     try {
-        const allres = await Restaurant.find({});
+        const allres = await Restaurant.find({ Active: true });
         res.json(allres);
     } catch (error) {
         console.error(error.message);
