@@ -251,7 +251,7 @@ const YourRest = (props) => {
                                             <br />
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Address</label>
-                                                <input type="text" name="Address" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
+                                                <input type="text" name="Address" className="form-control" onChange={onChange} value={UpDateRest.Address} id="exampleInputName" placeholder='Enter Rasturent Address' />
                                             </div>
                                             <div className="row my-2">
                                                 <div className="col-6">

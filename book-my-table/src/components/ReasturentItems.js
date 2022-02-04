@@ -33,7 +33,7 @@ export const ReasturentItems = (props) => {
                                         <td><div style={{marginLeft:"10px"}}><b> Opening Time :</b> {RestItem.TimeOpen}</div></td></tr>
                                     <tr><td><b> Cloding Time :</b> {RestItem.TimeClose}</td>
                                         <td><div style={{marginLeft:"10px"}}><b> Table require :</b> {RestItem.Table_require}</div></td></tr>
-                                    <tr><td><b> Address :</b> {RestItem.City},{RestItem.Area}<br /></td>
+                                    <tr><td><b> Address :</b>{RestItem.Address},{RestItem.City},{RestItem.Area}<br /></td>
                                         <td><div style={{marginLeft:"10px"}}><b> Contact No :</b> {RestItem.Contact}</div></td></tr>
                                     <tr><td><b> Holiday :</b> {RestItem.Holiday}</td></tr>
                                     <tr><td><Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken")?"disabled":""}`} to="/tablebooking">Book Table</Link></td></tr>
