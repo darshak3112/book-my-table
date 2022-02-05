@@ -26,8 +26,6 @@ export const Rasturent = () => {
     getRestaurant();
   }, []);
 
-<<<<<<< HEAD
-=======
   const SearchName=(e)=>{
     setsearchName(e.target.value)
   }
@@ -39,9 +37,6 @@ export const Rasturent = () => {
   const SearchTOccu=(e)=>{
     setsearchTableOccupancy(e.target.value)
   }
-
-
->>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
   return (
     <>
       <div className="container">

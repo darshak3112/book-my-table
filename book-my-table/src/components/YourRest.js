@@ -122,10 +122,7 @@ const YourRest = (props) => {
         getYourRestaurant();
         // }, []);
     };
-<<<<<<< HEAD
     let t;
-=======
-
 
     const deleteRest = async (id) => {
         // Api call 
@@ -144,7 +141,6 @@ const YourRest = (props) => {
         YoursetRestList(newrestlist);
     }
 
->>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
     const onChange = (e) => {
         if(e.target.name === "TimeOpen")
             t = e.target.value;

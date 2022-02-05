@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
-<<<<<<< HEAD
-import {useHistory } from "react-router-dom";
-=======
-import { useHistory } from "react-router-dom";
->>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
-//import Map from './Map';
+
+import {useHistory } from "react-router-dom"
 
 
 const Addrasturent = (props) => {
-<<<<<<< HEAD
 
     let history = useHistory();
     const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
-=======
-    let history = useHistory();
-    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", Address:"",TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
->>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { Name, City, Area, FoodType, FoodCategory,Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
@@ -31,13 +21,9 @@ const Addrasturent = (props) => {
         });
         const json = await response.json();
         console.log(json);
-<<<<<<< HEAD
         history.push("/");
-=======
         if (!Error)
             history.push("/");
-
->>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
     }
 
     const onChange = (e) => {

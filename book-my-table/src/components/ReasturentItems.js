@@ -34,7 +34,6 @@ export const ReasturentItems = (props) => {
                             </div>
                             <div className="card-text my-3">
                                 <table>
-<<<<<<< HEAD
                                     <tr>
                                         <td>
                                             <table>
@@ -57,7 +56,7 @@ export const ReasturentItems = (props) => {
                                     </tr>
                                     <tr><td style={{columnSpan: "2"}}><Link onClick={() => actions.Notables(tab)} type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} to="/tablebooking">Book Table</Link></td></tr>
                                     </table>
-=======
+                                    <table>
                                     <tr><td><b> Food Type :</b> {RestItem.FoodType}</td>
                                         <td><div style={{marginLeft:"10px"}}><b> FoodCategory : </b>{RestItem.FoodCategory}</div></td></tr>
                                     <tr><td><b> Facility : </b>{RestItem.Facility}</td>
@@ -69,7 +68,6 @@ export const ReasturentItems = (props) => {
                                     <tr><td><b> Holiday :</b> {RestItem.Holiday}</td></tr>
                                     <tr><td><Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken")?"disabled":""}`} to="/tablebooking">Book Table</Link></td></tr>
                                 </table>
->>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
                             </div>
                         </div>
                     </div>
