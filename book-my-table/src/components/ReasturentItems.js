@@ -1,23 +1,30 @@
 import React from "react";
 import image1 from "./Img/rastLogo.jpg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { ActionCreators } from "../state/index";
 
 
 export const ReasturentItems = (props) => {
     const { RestItem } = props;
 
+    const tab = parseInt(RestItem.Table_require);
+    const dispatch = useDispatch();
+    const actions = bindActionCreators(ActionCreators, dispatch);
+
     return (
         <>
-            <div className="card border-dark my-2" style={{ border: "light" }}>
+            <div className="card border-dark my-2 mx-2" style={{ width: "97%", border: "light" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
-                        <center><img src={image1} className="img-fluid rounded-start" alt="..." style={{ height: "230px", width: "300px" }} /></center>
+                        <center><img src={image1} className="img-fluid rounded-start" alt="..." style={{marginTop: "30px", height: "230px", width: "300px" }} /></center>
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-9">
-                                    <h5 className="card-title">{RestItem.Name}</h5>
+                                    <h2 className="card-title" style={{marginLeft: "120px"}}>{RestItem.Name}</h2>
                                 </div>
                                 <div className="col-3">
                                     <div style={{ textAlign: "end" }}>
@@ -25,19 +32,30 @@ export const ReasturentItems = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card-text">
+                            <div className="card-text my-3">
                                 <table>
-                                    <tr><td><b> Food Type :</b> {RestItem.FoodType}</td>
-                                        <td><div style={{marginLeft:"10px"}}><b> FoodCategory : </b>{RestItem.FoodCategory}</div></td></tr>
-                                    <tr><td><b> Facility : </b>{RestItem.Facility}</td>
-                                        <td><div style={{marginLeft:"10px"}}><b> Opening Time :</b> {RestItem.TimeOpen}</div></td></tr>
-                                    <tr><td><b> Cloding Time :</b> {RestItem.TimeClose}</td>
-                                        <td><div style={{marginLeft:"10px"}}><b> Table require :</b> {RestItem.Table_require}</div></td></tr>
-                                    <tr><td><b> Address :</b>{RestItem.Address},{RestItem.City},{RestItem.Area}<br /></td>
-                                        <td><div style={{marginLeft:"10px"}}><b> Contact No :</b> {RestItem.Contact}</div></td></tr>
-                                    <tr><td><b> Holiday :</b> {RestItem.Holiday}</td></tr>
-                                    <tr><td><Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken")?"disabled":""}`} to="/tablebooking">Book Table</Link></td></tr>
-                                </table>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr><td><b> Food Type :</b> {RestItem.FoodType}</td></tr>
+                                                <tr><td style={{ width: "400px" }}><b> Facility : </b>{RestItem.Facility}</td></tr>
+                                                <tr><td><b> Cloding Time :</b> {RestItem.TimeClose}</td></tr>
+                                                <tr><td><b> Address :</b> {RestItem.City},{RestItem.Area}<br /></td></tr>
+                                                <tr><td><b> Holiday :</b> {RestItem.Holiday}</td></tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <tr><td><div style={{ marginLeft: "10px" }}><b> FoodCategory : </b>{RestItem.FoodCategory}</div></td></tr>
+                                                <tr><td><div style={{ marginLeft: "10px" }}><b> Opening Time :</b> {RestItem.TimeOpen}</div></td></tr>
+                                                <tr><td><div style={{ marginLeft: "10px" }}><b> Table require :</b> {RestItem.Table_require}</div></td></tr>
+                                                <tr><td><div style={{ marginLeft: "10px" }}><b> Contact No :</b> {RestItem.Contact}</div></td></tr>
+                                                <tr><td style={{height: "49px"}}></td></tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr><td style={{columnSpan: "2"}}><Link onClick={() => actions.Notables(tab)} type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} to="/tablebooking">Book Table</Link></td></tr>
+                                    </table>
                             </div>
                         </div>
                     </div>

@@ -122,7 +122,7 @@ const YourRest = (props) => {
         getYourRestaurant();
         // }, []);
     };
-
+    let t;
 
     const deleteRest = async (id) => {
         // Api call 
@@ -142,19 +142,27 @@ const YourRest = (props) => {
     }
 
     const onChange = (e) => {
-        setUpDateRest({ ...UpDateRest, [e.target.name]: e.target.value });
+        if(e.target.name === "TimeOpen")
+            t = e.target.value;
+        else if(e.target.name === "TimeOpenAp") {
+            t = t + e.target.value;
+            setUpDateRest({ ...UpDateRest, [e.TimeOpen]: t });
+        } else {
+            setUpDateRest({ ...UpDateRest, [e.target.name]: e.target.value });
+        }
     }
+
     return (
         <>
             <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
             </button>
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content" style={{ width: "178%" }}>
+                <div className="modal-dialog" style={{maxWidth: "800px"}}>
+                    <div className="modal-content" style={{minWidth:"450px"}}>
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Update Your Restaurant Datails</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div style={{width: "728px", textAlign:"center"}}><h5 className="modal-title" id="exampleModalLabel">Update Your Restaurant Datails</h5></div>
+                            <button type="button" className="btn-close" style={{margin: "0"}} data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="container">
@@ -258,7 +266,7 @@ const YourRest = (props) => {
                                                     <center>
                                                         <div className="mb-3">
                                                             <label htmlFor="exampleInputName" className="form-label mx-2">Opening Time :</label>
-                                                            <select style={{ marginLeft: 10, width: "100px" }} onChange={onChange} className='btn btn-outline-dark' name="TimeOpen" id="Otime">
+                                                            <select style={{ marginLeft: 10, width: "100px" }} onChange={onChange } className='btn btn-outline-dark' name="TimeOpen" id="Otime">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -270,9 +278,9 @@ const YourRest = (props) => {
                                                                 <option value="9">9</option>
                                                                 <option value="10">10</option>
                                                                 <option value="11">11</option>
-                                                                <option value="11">12</option>
+                                                                <option value="12">12</option>
                                                             </select>
-                                                            <select style={{ marginLeft: 10 }} onChange={onChange} className='btn btn-outline-dark' name="TimeOpen" id="OTimeZone">
+                                                            <select style={{ marginLeft: 10 }} onChange={onChange} className='btn btn-outline-dark' name="TimeOpenAP" id="OTimeZone">
                                                                 <option value="AM">AM</option>
                                                                 <option value="PM">PM</option>
                                                             </select>
@@ -283,7 +291,7 @@ const YourRest = (props) => {
                                                     <center>
                                                         <div className="mb-3">
                                                             <label htmlFor="exampleInputName" className="form-label mx-2">Closing Time :</label>
-                                                            <select style={{ marginLeft: 10, width: "100px" }} onChange={onChange} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
+                                                            <br/><select style={{ marginLeft: 10, width: "100px" }} onChange={onChange} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -295,7 +303,7 @@ const YourRest = (props) => {
                                                                 <option value="9">9</option>
                                                                 <option value="10">10</option>
                                                                 <option value="11">11</option>
-                                                                <option value="11">12</option>
+                                                                <option value="12">12</option>
                                                             </select>
                                                             <select style={{ marginLeft: 10 }} onChange={onChange} className='btn btn-outline-dark' name="TimeClose" id="CTimeZone">
                                                                 <option value="AM">AM</option>
@@ -342,9 +350,10 @@ const YourRest = (props) => {
                         </div>
                     </div>
                 </div>
+                <div style={{height: "40px"}}></div>
             </div>
             <div className="container">
-                <div className="row">
+                <div className="row" >
                     <h1><center>Your Rasturent List</center></h1>
                     <hr />
                     <div className="container mx-3">

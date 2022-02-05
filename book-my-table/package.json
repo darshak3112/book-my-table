@@ -16,9 +16,11 @@
     "react-geocode": "^0.2.3",
     "react-google-autocomplete": "^2.6.1",
     "react-google-maps": "^9.4.5",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-simple-image-slider": "^2.3.0",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

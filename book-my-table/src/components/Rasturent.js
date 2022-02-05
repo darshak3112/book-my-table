@@ -37,8 +37,6 @@ export const Rasturent = () => {
   const SearchTOccu=(e)=>{
     setsearchTableOccupancy(e.target.value)
   }
-
-
   return (
     <>
       <div className="container">
