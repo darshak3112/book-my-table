@@ -30,7 +30,7 @@ const YorRestItem = (props) => {
                                         <tr className="my-3"><td><b> FoodCategory : </b>{YourRestItem.FoodCategory}</td></tr>
                                         <tr className="my-3"><td><b> Facility : </b>{YourRestItem.Facility}</td></tr>
                                         <tr className="my-3"><td><b> Opening Time :</b> {YourRestItem.TimeOpen}</td></tr>
-                                        <tr className="my-3"><td><b> Cloding Time :</b> {YourRestItem.TimeClose}</td></tr>
+                                        <tr className="my-3"><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
                                         <tr className="my-3"><td><b> Table require :</b> {YourRestItem.Table_require}</td></tr>
                                         <tr className="my-3"><td><b> Address :</b>{YourRestItem.Address} {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
                                         <tr className="my-3"><td><b> Contact No :</b> {YourRestItem.Contact}</td></tr>

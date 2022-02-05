@@ -56,18 +56,6 @@ export const ReasturentItems = (props) => {
                                     </tr>
                                     <tr><td style={{columnSpan: "2"}}><Link onClick={() => actions.Notables(tab)} type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} to="/tablebooking">Book Table</Link></td></tr>
                                     </table>
-                                    <table>
-                                    <tr><td><b> Food Type :</b> {RestItem.FoodType}</td>
-                                        <td><div style={{marginLeft:"10px"}}><b> FoodCategory : </b>{RestItem.FoodCategory}</div></td></tr>
-                                    <tr><td><b> Facility : </b>{RestItem.Facility}</td>
-                                        <td><div style={{marginLeft:"10px"}}><b> Opening Time :</b> {RestItem.TimeOpen}</div></td></tr>
-                                    <tr><td><b> Cloding Time :</b> {RestItem.TimeClose}</td>
-                                        <td><div style={{marginLeft:"10px"}}><b> Table require :</b> {RestItem.Table_require}</div></td></tr>
-                                    <tr><td><b> Address :</b>{RestItem.Address},{RestItem.City},{RestItem.Area}<br /></td>
-                                        <td><div style={{marginLeft:"10px"}}><b> Contact No :</b> {RestItem.Contact}</div></td></tr>
-                                    <tr><td><b> Holiday :</b> {RestItem.Holiday}</td></tr>
-                                    <tr><td><Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken")?"disabled":""}`} to="/tablebooking">Book Table</Link></td></tr>
-                                </table>
                             </div>
                         </div>
                     </div>
