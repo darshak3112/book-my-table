@@ -21,7 +21,7 @@ export const Rasturent = () => {
   useEffect(() => {
     getRestaurant();
   }, []);
-  
+
   return (
     <>
       <div className="container">

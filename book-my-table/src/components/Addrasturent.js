@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
+import {useHistory } from "react-router-dom";
 //import Map from './Map';
 
 
 const Addrasturent = (props) => {
 
+    let history = useHistory();
     const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
 
     const handleSubmit = async (e) => {
@@ -22,6 +24,7 @@ const Addrasturent = (props) => {
 
         const json = await response.json();
         console.log(json);
+        history.push("/");
     }
 
     const onChange = (e) => {
@@ -30,7 +33,7 @@ const Addrasturent = (props) => {
 
     return (
         <>
-            <div className="container  w-50 h-75" style={{ marginBottom: "20px", minWidth: "350px" }}>
+            <div className="container w-50 h-75" style={{ marginBottom: "20px", minWidth: "350px" }}>
                 <div className="card my-5">
                     <div className="card-body">
                         <form onSubmit={handleSubmit} >
