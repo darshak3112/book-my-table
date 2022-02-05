@@ -27,7 +27,7 @@ const User = () => {
                 <div className="card-body"></div>
                 <form onSubmit={handleSubmit} style={{padding:"20px"}}>
                     <div className="mb-3">
-                        <label for="exampleInputfile" className="form-label">Upload File</label>
+                        <label htmlFor="exampleInputfile" className="form-label">Upload File</label>
                         <input type="file" accept=".png, .jpg, .jpeg" className="form-control" id="exampleInputfile" onChange={handlephoto} name="file" placeholder='Upload File' />
                     </div>
                     <center><button type="submit" className="btn btn-primary">Submit</button></center>

@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
+<<<<<<< HEAD
 import {useHistory } from "react-router-dom";
+=======
+import { useHistory } from "react-router-dom";
+>>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
 //import Map from './Map';
 
 
 const Addrasturent = (props) => {
+<<<<<<< HEAD
 
     let history = useHistory();
     const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
+=======
+    let history = useHistory();
+    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", Address:"",TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
+>>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-        const { Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
+        const { Name, City, Area, FoodType, FoodCategory,Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
         const response = await fetch("http://localhost:5000/api/restaurent/addres", {
             method: 'POST',
-            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
+            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
             headers: {
                 'Content-Type': 'application/json',
                 "auth-token-vendor": localStorage.getItem("vToken")
             }
         });
-
         const json = await response.json();
         console.log(json);
+<<<<<<< HEAD
         history.push("/");
+=======
+        if (!Error)
+            history.push("/");
+
+>>>>>>> e6d9fedcd682edfeceb42ebfa9825eefae3f98a0
     }
 
     const onChange = (e) => {
@@ -43,74 +56,74 @@ const Addrasturent = (props) => {
                             <center><h1>Add Rasturent</h1></center>
                             <hr />
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Rasturent Name</label>
+                                <label htmlFor="exampleInputName" className="form-label">Rasturent Name</label>
                                 <input type="text" name="Name" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Name' />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">City</label>
+                                <label htmlFor="exampleInputName" className="form-label">City</label>
                                 <input type="text" name="City" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter City' />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Area</label>
+                                <label htmlFor="exampleInputName" className="form-label">Area</label>
                                 <input type="text" name="Area" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Area' />
                             </div>
                             <div className="mb-3">
-                                <label style={{ marginRight: 10 }} for="exampleInputName" className="form-label">Food-Type : </label>
+                                <label style={{ marginRight: 10 }} htmlFor="exampleInputName" className="form-label">Food-Type : </label>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio1" value="Veg" />
-                                    <label className="form-check-label" for="inlineRadio1">Veg</label>
+                                    <label className="form-check-label" htmlFor="inlineRadio1">Veg</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio2" value="Non-Veg" />
-                                    <label className="form-check-label" for="inlineRadio2">Non-Veg</label>
+                                    <label className="form-check-label" htmlFor="inlineRadio2">Non-Veg</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio3" value="Both" />
-                                    <label className="form-check-label" for="inlineRadio3">Both</label>
+                                    <label className="form-check-label" htmlFor="inlineRadio3">Both</label>
                                 </div>
                             </div>
                             <div className="mb-3">
-                                <label style={{ marginRight: 10 }} for="exampleInputName" className="form-label">Food-Category : </label>
+                                <label style={{ marginRight: 10 }} htmlFor="exampleInputName" className="form-label">Food-Category : </label>
                                 <div style={{ marginLeft: 120 }}>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="Gujarati" id="flexCheckDefault" />
-                                        <label className="form-check-label" for="flexCheckDefault">
+                                        <label className="form-check-label" htmlFor="flexCheckDefault">
                                             Gujarati
                                         </label>
                                     </div>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="Punjabi" id="flexCheckChecked" />
-                                        <label className="form-check-label" for="flexCheckChecked">
+                                        <label className="form-check-label" htmlFor="flexCheckChecked">
                                             Punjabi
                                         </label>
                                     </div>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="Italian" id="flexCheckChecked" />
-                                        <label className="form-check-label" for="flexCheckChecked">
+                                        <label className="form-check-label" htmlFor="flexCheckChecked">
                                             Italian
                                         </label>
                                     </div>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="South-Indian" id="flexCheckChecked" />
-                                        <label className="form-check-label" for="flexCheckChecked">
+                                        <label className="form-check-label" htmlFor="flexCheckChecked">
                                             South-Indian
                                         </label>
                                     </div>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="Maxican" id="flexCheckChecked" />
-                                        <label className="form-check-label" for="flexCheckChecked">
+                                        <label className="form-check-label" htmlFor="flexCheckChecked">
                                             Maxican
                                         </label>
                                     </div>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="Chanise" id="flexCheckChecked" />
-                                        <label className="form-check-label" for="flexCheckChecked">
+                                        <label className="form-check-label" htmlFor="flexCheckChecked">
                                             Chanise
                                         </label>
                                     </div>
                                     <div className="form-check">
                                         <input className="form-check-input" onChange={onChange} name='FoodCategory' type="checkbox" value="Other" id="flexCheckChecked" />
-                                        <label className="form-check-label" for="flexCheckChecked">
+                                        <label className="form-check-label" htmlFor="flexCheckChecked">
                                             Other
                                         </label>
                                     </div>
@@ -124,12 +137,16 @@ const Addrasturent = (props) => {
                                     zoom={15}
                                 />
                             </div> */}
-                            <br/>
+                            <br />
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputName" className="form-label">Address</label>
+                                <input type="text" name="Address" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
+                            </div>
                             <div className="row my-2">
                                 <div className="col-6">
                                     <center>
                                         <div className="mb-3">
-                                            <label for="exampleInputName" className="form-label mx-2">Opening Time :</label>
+                                            <label htmlFor="exampleInputName" className="form-label mx-2">Opening Time :</label>
                                             <select style={{ marginLeft: 10, width: "100px" }} onChange={onChange} className='btn btn-outline-dark' name="TimeOpen" id="Otime">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -154,7 +171,7 @@ const Addrasturent = (props) => {
                                 <div className="col-6">
                                     <center>
                                         <div className="mb-3">
-                                            <label for="exampleInputName" className="form-label mx-2">Closing Time :</label>
+                                            <label htmlFor="exampleInputName" className="form-label mx-2">Closing Time :</label>
                                             <select style={{ marginLeft: 10, width: "100px" }} onChange={onChange} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -178,7 +195,7 @@ const Addrasturent = (props) => {
                                 </div>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label mx-2">Holiday : </label>
+                                <label htmlFor="exampleInputName" className="form-label mx-2">Holiday : </label>
                                 <select style={{ marginLeft: 10, width: "150px" }} onChange={onChange} className='btn btn-outline-dark' name="Holiday" id="Holiday">
                                     <option value="No-Holiday" selected>No-Holiday</option>
                                     <option value="Sunday">Sunday</option>
@@ -191,16 +208,16 @@ const Addrasturent = (props) => {
                                 </select>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputPhone" className="form-label">contact No</label>
+                                <label htmlFor="exampleInputPhone" className="form-label">contact No</label>
                                 <input type="text" name="Contact" onChange={onChange} className="form-control" id="exampleInputPhone" placeholder='Enter Contact No' aria-describedby="phoneHelp" />
                                 <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Facility</label>
+                                <label htmlFor="exampleInputName" className="form-label">Facility</label>
                                 <input type="text" name="Facility" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Facility' />
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputName" className="form-label">Number of table</label>
+                                <label htmlFor="exampleInputName" className="form-label">Number of table</label>
                                 <input type="text" name="Table_require" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
                             </div>
                             <center><button type="submit" className="btn btn-primary">Submit</button></center>
