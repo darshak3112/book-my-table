@@ -41,7 +41,7 @@ export const Rasturent = () => {
     <>
       <div className="container">
         <div className="row">
-          <h1><center>Rasturent List</center></h1>
+          <h1><center>Restaurant List</center></h1>
           <hr />
           
           <div className="row">

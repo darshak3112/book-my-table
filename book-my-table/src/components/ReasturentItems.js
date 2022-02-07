@@ -1,17 +1,10 @@
 import React from "react";
 import image1 from "./Img/rastLogo.jpg";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { ActionCreators } from "../state/index";
 
 
 export const ReasturentItems = (props) => {
     const { RestItem } = props;
-
-    const tab = parseInt(RestItem.Table_require);
-    const dispatch = useDispatch();
-    const actions = bindActionCreators(ActionCreators, dispatch);
 
     return (
         <>
@@ -28,7 +21,7 @@ export const ReasturentItems = (props) => {
                                 </div>
                                 <div className="col-3">
                                     <div style={{ textAlign: "end" }}>
-                                        <span className={`badge bg-${RestItem.Active ? "success" : "danger"}`}>{RestItem.Active ? "Active" : "Pading"}</span>
+                                        <span className={`badge bg-${RestItem.Active ? "success" : "danger"}`}>{RestItem.Active ? "Active" : "Panding"}</span>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +47,7 @@ export const ReasturentItems = (props) => {
                                             </table>
                                         </td>
                                     </tr>
-                                    <tr><td style={{columnSpan: "2"}}><Link onClick={() => actions.Notables(tab)} type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} to="/tablebooking">Book Table</Link></td></tr>
+                                    <tr><td style={{columnSpan: "2"}}><Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} to="/tablebooking">Book Table</Link></td></tr>
                                     </table>
                             </div>
                         </div>
