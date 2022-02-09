@@ -6,7 +6,7 @@ export const Rasturent = () => {
   const RestInitial = []
   const [RestList, setRestList] = useState(RestInitial);
 
-  const [searchName,setsearchName] = useState("");
+  const [searchName, setsearchName] = useState("");
   const [searchCity, setsearchCity] = useState("");
   const [searchTableOccupancy, setsearchTableOccupancy] = useState("");
 
@@ -26,15 +26,15 @@ export const Rasturent = () => {
     getRestaurant();
   }, []);
 
-  const SearchName=(e)=>{
+  const SearchName = (e) => {
     setsearchName(e.target.value)
   }
 
-  const SearchCity=(e)=>{
+  const SearchCity = (e) => {
     setsearchCity(e.target.value)
   }
 
-  const SearchTOccu=(e)=>{
+  const SearchTOccu = (e) => {
     setsearchTableOccupancy(e.target.value)
   }
   return (
@@ -43,7 +43,7 @@ export const Rasturent = () => {
         <div className="row">
           <h1><center>Restaurant List</center></h1>
           <hr />
-          
+
           <div className="row">
             <div className="col-4">
               <input type="text" className="form-control" placeholder="Search Restaurant Name ..." onChange={SearchName} name="SearchRestName" id="SearchRestName" />
@@ -55,20 +55,20 @@ export const Rasturent = () => {
               <input type="text" className="form-control" placeholder="Table occupancy..." onChange={SearchTOccu} name="SearchRestName" id="SearchRestName" />
             </div>
           </div>
-          <div className="container mx-3">
+          <div className="container">
             {RestList.length === 0 && 'No Restaurant Added'}
           </div>
-          {RestList.filter((RestItem)=>{
+          {RestList.filter((RestItem) => {
             let restname = RestItem.Name.toLowerCase();
             let restcity = RestItem.City.toLowerCase();
             let serchname = searchName.toLowerCase();
             let serchcity = searchCity.toLowerCase();
-          if(searchName==="" && searchCity===""){
-            return RestItem;
-          }
-          else if(restname.includes(serchname) && restcity.includes(serchcity)){
-            return RestItem;
-          }
+            if (searchName === "" && searchCity === "") {
+              return RestItem;
+            }
+            else if (restname.includes(serchname) && restcity.includes(serchcity)) {
+              return RestItem;
+            }
           }).map((RestItem) => {
             return <ReasturentItems key={RestItem._id} RestItem={RestItem} />;
           })}
