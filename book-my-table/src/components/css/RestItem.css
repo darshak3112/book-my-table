@@ -1,0 +1,13 @@
+.cardBody{
+	text-align: center;
+}
+
+.cardEffect {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.cardEffect:hover {
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    transform: scale(1.1)
+}

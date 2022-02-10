@@ -20,6 +20,7 @@ import CheckingUp from "./components/CheckingUp";
 import CheckingIn from "./components/CheckingIn";
 import Upload from "./components/Upload";
 import YourRest from "./components/YourRest";
+import RestauramtInfo from "./components/RestauramtInfo";
 
 function App() {
   return (
@@ -66,6 +67,9 @@ function App() {
             </Route>
             <Route exact path="/yourRest">
               <YourRest/>
+            </Route>
+            <Route exact path="/RestInfo">
+              <RestauramtInfo/>
             </Route>
           </Switch>
         </div>
