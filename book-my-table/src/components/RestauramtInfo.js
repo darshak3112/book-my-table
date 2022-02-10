@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import image1 from "./Img/RestImg.jpg";
 import image2 from "./Img/veg.png";
 import image3 from "./Img/non-veg.png";
+import "./css/RestaurantInfo.css"
 
 const RestauramtInfo = () => {
     let location = useLocation();
@@ -20,7 +21,7 @@ const RestauramtInfo = () => {
                     <center><img src={image1} className="my-2" alt="..." style={{ width: "280px", height: "240px", borderRadius: "10px" }} /></center>
                 </div>
                 <div className="col-5">
-                    <h2 className='my-2' style={{ fontFamily: 'Cormorant Garamond' }}>{capitalize(myparam.Name)}</h2><br />
+                    <h2 className='my-2 textanim' style={{ fontFamily: 'Cormorant Garamond' }}>{capitalize(myparam.Name)}</h2><br />
                     <p style={{ fontFamily: 'Cormorant Garamond' }}>
                         {capitalize(myparam.FoodType) === 'Veg' ?
                             <>
