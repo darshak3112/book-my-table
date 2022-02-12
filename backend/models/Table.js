@@ -7,8 +7,8 @@ const TableSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Restaurent_information'
     },
-    NumOfTable: {
-        type: Int32,
+    Person : {
+        type: Number,
         require: true
     }
     

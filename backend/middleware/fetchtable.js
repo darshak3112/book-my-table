@@ -11,8 +11,9 @@ const fetchtable = (req, res, next) => {
    // console.log(data.table)
     try {
         const data = jwt.verify(token, JWT_SECRET);
-        console.log("this is data   "+data._id)
-        req.table = data.table;
+        console.log(data);
+        console.log(data.restaurent)
+        req.restaurent = data.restaurent;
         next();
     } catch (err) {
         res.status(401).send({ error: err })
