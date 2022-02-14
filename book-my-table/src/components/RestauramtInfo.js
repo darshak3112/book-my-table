@@ -26,7 +26,7 @@ const RestauramtInfo = () => {
             <div className="container-fluid" style={{ fontFamily: 'Cormorant Garamond' }}>
                 <div className="row" style={{ backgroundColor: "#ff9c4e" }}>
                     <div className="col-md-3">
-                        <center><img src={image1} className="my-2" alt="..." style={{ minHeight: "100px", minWidth: "100px", maxHeight: "248px", maxWidth: "264px", borderRadius: "10px" }} /></center>
+                        <center><img src={image1} className="my-2" alt="..." style={{maxHeight: "264px", maxWidth: "100%", borderRadius: "10px" }} /></center>
                     </div>
                     <div className="col-md-5">
                         <h2 className='my-2 textanim' >{capitalize(myparam.Name)}</h2><br />
@@ -54,24 +54,24 @@ const RestauramtInfo = () => {
                         <div className="row mx-1" style={{ height: "70px", fontFamily: 'Cormorant Garamond' }}>
                             {/* Todo In future */}
                             <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
-                                <div className='mt-2'><i class="fa fa-star mx-1"></i><b>4.3</b></div>
+                                <div className='mt-2'><i className="fa fa-star mx-1"></i><b>4.3</b></div>
                                 <div style={{ fontSize: "12px" }}>50+ Ratings</div>
                             </div>
 
                             <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
                                 <div className='mt-2'>Open At</div>
-                                <div style={{ fontSize: "12px" }}><i class="far fa-clock mx-1"></i><b>{myparam.TimeOpen}</b></div>
+                                <div style={{ fontSize: "12px" }}><i className="far fa-clock mx-1"></i><b>{myparam.TimeOpen}</b></div>
                             </div>
                             <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
                                 <div className='mt-2'>Close At</div>
-                                <div style={{ fontSize: "12px" }}><i class="far fa-clock mx-1"></i><b>{myparam.TimeClose}</b></div>
+                                <div style={{ fontSize: "12px" }}><i className="far fa-clock mx-1"></i><b>{myparam.TimeClose}</b></div>
                             </div>
                         </div>
                     </div>
                     {/* In future TO DO */}
-                    <div className="col-md-4 my-3" >
-                        <b><label style={{ zIndex: 2, marginTop: "3.6%", marginLeft: "1%", position: "absolute", backgroundColor: "#ff9c4e", fontSize: "30px" }}>#Offers</label>
-                            <div className="card" style={{ zIndex: 1, marginTop: "15%", marginBottom: "3%", marginRight: "15%", background: "#ff9c4e", border: "2px solid black", borderRadius: "10px" }}>
+                    <div className="col-md-4" >
+                        <b><label style={{ zIndex: 2, marginTop:"1px", marginLeft: "10px", position: "absolute", backgroundColor: "#ff9c4e", fontSize: "30px" }}>#Offers</label>
+                            <div className="card" style={{ zIndex: 1, marginTop:"23px", background: "#ff9c4e", border: "2px solid black", borderRadius: "10px" }}>
                                 <div className="card-body">
                                     <ul>
                                         <br />
@@ -84,7 +84,7 @@ const RestauramtInfo = () => {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="container my-3">
                 <div className="row">
                     <div className="col-md-9">
                         <div className="row">
@@ -140,24 +140,49 @@ const RestauramtInfo = () => {
                                 </Carousel>
                             </center>
                         </div>
-                        <div className="row mx-2 my-3" >
-                            <div style={{ fontSize: "20px" }}>Facility in Our restaurant</div>
-                            <div style={{ fontSize: "15px" }}>{myparam.Facility}</div>
-                            <hr />
-                            <div style={{ fontSize: "15px" }}><i className="fas fa-map-marker-alt mx-1"></i> {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}</div>
-                            <hr />
-                            <div style={{ fontSize: "20px" }}>Food</div>
-                            <div style={{ fontSize: "15px" }}>{myparam.FoodCategory}</div>
-                            <hr />
-                            <div style={{ fontSize: "15px" }}><i class="fa fa-phone"></i> {myparam.Contact}</div>
-                            <hr />
-                            <div style={{ fontSize: "15px" }}>Holiday At {myparam.Holiday}</div>
-                            <hr />
-                            <div style={{ fontSize: "15px" }}>Total Table Occupancy: {myparam.Table_require}</div>
-                            {/* <Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} to="/tablebooking">Book Table</Link> */}
+                        <div className="card my-2">
+                            <div className='card-header' style={{ fontSize: "20px" }}>Facility  of Restaurant</div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">{myparam.Facility}</li>
+                            </ul>
+                        </div>
+
+                        <div className="card my-2">
+                            <div className='card-header' style={{ fontSize: "20px" }}>Address of Restaurant</div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"> {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}</li>
+                            </ul>
+                        </div>
+
+                        <div className="card my-2">
+                            <div className='card-header' style={{ fontSize: "20px" }}>Foods in Restaurant</div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"> {myparam.FoodCategory}</li>
+                            </ul>
+                        </div>
+
+                        <div className="card my-2">
+                            <div className='card-header' style={{ fontSize: "20px" }}>Contact Details of Restaurant</div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"> {myparam.Contact}</li>
+                            </ul>
+                        </div>
+
+                        <div className="card my-2">
+                            <div className='card-header' style={{ fontSize: "20px" }}>Holidays of Restaurant</div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"> {myparam.Holiday === "" ? "No Holidays" : myparam.Holiday}</li>
+                            </ul>
+                        </div>
+
+                        <div className="card my-2">
+                            <div className='card-header' style={{ fontSize: "20px" }}>Tables Occupancy of Restaurant</div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"> {myparam.Table_require}</li>
+                            </ul>
                         </div>
                     </div>
-                    <div className="col-md-3 my-2" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
+                    <div className="col-md-3" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
                         <b>advertisement</b>
                     </div>
                 </div>

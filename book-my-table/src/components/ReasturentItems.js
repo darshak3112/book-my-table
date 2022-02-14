@@ -17,7 +17,7 @@ export const ReasturentItems = (props) => {
     }
     return (
         <>
-            <div className="col-md-4 my-2">
+            <div className="col-md-4 my-3">
                 <div className="Restcard card cardEffect mx-auto" onClick={handelclick} style={{ width: "23rem", height: "23rem", borderRadius: "10px" }}>
                     <img src={image1} className="card-img-top" alt="..." style={{
                         width: "23rem", height: "15rem"
