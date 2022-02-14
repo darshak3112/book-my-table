@@ -302,8 +302,7 @@ const YourRest = (props) => {
                                                         <div className="mb-3">
                                                             <label htmlFor="exampleInputName" className="form-label mx-2">Opening Time :</label>
                                                             <br/><select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeOpen } className='btn btn-outline-dark' name="TimeOpen" id="Otime">
-                                                                <option value="none" selected="selected">-- Select --</option>
-                                                                <option value="1">1</option>
+                                                                <option value="1" selected="selected">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
                                                                 <option value="4">4</option>
@@ -317,8 +316,7 @@ const YourRest = (props) => {
                                                                 <option value="12">12</option>
                                                             </select>
                                                             <select style={{ marginLeft: 10 }} onChange={onChangeOpenAP } className='btn btn-outline-dark' name="TimeOpenAp" id="OTimeZone">
-                                                                <option value="none" selected="selected">-- Select --</option>
-                                                                <option value="AM">AM</option>
+                                                                <option value="AM" selected="selected">AM</option>
                                                                 <option value="PM">PM</option>
                                                             </select>
                                                         </div>
@@ -329,8 +327,7 @@ const YourRest = (props) => {
                                                         <div className="mb-3">
                                                             <label htmlFor="exampleInputName" className="form-label mx-2">Closing Time :</label>
                                                             <br/><select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeClose} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
-                                                                <option value="none" selected="selected">-- Select --</option>
-                                                                <option value="1">1</option>
+                                                                <option value="1" selected="selected">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
                                                                 <option value="4">4</option>
@@ -344,8 +341,7 @@ const YourRest = (props) => {
                                                                 <option value="12">12</option>
                                                             </select>
                                                             <select style={{ marginLeft: 10 }} onChange={onChangeCloseAp} className='btn btn-outline-dark' name="TimeCloseAp" id="CTimeZone">
-                                                                <option value="none" selected="selected">-- Select --</option>
-                                                                <option value="AM">AM</option>
+                                                                <option value="AM" selected="selected">AM</option>
                                                                 <option value="PM">PM</option>
                                                             </select>
                                                         </div>
@@ -355,8 +351,7 @@ const YourRest = (props) => {
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label mx-2">Holiday : </label>
                                                 <select style={{ marginLeft: 10, width: "150px" }} onChange={onChange} className='btn btn-outline-dark' name="Holiday" id="Holiday">
-                                                    <option value="No-Holiday" selected="selected">-- Select Holiday --</option>
-                                                    <option value="No-Holiday">No-Holiday</option>
+                                                    <option value="No-Holiday" selected="selected">No-Holiday</option>
                                                     <option value="Sunday">Sunday</option>
                                                     <option value="Monday">Monday</option>
                                                     <option value="Tuesday">Tuesday</option>
