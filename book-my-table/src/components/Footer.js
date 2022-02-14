@@ -4,7 +4,7 @@ import "./css/Nav.css";
 
 const Footer = () => {
     return (
-        <div style={{position:"sticky"}}>
+        <div style={{position:"sticky",zIndex:3,marginTop:"40px"}}>
             <footer className='fixed-bottom'>
                 <div id="footer1" className="container-fluid">
                     <div className="row">
