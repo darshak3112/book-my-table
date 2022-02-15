@@ -143,46 +143,46 @@ const RestauramtInfo = () => {
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Facility  of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px"}}>{myparam.Facility}</li>
+                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}>{myparam.Facility}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Address of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px"}}> {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}</li>
+                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Foods in Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px"}}> {myparam.FoodCategory}</li>
+                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.FoodCategory}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Contact Details of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px"}}> {myparam.Contact}</li>
+                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.Contact}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Holidays of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px"}}> {myparam.Holiday === "" ? "No Holidays" : myparam.Holiday}</li>
+                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.Holiday === "" ? "No Holidays" : myparam.Holiday}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Tables Occupancy of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px"}}> {myparam.Table_require}</li>
+                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.Table_require}</li>
                             </ul>
                         </div>
                         <div style={{textAlign: "center"}}>
-                        <Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{width: "120px", fontSize: "20px"}} to="/tablebooking">Book Table</Link></div>
+                        <Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{width: "120px", fontSize: "20px", fontFamily: "Cormorant Garamond"}} to="/tablebooking">Book Table</Link></div>
                     </div>
                     <div className="col-md-3" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
                         <b>advertisement</b>
