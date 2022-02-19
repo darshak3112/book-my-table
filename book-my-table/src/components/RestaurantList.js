@@ -27,11 +27,11 @@ const RestaurantList = (props) => {
         getYourRestaurant();
     }, []);
     const deleteRest = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/admin/deleteres/${id}`, {
+        const response = await fetch(`http://localhost:5000/api/admin/deleteuser/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token-vendor": localStorage.getItem("AToken"),
+                "auth-token-admin": localStorage.getItem("AToken"),
             },
         });
         const json = await response.json();
