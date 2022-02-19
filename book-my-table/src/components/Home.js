@@ -99,7 +99,7 @@ export const Home = () => {
           </div>
           <div className="col-md-4">
             <center>
-              <img width="250px" src={image8} alt="..." />
+              <img width="250px" height="150px" src={image8} alt="..." />
               <h4>Terms and Conditions</h4>
               <p className="text-justify">
                 You have to pre book your table. you have to pay only 100 rupees per person for booked your table. If you will canceled you booking so you have to canceled within 15 minutes other wise owner will take some charges for late canceled
