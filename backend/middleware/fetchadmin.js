@@ -2,17 +2,17 @@ var jwt = require('jsonwebtoken');
 require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const fetchadmin = (req, res, next) => {
+const fetchuser = (req, res, next) => {
     // Get the vendor from the jwt token and add id to req object
     const token = req.header('auth-token-admin');
     if (!token) {
         res.status(401).send({ error: "Please authenticate using a valid token " })
     }
-   // console.log(data.admin)
+   // console.log(data.user)
     try {
         const data = jwt.verify(token, JWT_SECRET);
         console.log("this is data   "+data._id)
-        req.admin = data.admin;
+        req.user = data.user;
         next();
     } catch (err) {
         res.status(401).send({ error: err })
@@ -20,4 +20,4 @@ const fetchadmin = (req, res, next) => {
 
 }
 
-module.exports = fetchadmin;
+module.exports = fetchuser;

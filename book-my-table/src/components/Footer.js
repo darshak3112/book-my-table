@@ -1,5 +1,6 @@
 import React from 'react'
 import "./css/Nav.css";
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 text-center">
                             <p style={{color:"white"}}>
-                                Welcome in BookMyTable
+                                <Link style={{color: "white"}} to="/AdminPanel"> Welcome in BookMyTable</Link>
                             </p>
                         </div>
                     </div>

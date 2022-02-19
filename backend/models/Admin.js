@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const AdminSchema = new Schema({
-    Admin: {
+    Mobile_no: {
         type: String,
         require: true
     },

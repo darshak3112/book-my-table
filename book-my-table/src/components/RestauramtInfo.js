@@ -10,11 +10,17 @@ import image44 from "./Img/4.jpg"
 import image55 from "./Img/5.jpg"
 import { Carousel } from 'react-bootstrap';
 import { Link, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 const RestauramtInfo = () => {
+    let history = useHistory();
     let location = useLocation();
     const myparam = location.state.RestItem;
+
+    const handle = () => {
+        history.push("/tablebooking", { RestItem: myparam });
+    }
 
     const capitalize = (word) => {
         const l = word.toLowerCase();
@@ -26,7 +32,7 @@ const RestauramtInfo = () => {
             <div className="container-fluid" style={{ fontFamily: 'Cormorant Garamond' }}>
                 <div className="row" style={{ backgroundColor: "#ff9c4e" }}>
                     <div className="col-md-3">
-                        <center><img src={image1} className="my-2" alt="..." style={{maxHeight: "264px", maxWidth: "100%", borderRadius: "10px" }} /></center>
+                        <center><img src={image1} className="my-2" alt="..." style={{ maxHeight: "264px", maxWidth: "100%", borderRadius: "10px" }} /></center>
                     </div>
                     <div className="col-md-5">
                         <h2 className='my-2 textanim' >{capitalize(myparam.Name)}</h2><br />
@@ -51,7 +57,7 @@ const RestauramtInfo = () => {
                             <i className="fas fa-map-marker-alt mx-1"></i>
                             {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}
                         </p>
-                        <div className="row mx-1" style={{ height: "70px", fontFamily: 'Cormorant Garamond' }}>
+                        <div className="row mx-1 mb-2" style={{ height: "70px", fontFamily: 'Cormorant Garamond' }}>
                             {/* Todo In future */}
                             <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
                                 <div className='mt-2'><i className="fa fa-star mx-1"></i><b>4.3</b></div>
@@ -69,9 +75,9 @@ const RestauramtInfo = () => {
                         </div>
                     </div>
                     {/* In future TO DO */}
-                    <div className="col-md-4" >
-                        <b><label style={{ zIndex: 2, marginTop:"1px", marginLeft: "10px", position: "absolute", backgroundColor: "#ff9c4e", fontSize: "30px" }}>#Offers</label>
-                            <div className="card mb-2" style={{ zIndex: 1, marginTop:"23px", background: "#ff9c4e", border: "2px solid black", borderRadius: "10px" }}>
+                    <div className="col-md-4 my-4" >
+                        <b><label style={{ zIndex: 2, marginTop: "1px", marginLeft: "10px", position: "absolute", backgroundColor: "#ff9c4e", fontSize: "30px" }}>#Offers</label>
+                            <div className="card mb-2" style={{ zIndex: 1, marginTop: "23px", background: "#ff9c4e", border: "2px solid black", borderRadius: "10px" }}>
                                 <div className="card-body">
                                     <ul>
                                         <br />
@@ -143,51 +149,52 @@ const RestauramtInfo = () => {
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Facility  of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}>{myparam.Facility}</li>
+                                <li className="list-group-item" style={{ fontSize: "15px", fontFamily: "Cormorant Garamond" }}>{myparam.Facility}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Address of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}</li>
+                                <li className="list-group-item" style={{ fontSize: "15px", fontFamily: "Cormorant Garamond" }}> {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Foods in Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.FoodCategory}</li>
+                                <li className="list-group-item" style={{ fontSize: "15px", fontFamily: "Cormorant Garamond" }}> {myparam.FoodCategory}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Contact Details of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.Contact}</li>
+                                <li className="list-group-item" style={{ fontSize: "15px", fontFamily: "Cormorant Garamond" }}> {myparam.Contact}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Holidays of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.Holiday === "" ? "No Holidays" : myparam.Holiday}</li>
+                                <li className="list-group-item" style={{ fontSize: "15px", fontFamily: "Cormorant Garamond" }}> {myparam.Holiday === "" ? "No Holidays" : myparam.Holiday}</li>
                             </ul>
                         </div>
 
                         <div className="card my-2">
                             <div className='card-header' style={{ fontSize: "20px", background: "#3e4a50", color: "white", fontFamily: "Cormorant Garamond" }}>Tables Occupancy of Restaurant</div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{fontSize: "15px", fontFamily: "Cormorant Garamond"}}> {myparam.Table_require}</li>
+                                <li className="list-group-item" style={{ fontSize: "15px", fontFamily: "Cormorant Garamond" }}> {myparam.Table_require}</li>
                             </ul>
                         </div>
-                        <div style={{textAlign: "center"}}>
-                        <Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{width: "120px", fontSize: "20px", fontFamily: "Cormorant Garamond"}} to="/tablebooking">Book Table</Link></div>
-                    </div>
-                    <div className="col-md-3" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
-                        <b>advertisement</b>
-                    </div>
+                        <div style={{ textAlign: "center" }}>
+                            <button type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{ width: "100%", fontSize: "20px" }} onClick={handle}>Book Table</button></div>
+                        <Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{ width: "120px", fontSize: "20px", fontFamily: "Cormorant Garamond" }} to="/tablebooking">Book Table</Link></div>
+                
+                <div className="col-md-3" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
+                    <b>advertisement</b>
                 </div>
+            </div>
             </div>
         </>
     );
