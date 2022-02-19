@@ -255,8 +255,9 @@ router.delete('/deletevendor/:id', fetchadmin, async (req, res) => {
         //     return res.status(401).send("not allowed");
         // }
 
-        console.log("this is " + dVendor._id)
-        let vRes = await Restaurant.findByIdAndDelete(dVendor._id);
+        console.log("this is " + dVendor._id.toString())
+        dVendor = dVendor._id.toString();
+        let vRes = await Restaurant.deleteMany({ Vendor: dVendor });
         dVendor = await Vendor.findByIdAndDelete(req.params.id);
         console.log(dVendor)
         res.json({ "success": "vendor and restaurent has been deleted", dVendor: dVendor });
