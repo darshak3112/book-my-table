@@ -21,9 +21,9 @@ const SignIn = () => {
 
         const json = await response.json();
         if (json.authtoken) {
-            localStorage.setItem('uToken', json.authtoken);
+            localStorage.setItem('AToken', json.authtoken);
             console.log(json);
-            history.push("/");
+            history.push("/AdminHome");
         }
         else {
             console.log("deny");

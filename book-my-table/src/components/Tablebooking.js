@@ -79,6 +79,7 @@ export const Tablebooking = () => {
   }
 
   return ( //With changes
+    <>
     <div>
       <div className="card mx-3">
         <div className="card-body">
@@ -110,6 +111,8 @@ export const Tablebooking = () => {
         </div>
       </div>
     </div>
+    <div style={{height: "80px"}}></div>
+    </>
   );
 };
 
