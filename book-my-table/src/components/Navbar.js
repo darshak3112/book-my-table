@@ -61,30 +61,31 @@ const Navbar = (props) => {
                                     :
                                     <>
                                         {!localStorage.getItem("vToken") ?
-                                            <li className="nav-item">
-                                                <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Restaurants</Link>
-                                            </li>
-                                            : <><li className="nav-item">
-                                                <Link className={`nav-link ${location.pathname === '/addRast' ? "active" : ""}`} to="/addRast">Add Restaurant</Link>
-                                            </li>
+                                            <>
+                                                <li className="nav-item">
+                                                    <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Restaurants</Link>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
+                                                </li>
+                                            </>
+                                            : <>
+                                                <li className="nav-item">
+                                                    <Link className={`nav-link ${location.pathname === '/addRast' ? "active" : ""}`} to="/addRast">Add Restaurant</Link>
+                                                </li>
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/image' ? "active" : ""}`} to="/image">Images</Link>
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/yourRest' ? "active" : ""}`} to="/yourRest">Your Restaurant</Link>
-                                                </li></>}
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
+                                                </li>
+                                            </>}
                                     </>
                                 }
                             </ul>
-
-                            {localStorage.getItem("AToken")
-                                ?
-                                <div></div>
-                                :
-                                <li className="nav-item">
-                                    <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
-                                </li>
-                            }
                             <form className="d-flex">
                                 {!localStorage.getItem("vToken") && !localStorage.getItem("uToken") && !localStorage.getItem("AToken")
                                     ? <>
