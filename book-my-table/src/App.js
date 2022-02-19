@@ -23,6 +23,7 @@ import YourRest from "./components/YourRest";
 import RestauramtInfo from "./components/RestauramtInfo";
 import AdminPanel from "./components/AdminPanel";
 import RestaurantList from "./components/RestaurantList";
+import RestaurantPending from "./components/RestaurantPending";
 
 function App() {
   return (
@@ -78,6 +79,9 @@ function App() {
             </Route>
             <Route exact path="/RestaurantList">
               <RestaurantList/>
+            </Route>
+            <Route exact path="/RestaurantPending">
+              <RestaurantPending/>
             </Route>
           </Switch>
         </div>

@@ -52,7 +52,7 @@ const Navbar = (props) => {
                                             </Nav.Item>
                                             <NavDropdown title="For Restaurants" id="nav-dropdown">
                                                 <NavDropdown.Item eventKey="4.1" href="/RestaurantList">All Restaurants</NavDropdown.Item>
-                                                <NavDropdown.Item eventKey="4.2">Pending Restaurants</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="4.2" href="/RestaurantPending">Pending Restaurants</NavDropdown.Item>
                                                 <NavDropdown.Item eventKey="4.3">Active Restaurants</NavDropdown.Item>
                                             </NavDropdown>
                                         </Nav>
