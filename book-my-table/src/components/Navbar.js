@@ -44,23 +44,25 @@ const Navbar = (props) => {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 {localStorage.getItem("AToken") ?
                                     <>
-                                        <Nav>
-                                            <Nav.Item>
-                                                <Nav.Link eventKey="2" title="Item">
-                                                    All Users
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item>
-                                                <Nav.Link eventKey="2" title="Item">
-                                                    All Vendors
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <NavDropdown title="For Restaurants" id="nav-dropdown">
-                                                <NavDropdown.Item eventKey="4.1" href="/RestaurantList">All Restaurants</NavDropdown.Item>
-                                                <NavDropdown.Item eventKey="4.2" href="/RestaurantPending">Pending Restaurants</NavDropdown.Item>
-                                                <NavDropdown.Item eventKey="4.3">Active Restaurants</NavDropdown.Item>
-                                            </NavDropdown>
-                                        </Nav>
+                                       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                            <li class="nav-item">
+                                                <Link class="nav-link" to="#">All Users</Link>
+                                            </li>
+                                            <li class="nav-item">
+                                                <Link class="nav-link" to="#">All Vendors</Link>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <Link class="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Restaurant
+                                                </Link>
+                                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <li><Link class="dropdown-item" to="/RestaurantList">Restaurants</Link></li>
+                                                    <li><hr class="dropdown-divider"/></li>
+                                                    <li><Link class="dropdown-item" to="/RestaurantPending">Pending Restaurants</Link></li>
+                                                    <li><Link class="dropdown-item" to="#">Active Restaurants</Link></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
 
                                     </>
                                     :
