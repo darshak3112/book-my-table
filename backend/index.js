@@ -12,6 +12,7 @@ app.use(express.json());
 
 app.use("/file", require("./routes/upload"));
 app.use('/api/userAuth', require('./routes/userAuth'))
+app.use('/api/admin', require('./routes/admin'))
 app.use('/api/vendorAuth', require('./routes/vendorAuth'))
 app.use('/api/restaurent',require('./routes/restaurent'))
 

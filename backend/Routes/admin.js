@@ -1,17 +1,17 @@
 const express = require('express');
-const User = require('../models/User');
+const Admin = require('../models/Admin');
 const router = express.Router();
 const { body, validationResult, sanitize } = require('express-validator');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var fetchuser = require('../middleware/fetchuser');
+var fetchadmin = require('../middleware/fetchadmin');
 require('dotenv').config()
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
 router.post('/login', [
-  body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 3 }),
+  body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 }),
   body('Password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
     let success = false;
@@ -23,21 +23,21 @@ router.post('/login', [
 
     const { Mobile_no, Password } = req.body;
     try {
-        let user = await User.findOne({ Mobile_no });
-        if (!user) {
+        let admin = await Admin.findOne({ Mobile_no });
+        if (!admin) {
             success = false
             return res.status(400).json({ error: "Please try to login with correct credentials" });
         }
 
-        const passwordCompare = await bcrypt.compare(Password, user.Password);
+        const passwordCompare = await bcrypt.compare(Password, admin.Password);
         if (!passwordCompare) {
             success = false
             return res.status(400).json({ success, error: "Please try to login with correct credentials" });
         }
 
         const data = {
-            user: {
-                id: user._id
+            admin: {
+                id: admin._id
             }
         }
         const authtoken = jwt.sign(data, JWT_SECRET);
