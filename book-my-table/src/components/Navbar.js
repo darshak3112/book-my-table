@@ -2,6 +2,8 @@ import React from "react";
 import "./css/Nav.css";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = (props) => {
     let location = useLocation();
@@ -9,6 +11,7 @@ const Navbar = (props) => {
     const handleLogout = () => {
         if (localStorage.getItem("vToken")) {
             localStorage.removeItem("vToken")
+            toast.success("Logout successfully",{autoClose:3000});
             history.push("/");
         }
         if (localStorage.getItem("vTokenUp")) {
@@ -16,6 +19,7 @@ const Navbar = (props) => {
         }
         if (localStorage.getItem("uToken")) {
             localStorage.removeItem("uToken")
+            toast.success("Logout successfully",{autoClose:3000});
             history.push("/");
         }
         if (localStorage.getItem("uTokenUp")) {
@@ -23,6 +27,7 @@ const Navbar = (props) => {
         }
         if (localStorage.getItem("AToken")) {
             localStorage.removeItem("AToken")
+            toast.success("Logout successfully",{autoClose:3000});
             history.push("/");
         }
     }

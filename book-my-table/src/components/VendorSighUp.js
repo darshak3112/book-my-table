@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import image1 from "./Img/Login.png"
 import { Link, useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const VendorSighUp = () => {
@@ -24,12 +26,12 @@ const VendorSighUp = () => {
     if (json.authtoken) {
       console.log(json.authtoken);
       localStorage.setItem('vTokenUp', json.authtoken);
+      toast.success("Sign Up successfully",{autoClose:3000});
       history.push("/vSignIn");
-      //console.log(json);
-
     }
     else {
       console.log("deny");
+      toast.error("Please Fill all details",{autoClose:3000});
     }
   }
 

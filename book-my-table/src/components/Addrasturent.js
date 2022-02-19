@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from "react-router-dom"
 
 let t1, t2, t3, t4, food = "";
@@ -26,9 +27,13 @@ const Addrasturent = (props) => {
         });
         const json = await response.json();
         console.log(json);
-        history.push("/");
-        if (!Error)
-            history.push("/");
+        if (!Error){
+            toast.success("Restaurant Added successfully",{autoClose:3000});
+            history.push("/yourRest");
+        }
+        else{
+            toast.error("Please enter valid details",{autoClose:3000});
+        }
     }
 
     const onChange = (e) => {

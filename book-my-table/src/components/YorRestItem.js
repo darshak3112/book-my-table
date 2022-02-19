@@ -1,6 +1,5 @@
 import React from 'react';
 import image1 from "./Img/rastLogo.jpg";
-
 const YorRestItem = (props) => {
     const { YourRestItem, updateRest, deleteRest } = props;
     return (

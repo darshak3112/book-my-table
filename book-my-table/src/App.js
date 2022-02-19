@@ -22,13 +22,18 @@ import Upload from "./components/Upload";
 import YourRest from "./components/YourRest";
 import RestauramtInfo from "./components/RestauramtInfo";
 import AdminPanel from "./components/AdminPanel";
+import AdminHome from "./components/AdminHome";
+import { ToastContainer} from 'react-toastify';
+
 import RestaurantList from "./components/RestaurantList";
 import RestaurantPending from "./components/RestaurantPending";
+
 
 function App() {
   return (
     <>
       <Router>
+      <ToastContainer />
         <NavBar />
         <div className="pages">
           <Switch>

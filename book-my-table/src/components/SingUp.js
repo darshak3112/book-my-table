@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import image1 from "./Img/Login.png"
 import { Link, useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SingUp = () => {
   const [credentials, setCredentials] = useState({ Name: "", Email: "", Password: "", Mobile_no: "" });
@@ -22,11 +24,12 @@ export const SingUp = () => {
     if (json.authtoken) {
       localStorage.setItem('uTokenUp', json.authtoken);
       console.log(json);
+      toast.success("Sign Up successfully",{autoClose:3000});
       history.push("/SignIn");
-
     }
     else {
       console.log("deny");
+      toast.error("Please Fill all details",{autoClose:3000});
     }
   }
 
