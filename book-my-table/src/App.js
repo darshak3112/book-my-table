@@ -23,11 +23,14 @@ import YourRest from "./components/YourRest";
 import RestauramtInfo from "./components/RestauramtInfo";
 import AdminPanel from "./components/AdminPanel";
 import AdminHome from "./components/AdminHome";
+import { ToastContainer} from 'react-toastify';
+
 
 function App() {
   return (
     <>
       <Router>
+      <ToastContainer />
         <NavBar />
         <div className="pages">
           <Switch>

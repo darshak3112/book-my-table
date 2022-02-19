@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import YorRestItem from './YorRestItem';
 import image1 from "./Img/addrast.png"
 // import Map from './Map';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 let t1, t2, t3, t4, food = "";
 
@@ -154,6 +156,7 @@ const YourRest = (props) => {
             
         }
         YoursetRestList(newRest);
+        toast.success("Update successfully",{autoClose:3000});
         // useEffect(() => {
         getYourRestaurant();
         // }, []);
@@ -174,6 +177,7 @@ const YourRest = (props) => {
             return rest._id !== id;
         });
         YoursetRestList(newrestlist);
+        toast.success("Delete successfully",{autoClose:3000});
     }
 
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import image1 from "./Img/Login.png"
 import { Link, useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignIn = () => {
@@ -18,15 +20,16 @@ const SignIn = () => {
                 'Content-Type': 'application/json'
             }
         });
-
         const json = await response.json();
         if (json.authtoken) {
             localStorage.setItem('uToken', json.authtoken);
+            toast.success("Login successfully",{autoClose:3000});
             console.log(json);
             history.push("/");
         }
         else {
             console.log("deny");
+            toast.error("Invalid Details",{autoClose:3000});
         }
     }
 

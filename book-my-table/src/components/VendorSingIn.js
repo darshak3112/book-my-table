@@ -1,41 +1,45 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import image1 from "./Img/Login.png"
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const VendorSingIn = () => {
     const [credentials, setCredentials] = useState({ Password: "", Mobile_no: "" });
     let history = useHistory();
 
-  const handleSubmit = async (e) => {
-    
-      e.preventDefault();
-      const {Mobile_no, Password} = credentials;
-      const response = await fetch("http://localhost:5000/api/vendorAuth/loginvendor", {
-        method: 'POST',
-        body : JSON.stringify({Mobile_no, Password }),
-        headers : { 
-            'Content-Type': 'application/json'
-           }
-      });
-      
-      const json = await response.json();
-      if (json.authtoken) {
-          localStorage.setItem('vToken', json.authtoken);
-          history.push("/");
-          //console.log(json);
+    const handleSubmit = async (e) => {
 
-      }
-      else {
-          console.log("deny");
-      }
-  }
+        e.preventDefault();
+        const { Mobile_no, Password } = credentials;
+        const response = await fetch("http://localhost:5000/api/vendorAuth/loginvendor", {
+            method: 'POST',
+            body: JSON.stringify({ Mobile_no, Password }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-  const onChange =  (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  }
+        const json = await response.json();
+        if (json.authtoken) {
+            localStorage.setItem('vToken', json.authtoken);
+            toast.success("Sign Up successfully", { autoClose: 3000 });
+            history.push("/");
+            //console.log(json);
+
+        }
+        else {
+            console.log("deny");
+            toast.error("Invalid Details", { autoClose: 3000 });
+
+        }
+    }
+
+    const onChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    }
     return (
         <>
-            <div className="container w-25" style={{marginBottom:"20px", minWidth:"350px"}} >
+            <div className="container w-25" style={{ marginBottom: "20px", minWidth: "350px" }} >
                 <div className="card my-5">
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
@@ -54,12 +58,12 @@ const VendorSingIn = () => {
                             </div>
                             <center><button type="submit" className="btn btn-primary">Submit</button></center>
                         </form>
-                        <center><label style={{marginTop:"5px"}} htmlFor="signin" className="form-label">Don't have the account? </label>
-                        <Link className="card-link my-2" to="/vSignup"> Sign Up</Link><br/></center>
+                        <center><label style={{ marginTop: "5px" }} htmlFor="signin" className="form-label">Don't have the account? </label>
+                            <Link className="card-link my-2" to="/vSignup"> Sign Up</Link><br /></center>
                     </div>
                 </div>
             </div>
-            <div style={{height:"40px"}}></div>
+            <div style={{ height: "40px" }}></div>
         </>
     )
 }
