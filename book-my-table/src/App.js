@@ -26,6 +26,7 @@ import AdminHome from "./components/AdminHome";
 import { ToastContainer} from 'react-toastify';
 
 import RestaurantList from "./components/RestaurantList";
+import RestaurantPending from "./components/RestaurantPending";
 
 
 function App() {
@@ -83,6 +84,9 @@ function App() {
             </Route>
             <Route exact path="/RestaurantList">
               <RestaurantList/>
+            </Route>
+            <Route exact path="/RestaurantPending">
+              <RestaurantPending/>
             </Route>
           </Switch>
         </div>
