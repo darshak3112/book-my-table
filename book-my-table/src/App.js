@@ -21,6 +21,7 @@ import CheckingIn from "./components/CheckingIn";
 import Upload from "./components/Upload";
 import YourRest from "./components/YourRest";
 import RestauramtInfo from "./components/RestauramtInfo";
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
   return (
@@ -70,6 +71,9 @@ function App() {
             </Route>
             <Route exact path="/RestInfo">
               <RestauramtInfo/>
+            </Route>
+            <Route exact path="/AdminPanel">
+              <AdminPanel/>
             </Route>
           </Switch>
         </div>
