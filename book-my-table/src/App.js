@@ -25,6 +25,8 @@ import AdminPanel from "./components/AdminPanel";
 import AdminHome from "./components/AdminHome";
 import { ToastContainer} from 'react-toastify';
 
+import RestaurantList from "./components/RestaurantList";
+
 
 function App() {
   return (
@@ -79,8 +81,8 @@ function App() {
             <Route exact path="/AdminPanel">
               <AdminPanel/>
             </Route>
-            <Route exact path="/AdminHome">
-              <AdminHome/>
+            <Route exact path="/RestaurantList">
+              <RestaurantList/>
             </Route>
           </Switch>
         </div>
