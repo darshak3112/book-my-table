@@ -273,14 +273,14 @@ router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
     try {
         const { Active } = req.body;
 
-        //new object
-        const newRes = {};
-        if (Active === false) { newRes.Active = true };
-        if (Active === true) { newRes.Active = false };
-
         //update
         let uRes = await Restaurant.findById(req.params.id);
         if (!uRes) { return res.status(404).send("not found") }
+
+        //new object
+        const newRes = {};
+        if (uRes.Active === true) { newRes.Active = false };
+        if (uRes.Active === false) { newRes.Active = true };        
 
         uRes = await Restaurant.findByIdAndUpdate(req.params.id, { $set: newRes })
         console.log(uRes);
