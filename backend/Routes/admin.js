@@ -133,7 +133,7 @@ router.post('/pendingres', fetchadmin, async (req, res) => {
                     id: allUser._id
                 }
             }
-           
+            res.json(allUser);
         }
 
 
