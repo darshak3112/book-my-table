@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import image1 from "./Img/Login.png"
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 const SignIn = () => {
@@ -44,10 +44,9 @@ const SignIn = () => {
                                 <center>
                                     <img width="150px" src={image1} alt="..." />
                                 </center>
-                                <center><h1>User SignIn</h1></center>
+                                <center><h1>Admin</h1></center>
                                 <label htmlFor="exampleInputPhone" className="form-label">Phone No</label>
                                 <input type="text" className="form-control" id="exampleInputPhone" name="Mobile_no" onChange={onChange} placeholder='Enter phone No' />
-                                <div id="emailHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
