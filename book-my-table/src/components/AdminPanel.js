@@ -23,7 +23,7 @@ const SignIn = () => {
         if (json.authtoken) {
             localStorage.setItem('AToken', json.authtoken);
             console.log(json);
-            history.push("/AdminHome");
+            history.push("/RestaurantList");
         }
         else {
             console.log("deny");

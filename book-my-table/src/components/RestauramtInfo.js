@@ -9,7 +9,7 @@ import image33 from "./Img/3.jpg"
 import image44 from "./Img/4.jpg"
 import image55 from "./Img/5.jpg"
 import { Carousel } from 'react-bootstrap';
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 

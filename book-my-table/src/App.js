@@ -22,7 +22,7 @@ import Upload from "./components/Upload";
 import YourRest from "./components/YourRest";
 import RestauramtInfo from "./components/RestauramtInfo";
 import AdminPanel from "./components/AdminPanel";
-import AdminHome from "./components/AdminHome";
+import RestaurantList from "./components/RestaurantList";
 
 function App() {
   return (
@@ -76,8 +76,8 @@ function App() {
             <Route exact path="/AdminPanel">
               <AdminPanel/>
             </Route>
-            <Route exact path="/AdminHome">
-              <AdminHome/>
+            <Route exact path="/RestaurantList">
+              <RestaurantList/>
             </Route>
           </Switch>
         </div>

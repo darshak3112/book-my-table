@@ -50,7 +50,6 @@ const YorRestItem = (props) => {
 
                                     <div style={{ textAlign: "end" }} className="row">
                                         <p>
-                                            <i style={{ cursor: 'pointer' }} className="fas fa-edit mx-2" onClick={() => updateRest(YourRestItem)}></i>
                                             <i style={{ cursor: 'pointer' }} className="fas fa-trash mx-2" onClick={() => deleteRest(YourRestItem._id)}></i>
                                         </p>
 
