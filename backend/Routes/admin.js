@@ -255,10 +255,11 @@ router.delete('/deletevendor/:id', fetchadmin, async (req, res) => {
         //     return res.status(401).send("not allowed");
         // }
 
-        console.log(dVendor)
+        console.log("this is " + dVendor._id)
+        let vRes = await Restaurant.findByIdAndDelete(dVendor._id);
         dVendor = await Vendor.findByIdAndDelete(req.params.id);
         console.log(dVendor)
-        res.json({ "success": "user has been deleted", dVendor: dVendor });
+        res.json({ "success": "vendor and restaurent has been deleted", dVendor: dVendor });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("some error occured");
