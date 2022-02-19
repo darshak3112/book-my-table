@@ -44,22 +44,22 @@ const Navbar = (props) => {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 {localStorage.getItem("AToken") ?
                                     <>
-                                       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                            <li class="nav-item">
-                                                <Link class="nav-link" to="#">All Users</Link>
+                                       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                            <li className="nav-item">
+                                                <Link className={`nav-link ${location.pathname === '/AdminAllUser' ? "active" : ""}`} to="/AdminAllUser">All Users</Link>
                                             </li>
-                                            <li class="nav-item">
-                                                <Link class="nav-link" to="#">All Vendors</Link>
+                                            <li className="nav-item">
+                                                <Link className={`nav-link ${location.pathname === '/AdminAllVendor' ? "active" : ""}`} to="/AdminAllVendor">All Vendors</Link>
                                             </li>
-                                            <li class="nav-item dropdown">
-                                                <Link class="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <li className="nav-item dropdown">
+                                                <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Restaurant
                                                 </Link>
-                                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                    <li><Link class="dropdown-item" to="/RestaurantList">Restaurants</Link></li>
-                                                    <li><hr class="dropdown-divider"/></li>
-                                                    <li><Link class="dropdown-item" to="/RestaurantPending">Pending Restaurants</Link></li>
-                                                    <li><Link class="dropdown-item" to="#">Active Restaurants</Link></li>
+                                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <li><Link className={`dropdown-item ${location.pathname === '/RestaurantList' ? "active" : ""}`} to="/RestaurantList">All Restaurants</Link></li>
+                                                    <li><hr className="dropdown-divider"/></li>
+                                                    <li><Link className={`dropdown-item ${location.pathname === '/RestaurantPending' ? "active" : ""}`} to="/RestaurantPending">Pending Restaurants</Link></li>
+                                                    <li><Link className={`dropdown-item ${location.pathname === '/AdminActiveRes' ? "active" : ""}`} to="/AdminActiveRes">Active Restaurants</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>

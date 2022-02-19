@@ -27,6 +27,7 @@ import { ToastContainer} from 'react-toastify';
 
 import RestaurantList from "./components/RestaurantList";
 import RestaurantPending from "./components/RestaurantPending";
+import ActiveRes from "./components/AdminActiveRes"
 
 
 function App() {
@@ -87,6 +88,9 @@ function App() {
             </Route>
             <Route exact path="/RestaurantPending">
               <RestaurantPending/>
+            </Route>
+            <Route exact path="/AdminActiveRes">
+              <ActiveRes/>
             </Route>
           </Switch>
         </div>
