@@ -78,13 +78,13 @@ export const Tablebooking = () => {
     return ti;
   }
 
-  return (
+  return ( //With changes
     <div>
       <div className="card mx-3">
         <div className="card-body">
           <center><h1>Table Booking</h1></center><hr />
           <h5 className="card-title">Select Date</h5>
-          {getdates()}
+          {getdates()}   
         </div>
       </div>
       <div className="card my-3 mx-3 w-50" style={{ float: "left"}}>
