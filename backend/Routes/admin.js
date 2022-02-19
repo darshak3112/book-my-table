@@ -277,11 +277,13 @@ router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
         
         if (uRes.Active === false) {
             uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: true })
+            console.log(uRes.Active);
         }
-        if (uRes.Active=== true) {
+        if (uRes.Active === true) {
             uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: false })
+            console.log(uRes.Active);
         }
-        console.log(uRes.Active);
+        
         res.json({ uRes });
     } catch (error) {
         console.error(error.message);

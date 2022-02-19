@@ -1,8 +1,14 @@
 import React from 'react'
 import image1 from "./Img/rastLogo.jpg";
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 const AdminActiveResList = (props) => {
-    const { YourRestItem} = props;
+    const { YourRestItem, Update } = props;
+    const handleSwitch = () => {
+        console.log("Changed");
+        Update(YourRestItem._id);
+    }
+
     return (
         <>
             <div className="card border-dark my-3 mx-3" style={{ border: "light", width: "93%" }}>
@@ -50,6 +56,11 @@ const AdminActiveResList = (props) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div style={{ textAlign: "end", marginRight: "2px" }} className="row">
+                        <p>
+                            <BootstrapSwitchButton checked={true} onChange={handleSwitch} size="xs" onstyle="secondary"/>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -25,6 +25,22 @@ const RestaurantPending= (props) => {
         getYourPendingRestaurant();
     }, []);
 
+    const UpdateRes = async (id) => {
+
+        const response = await fetch(`http://localhost:5000/api/admin/verifyres/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-admin": localStorage.getItem("AToken"),
+            },
+            body: JSON.stringify({ id }),
+        });
+        const json = await response.json();
+    console.log(json);
+        toast.success("Update successfully and restaurent Activated Successfully",{autoClose:1000});
+        getYourPendingRestaurant();
+    };
+
     return (
         <>
             <div className="container">
@@ -35,7 +51,7 @@ const RestaurantPending= (props) => {
                         {YourRestList.length === 0 && 'No Restaurant Added'}
                     </div>
                     {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem}/>
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} Update={UpdateRes}/>
                     })}
                 </div>
             </div>

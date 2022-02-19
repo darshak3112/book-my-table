@@ -1,22 +1,12 @@
 import React from 'react'
 import image1 from "./Img/rastLogo.jpg";
-import "./css/Switch.css";
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 const RestaurentPendingListAdmin = (props) => {
-     const { YourRestItem } = props;
-    // let Checked = false;
-    // const handleSwitch = () => {
-    //     if(Checked === true) {
-    //         Checked = false;
-    //         console.log(Checked);
-    //     } else {
-    //         Checked = true;
-    //         console.log(Checked);
-    //     }
-
-    //     YourRestItem.Active = Checked;
-    //     Update(YourRestItem);
-    // }
+     const { YourRestItem, Update } = props;
+     const handleSwitch = () => {
+         Update(YourRestItem._id);
+     }
 
     return (
         <>
@@ -68,12 +58,8 @@ const RestaurentPendingListAdmin = (props) => {
                     </div>
                     <div style={{ textAlign: "end", marginRight: "2px" }} className="row">
                         <p>
-                            <label class="switch">
-                                <input type="checkbox"/>
-                                    <span class="slider round"></span>
-                            </label>
+                            <BootstrapSwitchButton checked={false} onChange={handleSwitch} size="xs" />
                         </p>
-
                     </div>
                 </div>
             </div>
