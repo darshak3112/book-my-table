@@ -271,19 +271,17 @@ router.delete('/deletevendor/:id', fetchadmin, async (req, res) => {
 
 router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
     try {
-        const { Active } = req.body;
-
-        //update
         let uRes = await Restaurant.findById(req.params.id);
         if (!uRes) { return res.status(404).send("not found") }
 
-        //new object
-        const newRes = {};
-        if (uRes.Active === true) { newRes.Active = false };
-        if (uRes.Active === false) { newRes.Active = true };        
-
-        uRes = await Restaurant.findByIdAndUpdate(req.params.id, { $set: newRes })
-        console.log(uRes);
+        
+        if (uRes.Active === false) {
+            uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: true })
+        }
+        if (uRes.Active=== true) {
+            uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: false })
+        }
+        console.log(uRes.Active);
         res.json({ uRes });
     } catch (error) {
         console.error(error.message);
