@@ -97,7 +97,9 @@ router.post('/loginuser', [
                 id: user._id
             }
         }
-        allres
+        const authtoken = jwt.sign(data, JWT_SECRET);
+        success = true;
+        res.status(200).json({ success, authtoken })
 
     } catch (error) {
         console.error(error.message);

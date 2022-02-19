@@ -201,4 +201,27 @@ router.post('/getuser', fetchadmin, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+// ROUTE 7: get all users : POST "/api/admin/deleteuser". login required
+router.delete('/deleteuser/:id', fetchadmin, async (req, res) => {
+    try {
+
+        //delete
+        let dUser = await User.findById(req.params.id);
+        if (!dUser) { return res.status(404).send("not found") }
+
+        console.log(req.params.id)
+        // if (dUser.User.toString() !== req.user.id) {
+        //     return res.status(401).send("not allowed");
+        // }
+
+        console.log(dUser)
+        dUser = await User.findByIdAndDelete(req.params.id);
+        console.log(dUser)
+        res.json({ "success": "user has been deleted", dUser: dUser });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
 module.exports = router
