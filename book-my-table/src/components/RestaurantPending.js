@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import YorRestItem from './RestaurentPendingListAdmin';
+import { toast } from 'react-toastify';
 
 const RestaurantPending= (props) => {
 
@@ -34,7 +35,7 @@ const RestaurantPending= (props) => {
                         {YourRestList.length === 0 && 'No Restaurant Added'}
                     </div>
                     {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} />
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem}/>
                     })}
                 </div>
             </div>

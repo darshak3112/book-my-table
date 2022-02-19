@@ -1,8 +1,23 @@
 import React from 'react'
 import image1 from "./Img/rastLogo.jpg";
+import "./css/Switch.css";
 
 const RestaurentPendingListAdmin = (props) => {
-    const { YourRestItem} = props;
+     const { YourRestItem } = props;
+    // let Checked = false;
+    // const handleSwitch = () => {
+    //     if(Checked === true) {
+    //         Checked = false;
+    //         console.log(Checked);
+    //     } else {
+    //         Checked = true;
+    //         console.log(Checked);
+    //     }
+
+    //     YourRestItem.Active = Checked;
+    //     Update(YourRestItem);
+    // }
+
     return (
         <>
             <div className="card border-dark my-3 mx-3" style={{ border: "light", width: "93%" }}>
@@ -50,6 +65,15 @@ const RestaurentPendingListAdmin = (props) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div style={{ textAlign: "end", marginRight: "2px" }} className="row">
+                        <p>
+                            <label class="switch">
+                                <input type="checkbox"/>
+                                    <span class="slider round"></span>
+                            </label>
+                        </p>
+
                     </div>
                 </div>
             </div>

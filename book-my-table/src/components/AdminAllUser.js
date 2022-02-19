@@ -1,11 +1,12 @@
 import React from 'react'
-import YorRestItem from './AdminAllUserList';
+import ListUser from './AdminAllUserList';
+import { useState, useEffect } from 'react';
 
 const AdminAllUser = (props) => {
 
-    const RestInitial = []
-    const [YourRestList, YoursetRestList] = useState(RestInitial);
-    const getYourRestaurant = async () => {
+    const Initial = []
+    const [Users, SetUsers] = useState(Initial);
+    const getuser = async () => {
 
         const response = await fetch("http://localhost:5000/api/admin/getuser", {
             method: "POST",
@@ -16,14 +17,14 @@ const AdminAllUser = (props) => {
         });
         const json = await response.json();
         console.log(json);
-        YoursetRestList(json);
+        SetUsers(json);
     };
 
     useEffect(() => {
-        getYourRestaurant();
+        getuser();
     }, []);
 
-    const deleteRest = async (id) => {
+    const deleteUser = async (id) => {
         const response = await fetch(`http://localhost:5000/api/admin/deleteuser/${id}`, {
             method: "DELETE",
             headers: {
@@ -33,10 +34,10 @@ const AdminAllUser = (props) => {
         });
         const json = await response.json();
         console.log(json);
-        const newrestlist = YourRestList.filter((rest) => {
-            return rest._id !== id;
+        const newuserlist = Users.filter((user) => {
+            return user._id !== id;
         });
-        YoursetRestList(newrestlist);
+        SetUsers(newuserlist);
     }
 
     return (
@@ -46,10 +47,10 @@ const AdminAllUser = (props) => {
                     <h1><center>Users List</center></h1>
                     <hr />
                     <div className="container mx-3">
-                        {YourRestList.length === 0 && 'No Restaurant Added'}
+                        {Users.length === 0 && 'No Restaurant Added'}
                     </div>
-                    {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} deleteuser={deleteRest} />
+                    {Users.map((UserItem) => {
+                        return <ListUser key={Users._id} UserItem={UserItem} deleteuser={deleteUser} />
                     })}
                 </div>
             </div>

@@ -22,12 +22,13 @@ import Upload from "./components/Upload";
 import YourRest from "./components/YourRest";
 import RestauramtInfo from "./components/RestauramtInfo";
 import AdminPanel from "./components/AdminPanel";
-import AdminHome from "./components/AdminHome";
 import { ToastContainer} from 'react-toastify';
 
 import RestaurantList from "./components/RestaurantList";
 import RestaurantPending from "./components/RestaurantPending";
 import ActiveRes from "./components/AdminActiveRes"
+import ALLUser from "./components/AdminAllUser"
+import ALLVendor from "./components/AdminAllVendor"
 
 
 function App() {
@@ -91,6 +92,12 @@ function App() {
             </Route>
             <Route exact path="/AdminActiveRes">
               <ActiveRes/>
+            </Route>
+            <Route exact path="/AdminAllUser">
+              <ALLUser/>
+            </Route>
+            <Route exact path="/AdminAllVendor">
+              <ALLVendor/>
             </Route>
           </Switch>
         </div>

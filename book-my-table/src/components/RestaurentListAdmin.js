@@ -2,7 +2,7 @@ import React from 'react';
 import image1 from "./Img/rastLogo.jpg";
 
 const YorRestItem = (props) => {
-    const { YourRestItem, updateRest, deleteRest } = props;
+    const { YourRestItem, deleteRest } = props;
     return (
         <>
             <div className="card border-dark my-3 mx-3" style={{ border: "light", width: "93%" }}>

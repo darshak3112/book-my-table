@@ -1,7 +1,6 @@
 import React from "react";
 import "./css/Nav.css";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { Nav, NavDropdown } from "react-bootstrap";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

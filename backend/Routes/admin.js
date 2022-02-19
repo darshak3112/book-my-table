@@ -222,7 +222,7 @@ router.post('/getvendor', fetchadmin, async (req, res) => {
     }
 
     try {
-        let allVendor = await Vendor.find().count();
+        let allVendor = await Vendor.find();
         if (!allVendor) {
             success = false
             return res.status(400).json({ error: "server error" });
@@ -265,7 +265,6 @@ router.delete('/deletevendor/:id', fetchadmin, async (req, res) => {
         console.error(error.message);
         res.status(500).send("some error occured");
     }
-})
-
+});
 
 module.exports = router

@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import YorRestItem from './RestaurentListAdmin';
-import image1 from "./Img/addrast.png"
 // import Map from './Map';
 
 const RestaurantList = (props) => {
@@ -24,6 +23,7 @@ const RestaurantList = (props) => {
     useEffect(() => {
         getYourRestaurant();
     }, []);
+    
     const deleteRest = async (id) => {
         const response = await fetch(`http://localhost:5000/api/admin/deleteres/${id}`, {
             method: "DELETE",
@@ -50,7 +50,7 @@ const RestaurantList = (props) => {
                         {YourRestList.length === 0 && 'No Restaurant Added'}
                     </div>
                     {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem}deleteRest={deleteRest} />
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} deleteRest={deleteRest} />
                     })}
                 </div>
             </div>
