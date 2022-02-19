@@ -8,7 +8,7 @@ export const Rasturent = () => {
 
   const [searchName, setsearchName] = useState("");
   const [searchCity, setsearchCity] = useState("");
-  const [searchTableOccupancy, setsearchTableOccupancy] = useState("");
+  // const [searchTableOccupancy, setsearchTableOccupancy] = useState("");
 
   const getRestaurant = async () => {
     //Api call Fetch all restaurant
@@ -35,7 +35,7 @@ export const Rasturent = () => {
   }
 
   const SearchTOccu = (e) => {
-    setsearchTableOccupancy(e.target.value)
+   // setsearchTableOccupancy(e.target.value)
   }
   return (
     <>
