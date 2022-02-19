@@ -267,4 +267,26 @@ router.delete('/deletevendor/:id', fetchadmin, async (req, res) => {
     }
 });
 
+// ROUTE 10: verify res: POST "/api/admin/verifyres". login required
+
+router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
+    try {
+        let uRes = await Restaurant.findById(req.params.id);
+        if (!uRes) { return res.status(404).send("not found") }
+
+        
+        if (uRes.Active === false) {
+            uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: true })
+        }
+        if (uRes.Active=== true) {
+            uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: false })
+        }
+        console.log(uRes.Active);
+        res.json({ uRes });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
+
 module.exports = router
