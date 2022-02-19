@@ -189,7 +189,7 @@ const RestauramtInfo = () => {
                         </div>
                         <div style={{ textAlign: "center" }}>
                             <button type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{ width: "100%", fontSize: "20px" }} onClick={handle}>Book Table</button></div>
-                        <Link type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{ width: "120px", fontSize: "20px", fontFamily: "Cormorant Garamond" }} to="/tablebooking">Book Table</Link></div>
+                       </div>
                 
                 <div className="col-md-3" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
                     <b>advertisement</b>

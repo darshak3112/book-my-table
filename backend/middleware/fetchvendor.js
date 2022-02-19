@@ -11,8 +11,7 @@ const fetchvendor = (req, res, next) => {
    // console.log(data.user)
     try {
         const data = jwt.verify(token, JWT_SECRET);
-       
-        req.vendor = data.vendor;
+               req.vendor = data.vendor;
         next();
     } catch (err) {
         res.status(401).send({ error: err })

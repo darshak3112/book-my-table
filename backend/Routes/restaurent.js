@@ -148,7 +148,7 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
         }
 
         dRes = await Restaurant.findByIdAndDelete(req.params.id);
-        res.json({ "success": "note has been deleted", dRes: dRes });
+        res.json({ "success": "restaurent has been deleted", dRes: dRes });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("some error occured");
