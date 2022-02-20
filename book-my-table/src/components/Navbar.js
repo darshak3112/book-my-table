@@ -98,7 +98,11 @@ const Navbar = (props) => {
                                         <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
                                         <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingIn">SignIn</Link>
                                     </>
-                                    : <button className="btn btn-sm btn-outline-light mx-1" onClick={handleLogout}>Logout</button>}
+                                    :<>
+                                    <button className="btn btn-sm btn-outline-light mx-1" onClick={handleLogout} style={{borderRadius:"20px",width:"33px"}}><i class='fas fa-user-alt' style={{fontSize:"16px"}}></i></button>
+                                    <button className="btn btn-sm btn-outline-light mx-1" onClick={handleLogout}>Logout</button>
+                                    </> 
+                                    }
                             </form>
                         </div>
                     </div>
