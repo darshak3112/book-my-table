@@ -22,7 +22,7 @@ const VendorSingIn = () => {
         const json = await response.json();
         if (json.authtoken) {
             localStorage.setItem('vToken', json.authtoken);
-            toast.success("Sign Up successfully", { autoClose: 3000 });
+            toast.success("Login successfully", { autoClose: 3000 });
             history.push("/");
             //console.log(json);
 

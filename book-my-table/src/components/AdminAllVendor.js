@@ -1,6 +1,8 @@
 import React from 'react'
 import ListVendor from './AdminAllVendorList';
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminAllVendor = (props) => {
 
@@ -34,6 +36,7 @@ const AdminAllVendor = (props) => {
         });
         const json = await response.json();
         console.log(json);
+        toast.success("Delete successfully",{autoClose:3000});
         const newvendorlist = Vendors.filter((vendor) => {
             return vendor._id !== id;
         });
@@ -49,9 +52,22 @@ const AdminAllVendor = (props) => {
                     <div className="container mx-3">
                         {Vendors.length === 0 && 'No Restaurant Added'}
                     </div>
-                    {Vendors.map((VendorItem) => {
-                        return <ListVendor key={Vendors._id} VendorItem={VendorItem} deletevendor={deletevendor} />
-                    })}
+                    <table className="table table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Mobile Number</th>
+                                <th>Date</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Vendors.map((VendorItem) => {
+                                return <ListVendor key={Vendors._id} VendorItem={VendorItem} deletevendor={deletevendor} />
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div style={{ height: "40px" }}></div>

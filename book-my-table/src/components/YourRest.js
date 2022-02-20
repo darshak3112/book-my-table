@@ -58,7 +58,7 @@ const YourRest = (props) => {
             City: currentRest.City,
             Area: currentRest.Area,
             FoodType: currentRest.FoodType,
-            FoodCategory: currentRest.FoodCategory,
+            FoodCategory: "",
             Address:currentRest.Address,
             TimeOpen: currentRest.TimeOpen,
             TimeClose: currentRest.TimeClose,

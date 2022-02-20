@@ -172,12 +172,12 @@ const Addrasturent = (props) => {
                                 <input type="text" name="Address" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
                             </div>
                             <div className="row my-2">
-                                <div className="col-6">
+                                <div className="col-md-6">
                                     <center>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputName" className="form-label mx-2">Opening Time :</label>
                                             <select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeOpen} className='btn btn-outline-dark' name="TimeOpen" id="Otime">
-                                                <option value="none" selected="selected">-- Select --</option>
+                                                <option value="none" defaultValue={"none"}>-- Select --</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -192,19 +192,19 @@ const Addrasturent = (props) => {
                                                 <option value="12">12</option>
                                             </select>
                                             <select style={{ marginLeft: 10 }} onChange={onChangeOpenAp} className='btn btn-outline-dark' name="TimeOpenAp" id="OTimeZone">
-                                                <option value="none" selected="selected">-- Select --</option>
+                                                <option value="none" defaultValue={"none"}>-- Select --</option>
                                                 <option value="AM">AM</option>
                                                 <option value="PM">PM</option>
                                             </select>
                                         </div>
                                     </center>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-md-6">
                                     <center>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputName" className="form-label mx-2">Closing Time :</label>
                                             <select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeClose} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
-                                                <option value="none" selected="selected">-- Select --</option>
+                                                <option value="none" defaultValue={"none"}>-- Select --</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -219,7 +219,7 @@ const Addrasturent = (props) => {
                                                 <option value="12">12</option>
                                             </select>
                                             <select style={{ marginLeft: 10 }} onChange={onChangeCloseAp} className='btn btn-outline-dark' name="TimeCloseAp" id="CTimeZone">
-                                                <option value="none" selected="selected">-- Select --</option>
+                                                <option value="none" defaultValue={"none"}>-- Select --</option>
                                                 <option value="AM">AM</option>
                                                 <option value="PM">PM</option>
                                             </select>
@@ -230,7 +230,7 @@ const Addrasturent = (props) => {
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label mx-2">Holiday : </label>
                                 <select style={{ marginLeft: 10, width: "150px" }} onChange={onChange} className='btn btn-outline-dark' name="Holiday" id="Holiday">
-                                    <option value="No-Holiday" selected="selected">-- Select Holiday --</option>
+                                    <option value="No-Holiday" defaultValue={"none"}>-- Select Holiday --</option>
                                     <option value="No-Holiday">No-Holiday</option>
                                     <option value="Sunday">Sunday</option>
                                     <option value="Monday">Monday</option>
@@ -254,7 +254,7 @@ const Addrasturent = (props) => {
                                 <label htmlFor="exampleInputName" className="form-label">Number of table</label>
                                 <input type="text" name="Table_require" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
                             </div>
-                            <center><button type="submit" className="btn btn-primary">Submit</button></center>
+                            <center><button type="submit" className="btn btn-dark btn-lg ">Submit</button></center>
                         </form>
                     </div>
                 </div>

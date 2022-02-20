@@ -1,12 +1,11 @@
 import React from 'react'
 import image1 from "./Img/rastLogo.jpg";
-import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 const RestaurentPendingListAdmin = (props) => {
-     const { YourRestItem, Update } = props;
-     const handleSwitch = () => {
-         Update(YourRestItem._id);
-     }
+    const { YourRestItem, Update } = props;
+    const handleSwitch = () => {
+        Update(YourRestItem._id);
+    }
 
     return (
         <>
@@ -56,10 +55,10 @@ const RestaurentPendingListAdmin = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div style={{ textAlign: "end", marginRight: "2px" }} className="row">
-                        <p>
-                            <BootstrapSwitchButton checked={false} onChange={handleSwitch} size="xs" />
-                        </p>
+                    <div className="row">
+                        <div className="form-check form-switch" style={{fontSize: "20px" }}>
+                            <input className="form-check-input position-absolute bottom-0 end-0 mb-2 me-2" type="checkbox" onChange={handleSwitch} role="switch" checked={false} id="flexSwitchCheckDefault" />
+                        </div>
                     </div>
                 </div>
             </div>
