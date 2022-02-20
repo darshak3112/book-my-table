@@ -288,4 +288,15 @@ router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
     }
 })
 
+
+// ROUTE 10: verify res: POST "/api/admin/fetchallres". login required
+router.post('/fetchallres/:id', fetchadmin, async (req, res) => {
+    try {
+        const allres = await Restaurant.find({ Vendor: req.params.id });
+        res.json(allres);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
 module.exports = router
