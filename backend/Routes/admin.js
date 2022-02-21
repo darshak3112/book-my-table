@@ -274,7 +274,7 @@ router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
         let uRes = await Restaurant.findById(req.params.id);
         if (!uRes) { return res.status(404).send("not found") }
 
-        
+
         if (uRes.Active === false) {
             uRes = await Restaurant.findByIdAndUpdate(req.params.id, { Active: true })
         }
@@ -289,11 +289,59 @@ router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
 })
 
 
-// ROUTE 10: verify res: POST "/api/admin/fetchallres". login required
+// ROUTE 11: fetch all res to a perticular user: POST "/api/admin/fetchallres". login required
 router.post('/fetchallres/:id', fetchadmin, async (req, res) => {
     try {
         const allres = await Restaurant.find({ Vendor: req.params.id });
         res.json(allres);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
+
+// ROUTE 12: verify res: POST "/api/admin/updatevendor". login required
+
+router.patch('/updatevendor/:id', fetchadmin, async (req, res) => {
+    try {
+        const { Name, Email, Mobile_no } = req.body;
+        //new object
+        const newVendor = {};
+        if (Name) { newVendor.Name = Name };
+        if (Email) { newVendor.Email = Email };
+        if (Mobile_no) { newVendor.Mobile_no = Mobile_no };
+
+        let uVendor = await Vendor.findById(req.params.id);
+        console.log(uVendor);
+        if (!uVendor) { return res.status(404).send("not found") }
+
+        uVendor = await Vendor.findByIdAndUpdate(req.params.id, { $set: newVendor })
+        console.log("thi is "+{newVendor});
+        res.json({ uVendor });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("some error occured");
+    }
+})
+
+// ROUTE 13: verify res: POST "/api/admin/updateuser". login required
+
+router.patch('/updateuser/:id', fetchadmin, async (req, res) => {
+    try {
+        const { Name, Email, Mobile_no } = req.body;
+        //new object
+        const newUser = {};
+        if (Name) { newUser.Name = Name };
+        if (Email) { newUser.Email = Email };
+        if (Mobile_no) { newUser.Mobile_no = Mobile_no };
+
+        let uUser = await User.findById(req.params.id);
+        console.log(uUser);
+        if (!uUser) { return res.status(404).send("not found") }
+
+        uUser = await User.findByIdAndUpdate(req.params.id, { $set: newUser })
+        console.log("thi is "+{newUser});
+        res.json({ uUser });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("some error occured");
