@@ -28,11 +28,13 @@ const YorRestItem = (props) => {
                                         <tr>
                                             <td>
                                                 <table>
+                                                    <tbody>
                                                     <tr><td><b> Food Type :</b> {YourRestItem.FoodType}</td></tr>
                                                     <tr><td style={{ width: "400px" }}><b> Facility : </b>{YourRestItem.Facility}</td></tr>
                                                     <tr><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
                                                     <tr><td><b> Address :</b> {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
                                                     <tr><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
+                                                    </tbody>
                                                 </table>
                                             </td>
                                             <td>

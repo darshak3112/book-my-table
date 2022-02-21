@@ -8,7 +8,7 @@ let t1, t2, t3, t4, food = "";
 const Addrasturent = (props) => {
 
     let history = useHistory();
-    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
+    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "",Address:"", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,20 +19,21 @@ const Addrasturent = (props) => {
 
         const response = await fetch("http://localhost:5000/api/restaurent/addres", {
             method: 'POST',
-            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
             headers: {
                 'Content-Type': 'application/json',
-                "auth-token-vendor": localStorage.getItem("vToken")
-            }
+                "auth-token-vendor": localStorage.getItem("vToken"),
+            },
+            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
         });
         const json = await response.json();
         console.log(json);
-        if (!Error){
-            toast.success("Restaurant Added successfully",{autoClose:3000});
+        if (json._id) {
+            console.log(json._id);
+            toast.success("Restaurant Added successfully", { autoClose: 3000 });
             history.push("/yourRest");
         }
-        else{
-            toast.error("Please enter valid details",{autoClose:3000});
+        else {
+            toast.error("Please enter valid details", { autoClose: 3000 });
         }
     }
 
@@ -82,10 +83,10 @@ const Addrasturent = (props) => {
                             <center>
                                 <img width="150px" src={image1} alt="..." />
                             </center>
-                            <center><h1>Add Rasturent</h1></center>
+                            <center><h1>Add Restaurant</h1></center>
                             <hr />
                             <div className="mb-3">
-                                <label htmlFor="exampleInputName" className="form-label">Rasturent Name</label>
+                                <label htmlFor="exampleInputName" className="form-label">Restaurant Name</label>
                                 <input type="text" name="Name" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Name' />
                             </div>
                             <div className="mb-3">

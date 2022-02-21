@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import image1 from "./Img/Login.png"
 import { useHistory } from "react-router-dom";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
     const [credentials, setCredentials] = useState({ Password: "", Mobile_no: "" });
@@ -22,11 +23,11 @@ const SignIn = () => {
         const json = await response.json();
         if (json.authtoken) {
             localStorage.setItem('AToken', json.authtoken);
-            console.log(json);
             history.push("/RestaurantList");
+            toast.success("Login successfully", { autoClose: 3000 });
         }
         else {
-            console.log("deny");
+            toast.error("Please enter valid details", { autoClose: 3000 });
         }
     }
 

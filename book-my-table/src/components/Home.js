@@ -23,7 +23,6 @@ export const Home = () => {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item style={{ color: "black", fontSize: "15px" }}>
@@ -34,7 +33,6 @@ export const Home = () => {
             />
 
             <Carousel.Caption>
-              <h3>Second slide label</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item style={{ color: "black", fontSize: "15px" }}>
@@ -45,7 +43,6 @@ export const Home = () => {
             />
 
             <Carousel.Caption>
-              <h3>Third slide label</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item style={{ color: "black", fontSize: "15px" }}>
@@ -55,7 +52,6 @@ export const Home = () => {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>Fourth slide label</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item style={{ color: "black", fontSize: "15px" }}>
@@ -65,7 +61,6 @@ export const Home = () => {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>Fifth slide label</h3>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
