@@ -23,13 +23,13 @@ const SignIn = () => {
         const json = await response.json();
         if (json.authtoken) {
             localStorage.setItem('uToken', json.authtoken);
-            toast.success("Login successfully",{autoClose:3000});
+            toast.success("Login successfully",{autoClose:1000});
             console.log(json);
             history.push("/");
         }
         else {
             console.log("deny");
-            toast.error("Invalid Details",{autoClose:3000});
+            toast.error("Invalid Details",{autoClose:1000});
         }
     }
 

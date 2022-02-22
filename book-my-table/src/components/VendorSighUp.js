@@ -26,12 +26,12 @@ const VendorSighUp = () => {
     if (json.authtoken) {
       console.log(json.authtoken);
       localStorage.setItem('vTokenUp', json.authtoken);
-      toast.success("Sign Up successfully",{autoClose:3000});
+      toast.success("Sign Up successfully",{autoClose:1000});
       history.push("/vSignIn");
     }
     else {
       console.log("deny");
-      toast.error("Please Fill all details",{autoClose:3000});
+      toast.error("Please Fill all details",{autoClose:1000});
     }
   }
 

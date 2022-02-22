@@ -24,10 +24,10 @@ const SignIn = () => {
         if (json.authtoken) {
             localStorage.setItem('AToken', json.authtoken);
             history.push("/RestaurantList");
-            toast.success("Login successfully", { autoClose: 3000 });
+            toast.success("Login successfully", { autoClose: 1000 });
         }
         else {
-            toast.error("Please enter valid details", { autoClose: 3000 });
+            toast.error("Please enter valid details", { autoClose: 1000 });
         }
     }
 
