@@ -9,15 +9,19 @@ const TableSchema = new Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Restaurent_information'
         },
+        Table_No: {
+            type: Number,
+            require: true
+        },
         TimeZone: [{
             Time: {
                 type: String,
                 require: true
             },
             Available: {
-                type: Boolean, 
+                type: Boolean,
                 require: true,
-                default:false
+                default: false
             }
         }]
 
