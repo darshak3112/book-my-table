@@ -11,7 +11,7 @@ const Navbar = (props) => {
     const handleLogout = () => {
         if (localStorage.getItem("vToken")) {
             localStorage.removeItem("vToken")
-            toast.success("Logout successfully", { autoClose: 3000 });
+            toast.success("Logout successfully", { autoClose: 1000 });
             history.push("/");
         }
         if (localStorage.getItem("vTokenUp")) {
@@ -19,7 +19,7 @@ const Navbar = (props) => {
         }
         if (localStorage.getItem("uToken")) {
             localStorage.removeItem("uToken")
-            toast.success("Logout successfully", { autoClose: 3000 });
+            toast.success("Logout successfully", { autoClose: 1000 });
             history.push("/");
         }
         if (localStorage.getItem("uTokenUp")) {
@@ -27,7 +27,7 @@ const Navbar = (props) => {
         }
         if (localStorage.getItem("AToken")) {
             localStorage.removeItem("AToken")
-            toast.success("Logout successfully", { autoClose: 3000 });
+            toast.success("Logout successfully", { autoClose: 1000 });
             history.push("/");
         }
     }
