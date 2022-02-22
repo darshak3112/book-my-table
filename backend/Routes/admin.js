@@ -290,7 +290,11 @@ router.patch('/verifyres/:id', fetchadmin, async (req, res) => {
 
 
 // ROUTE 11: fetch all res to a perticular user: POST "/api/admin/fetchallres". login required
-router.post('/fetchallres/:id', fetchadmin, async (req, res) => {
+router.post('/fetchallres/:id', fetchadmin, [
+    body('Name', 'Enter a valid name').isLength({ min: 2 }),
+    body('Email', 'Enter a valid email').isEmail(),
+    body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 })
+],async (req, res) => {
     try {
         const allres = await Restaurant.find({ Vendor: req.params.id });
         res.json(allres);
@@ -302,7 +306,11 @@ router.post('/fetchallres/:id', fetchadmin, async (req, res) => {
 
 // ROUTE 12: verify res: POST "/api/admin/updatevendor". login required
 
-router.patch('/updatevendor/:id', fetchadmin, async (req, res) => {
+router.patch('/updatevendor/:id', fetchadmin, [
+    body('Name', 'Enter a valid name').isLength({ min: 2 }),
+    body('Email', 'Enter a valid email').isEmail(),
+    body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 })
+],  async (req, res) => {
     try {
         const { Name, Email, Mobile_no } = req.body;
         //new object
