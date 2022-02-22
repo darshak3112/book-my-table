@@ -3,15 +3,26 @@ const { Schema } = mongoose;
 
 
 const TableSchema = new Schema({
-    Restaurant: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Restaurent_information'
-    },
-    Person : {
-        type: Number,
-        require: true
-    }
-    
+
+    Table: [{
+        Restaurant: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Restaurent_information'
+        },
+        TimeZone: [{
+            Time: {
+                type: String,
+                require: true
+            },
+            Available: {
+                type: Boolean, 
+                require: true,
+                default:false
+            }
+        }]
+
+    }]
+
 });
 
 const Table = mongoose.model('Table', TableSchema);
