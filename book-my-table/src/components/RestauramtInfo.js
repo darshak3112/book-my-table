@@ -19,7 +19,7 @@ const RestauramtInfo = () => {
     const myparam = location.state.RestItem;
 
     const handle = () => {
-        history.push("/tablebooking", { RestItem: myparam }); // commit
+        history.push("/tablebooking", { RestItem: myparam });
     }
 
     const capitalize = (word) => {
