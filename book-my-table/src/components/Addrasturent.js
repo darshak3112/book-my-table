@@ -29,11 +29,11 @@ const Addrasturent = (props) => {
         console.log(json);
         if (json._id) {
             console.log(json._id);
-            toast.success("Restaurant Added successfully", { autoClose: 3000 });
+            toast.success("Restaurant Added successfully", { autoClose: 1000 });
             history.push("/yourRest");
         }
         else {
-            toast.error("Please enter valid details", { autoClose: 3000 });
+            toast.error("Please enter valid details", { autoClose: 1000 });
         }
     }
 

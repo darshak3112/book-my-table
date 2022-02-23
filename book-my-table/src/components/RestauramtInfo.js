@@ -11,7 +11,8 @@ import image55 from "./Img/5.jpg"
 import { Carousel } from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RestauramtInfo = () => {
     let history = useHistory();
@@ -19,7 +20,13 @@ const RestauramtInfo = () => {
     const myparam = location.state.RestItem;
 
     const handle = () => {
-        history.push("/tablebooking", { RestItem: myparam });
+        if(!localStorage.getItem("uToken")){
+            toast.warning("You have to login first",{autoClose:1000});
+            history.push("/CheckingIn");
+        }
+        else{
+            history.push("/tablebooking", { RestItem: myparam });
+        }
     }
 
     const capitalize = (word) => {
@@ -188,7 +195,7 @@ const RestauramtInfo = () => {
                             </ul>
                         </div>
                         <div style={{ textAlign: "center" }}>
-                            <button type="button" className={`btn btn-dark my-2 ${!localStorage.getItem("uToken") ? "disabled" : ""}`} style={{ width: "100%", fontSize: "20px" }} onClick={handle}>Book Table</button></div>
+                            <button type="button" className={"btn btn-dark my-2"} style={{ width: "100%", fontSize: "20px" }} onClick={handle}>Book Table</button></div>
                     </div>
                     <div className="col-md-3" style={{ border: "2px solid black", borderRadius: "10px", textAlign: "center", height: "600px" }}>
                         <b>advertisement</b>

@@ -35,7 +35,7 @@ const AdminAllUser = (props) => {
         });
         const json = await response.json();
         console.log(json);
-        toast.success("Delete successfully",{autoClose:3000});
+        toast.success("Delete successfully",{autoClose:1000});
         const newuserlist = Users.filter((user) => {
             return user._id !== id;
         });

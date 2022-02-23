@@ -156,7 +156,7 @@ const YourRest = (props) => {
             
         }
         YoursetRestList(newRest);
-        toast.success("Update successfully",{autoClose:3000});
+        toast.success("Update successfully",{autoClose:1000});
         // useEffect(() => {
         getYourRestaurant();
         // }, []);
@@ -177,7 +177,7 @@ const YourRest = (props) => {
             return rest._id !== id;
         });
         YoursetRestList(newrestlist);
-        toast.success("Delete successfully",{autoClose:3000});
+        toast.success("Delete successfully",{autoClose:1000});
     }
 
 
