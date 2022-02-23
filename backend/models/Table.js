@@ -10,7 +10,7 @@ const TableSchema = new Schema({
             ref: 'Restaurent_information'
         },
         Table_No: {
-            type: Number,
+            type: Integer,
             require: true
         },
         TimeZone: [{
