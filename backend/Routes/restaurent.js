@@ -2,6 +2,8 @@ const express = require('express');
 const fetchvendor = require('../middleware/fetchvendor');
 const Restaurant = require('../models/Restaurant_information');
 const { body, validationResult } = require('express-validator');
+var jwt = require('jsonwebtoken');
+require('dotenv').config()
 const router = express.Router();
 
 // add restaurent details login required
@@ -30,7 +32,15 @@ router.post('/addres', fetchvendor, [
         })
         const savedRes = await restaurant.save();
 
+        const data = {
+            savedRes: {
+                id: savedRes.id
+            }
+        }
+        const authtoken = jwt.sign(data, JWT_SECRET);
+
         res.json(savedRes);
+        res.json({ authtoken });
         console.log(savedRes.id)
     } catch (error) {
         console.error(error.message);
@@ -54,7 +64,7 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Name, City, Area,FoodCategory,FoodType, TimeOpen, TimeClose, Contact, Facility, Holiday,Active, Table_require } = req.body;
+        const { Name, City, Area, FoodCategory, FoodType, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
         //new object
         const newRes = {};
         if (Name) { newRes.Name = Name };
@@ -110,7 +120,7 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
 // get all resturent
 router.get('/getallrest', async (req, res) => {
     try {
-        const allres = await Restaurant.find({Active:true});
+        const allres = await Restaurant.find({ Active: true });
         res.json(allres);
     } catch (error) {
         console.error(error.message);
