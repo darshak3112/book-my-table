@@ -2,7 +2,11 @@ const express = require('express');
 const fetchvendor = require('../middleware/fetchvendor');
 const Restaurant = require('../models/Restaurant_information');
 const { body, validationResult } = require('express-validator');
+var jwt = require('jsonwebtoken');
+require('dotenv').config()
 const router = express.Router();
+const JWT_SECRET = process.env.JWT_SECRET;
+
 
 // add restaurent details login required
 router.post('/addres', fetchvendor, [
@@ -13,7 +17,7 @@ router.post('/addres', fetchvendor, [
     body('Address', 'Enter a valid Address').isLength({ min: 10 }),
 ], async (req, res) => {
     try {
-        const { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
+        const { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = req.body;
         const errors = validationResult(req);
         let fRes = await Restaurant.findOne({ Contact: req.body.Contact });
 
@@ -25,16 +29,26 @@ router.post('/addres', fetchvendor, [
             return res.status(400).json({ error: "Sorry a user with this Mobile num already exists" })
         }
 
-        const restaurant = new Restaurant({
-            Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require, Vendor: req.vendor.id
+        let restaurant = new Restaurant({
+            Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require, Vendor: req.vendor.id
         })
-        const savedRes = await restaurant.save();
+        restaurant = await restaurant.save();
+        console.log(restaurant)
 
-        res.json(savedRes);
-        console.log(savedRes.id)
+        const data = {
+            restaurant: {
+                id: restaurant.id
+            }
+        }
+        const authtoken = jwt.sign(data, JWT_SECRET);
+        console.log("this is "+authtoken);
+
+        res.json({authtoken});
+    
+       // console.log(savedRes.id)
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("some error occured");
+        res.status(500);//.send("some error occured");
     }
 })
 
@@ -54,7 +68,7 @@ router.get('/fetchallres', fetchvendor, async (req, res) => {
 //update restaurent information
 router.patch('/updateres/:id', fetchvendor, async (req, res) => {
     try {
-        const { Name, City, Area,FoodCategory,FoodType, TimeOpen, TimeClose, Contact, Facility, Holiday,Active, Table_require } = req.body;
+        const { Name, City, Area, FoodCategory, FoodType, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
         //new object
         const newRes = {};
         if (Name) { newRes.Name = Name };
@@ -110,7 +124,7 @@ router.delete('/deleteres/:id', fetchvendor, async (req, res) => {
 // get all resturent
 router.get('/getallrest', async (req, res) => {
     try {
-        const allres = await Restaurant.find({Active:true});
+        const allres = await Restaurant.find({ Active: true });
         res.json(allres);
     } catch (error) {
         console.error(error.message);

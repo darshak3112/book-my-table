@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const fetchtable = (req, res, next) => {
+const fetchres = (req, res, next) => {
     // Get the vendor from the jwt token and add id to req object
     const token = req.header('auth-token-res');
     if (!token) {
@@ -10,10 +10,9 @@ const fetchtable = (req, res, next) => {
     }
    // console.log(data.table)
     try {
-        const data = jwt.verify(token, JWT_SECRET);
-        console.log(data);
-        console.log(data.restaurent)
-        req.restaurent = data.restaurent;
+        const data = jwt.verify(token, JWT_SECRET);        
+        req.restaurant = data.restaurent;
+        console.log( req.restaurant)
         next();
     } catch (err) {
         res.status(401).send({ error: err })
@@ -21,4 +20,4 @@ const fetchtable = (req, res, next) => {
 
 }
 
-module.exports = fetchtable;
+module.exports = fetchres;
