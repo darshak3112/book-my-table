@@ -1,49 +1,52 @@
 const express = require('express');
+const Restaurant = require('../models/Restaurant_information');
 const Table = require('../models/Table');
 const router = express.Router();
-const { body, validationResult, sanitize } = require('express-validator');
 var jwt = require('jsonwebtoken');
 var fetchres = require('../middleware/fetchres');
 require('dotenv').config()
+const JWT_SECRET = process.env.JWT_SECRET;
 
-// add restaurent details login required
-router.post('/addres', fetchres, [
-    body('Name', 'name should be atlest 2 char').isLength({ min: 2 }),
-    body('City', 'name should be atlest 2 char').isLength({ min: 2 }),
-    body('Area', 'name should be atlest 2 char').isLength({ min: 2 }),
-    body('Contact', 'Enter a valid mobile number').isLength({ min: 10 }),
-    body('Address', 'Enter a valid Address').isLength({ min: 10 }),
-], async (req, res) => {
-    try {
-        const { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require } = req.body;
-        const errors = validationResult(req);
-        let fRes = await Restaurant.findOne({ Contact: req.body.Contact });
+router.post('/addtable', async (req, res) => {
 
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
-        if (fRes) {
-            return res.status(400).json({ error: "Sorry a user with this Mobile num already exists" })
-        }
-
-        const restaurant = new Restaurant({
-            Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require, Vendor: req.vendor.id
-        })
-        const savedRes = await restaurant.save();
-
-        const data = {
-            savedRes: {
-                id: savedRes.id
-            }
-        }
-        const authtoken = jwt.sign(data, JWT_SECRET);
-
-        res.json(savedRes);
-        res.json({ authtoken });
-        console.log(savedRes.id)
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send("some error occured");
+    const token = req.header('auth-token-res');
+    if (!token) {
+        res.status(401).send({ error: "Please authenticate using a valid token " })
     }
+    const data = jwt.verify(token, JWT_SECRET);
+    console.log(data.restaurant.id)
+
+    let restaurant = await Restaurant.findById(data.restaurant.id);
+
+    if (!restaurant) {
+        res.status(404).send({ error: "not found" })
+    }
+   // console.log(restaurant.Table_require)
+    let num = new Array(restaurant.Table_require);
+   // console.log(num.length)
+
+    for (let i = 0; i < restaurant.Table_require; i++) {
+        let table = new Table({})
+        table = await table.save();
+        num[i] = table.id;
+    
+        try {
+            let update = await Table.findOneAndUpdate({ _id: num[i] }, {
+                $push: {
+                    Restaurant: data.restaurant.id,
+                    Table_No: i
+                }
+            })
+        } catch (err) {
+            res.send(err)
+        }
+
+       // console.log(update)
+    }
+    
+    console.log(num)
+    res.send(num)
+
 })
+
+module.exports = router;

@@ -8,10 +8,11 @@ const fetchvendor = (req, res, next) => {
     if (!token) {
         res.status(401).send({ error: "Please authenticate using a valid token " })
     }
-   // console.log(data.user)
+    // console.log(data.user)
     try {
         const data = jwt.verify(token, JWT_SECRET);
-               req.vendor = data.vendor;
+        req.vendor = data.vendor;
+        console.log(req.vendor)
         next();
     } catch (err) {
         res.status(401).send({ error: err })

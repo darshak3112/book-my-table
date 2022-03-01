@@ -10,8 +10,9 @@ const fetchres = (req, res, next) => {
     }
    // console.log(data.table)
     try {
-        const data = jwt.verify(token, JWT_SECRET);
-        req.restaurent = data.restaurent;
+        const data = jwt.verify(token, JWT_SECRET);        
+        req.restaurant = data.restaurent;
+        console.log( req.restaurant)
         next();
     } catch (err) {
         res.status(401).send({ error: err })
