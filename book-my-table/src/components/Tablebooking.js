@@ -103,7 +103,7 @@ export const Tablebooking = () => {
           <center><h1>Table Booking</h1></center><hr />
           <h5 className="card-title">Select Date</h5>
           {dateArray.map((date, i) => (
-              <button type="button" className={`btn ${selectedDate == date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px" }}>{getDate()}<br/>{da}</button>
+              <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px" }}>{getDate()}<br/>{da}</button>
           ))}
         </div>
       </div>
@@ -127,7 +127,7 @@ export const Tablebooking = () => {
           <h5 className="card-title">Select Time</h5>
           <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
           {timeArray.map((time, i) => (
-              <button type="button" className={`btn ${selectedTime == time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
+              <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
           ))}
         </div>
       </div>

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useRef} from "react";
 import "./css/Nav.css";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import image1 from "./Img/Login.png"
 
-const Navbar = (props) => {
+
+const Navbar = () => {
     let history = useHistory();
     let location = useLocation();
+    const ref = useRef(null);
+    const refClose = useRef(null);
 
     const handleLogout = () => {
         if (localStorage.getItem("vToken")) {
@@ -31,8 +35,68 @@ const Navbar = (props) => {
             history.push("/");
         }
     }
+
+    const updateUandV = () => {
+        ref.current.click();
+    }
+
+    const handleSubmit = (e) => {
+        refClose.current.click();
+    }
+
+    const onChange = () => {
+
+    }
     return (
         <>
+            <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                Launch demo modal
+            </button>
+            <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+                <div className="modal-dialog" style={{ maxWidth: "600px"}}>
+                    <div className="modal-content" style={{ minWidth: "400px" }}>
+                        <div className="modal-header">
+                            <div style={{ width: "728px", textAlign: "center" }}><h5 className="modal-title" id="exampleModalLabel">Update Your Datails</h5></div>
+                            <button type="button" className="btn-close" style={{ margin: "0" }} data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="card my-3">
+                                <div className="card-body">
+                                    <form>
+                                        <center>
+                                            <img width="150px" src={image1} alt="..." />
+                                        </center>
+                                        <center><h1>User SignUp</h1></center>
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputName" className="form-label">User Name</label>
+                                            <input type="text" className="form-control" name="Name" id="exampleInputName" onChange={onChange} placeholder='Enter User Name' />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                                            <input type="email" className="form-control" name="Email" id="exampleInputEmail1" onChange={onChange} placeholder="Enter E-Mail Id" aria-describedby="emailHelp" />
+                                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPhone" className="form-label">Phone No</label>
+                                            <input type="text" className="form-control" name="Mobile_no" id="exampleInputPhone" onChange={onChange} placeholder='Enter phone No' aria-describedby="phoneHelp" />
+                                            <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                                            <input type="password" className="form-control" name="Password" id="exampleInputPassword1" onChange={onChange} placeholder='Password' />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" ref={refClose} data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-dark" onClick={handleSubmit}>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
@@ -94,18 +158,15 @@ const Navbar = (props) => {
                                 }
                             </ul>
                             <form className="d-flex">
-                                {localStorage.getItem("vToken") || localStorage.getItem("uToken")
-                                    ? <>
-                                        <button className="btn btn-sm btn-outline-light mx-1" onClick={handleLogout} style={{ borderRadius: "20px", width: "33px" }}><i class='fas fa-user-alt' style={{ fontSize: "16px" }}></i></button>
-                                    </>
-                                    : <> </>
-                                }
                                 {!localStorage.getItem("vToken") && !localStorage.getItem("uToken") && !localStorage.getItem("AToken")
                                     ? <>
                                         <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingUp">SignUp</Link>
                                         <Link style={{ height: "30px" }} className="btn btn-sm btn-outline-light mx-1" to="/CheckingIn">SignIn</Link>
                                     </>
-                                    : <>                                    
+                                    : <>
+                                        <button type="button" className="btn btn-outline-light me-2" onClick={updateUandV} style={{ borderRadius: "50px", width: "38px" }}>
+                                            <center><i className='fas fa-user-alt' style={{ fontSize: "14px" }}></i></center>
+                                        </button>
                                         <button className="btn btn-sm btn-outline-light mx-1" onClick={handleLogout}>Logout</button>
                                     </>
                                 }
