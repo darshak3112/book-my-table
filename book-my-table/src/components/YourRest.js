@@ -39,7 +39,6 @@ const YourRest = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         YoursetRestList(json);
     };
 

@@ -1,4 +1,4 @@
-import React, { useRef} from "react";
+import React, { useRef, useState } from "react";
 import "./css/Nav.css";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -11,6 +11,14 @@ const Navbar = () => {
     let location = useLocation();
     const ref = useRef(null);
     const refClose = useRef(null);
+
+    const [UandV, setUandV] = useState({
+        _id:"",
+        Name: "",
+        Email: "",
+        Password: "",
+        Mobile_no: ""
+    })
 
     const handleLogout = () => {
         if (localStorage.getItem("vToken")) {
@@ -36,16 +44,52 @@ const Navbar = () => {
         }
     }
 
-    const updateUandV = () => {
+    const updateUandV = async () => {
         ref.current.click();
+        if (localStorage.getItem("vToken")) {
+            const response = await fetch("http://localhost:5000/api/vendorAuth/getvendor", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token-vendor": localStorage.getItem("vToken")
+                },
+            });
+            const json = await response.json();
+            setUandV(json);
+        }
+        else if (localStorage.getItem("uToken")) {
+            const response = await fetch("http://localhost:5000/api/userAuth/getuser", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token-user": localStorage.getItem("uToken")
+                },
+            });
+            const json = await response.json();
+            setUandV(json);
+        }
     }
 
     const handleSubmit = (e) => {
+        if(localStorage.getItem("vToken")){
+            updateVendor(UandV._id,UandV.Name,UandV.Email);
+        }
+        else if(localStorage.getItem("uToken")){
+            updateUser(UandV._id,UandV.Name,UandV.Email);
+        }
         refClose.current.click();
     }
 
-    const onChange = () => {
+    const onChange = (e) => {
+        setUandV({ ...UandV, [e.target.name]: e.target.value })
+    }
 
+    const updateUser = async (id,name,email) => {
+        console.log(id,name,email)
+    }
+
+    const updateVendor = async (id,name,email) => {
+        console.log(id,name,email)
     }
     return (
         <>
@@ -53,7 +97,7 @@ const Navbar = () => {
                 Launch demo modal
             </button>
             <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
-                <div className="modal-dialog" style={{ maxWidth: "600px"}}>
+                <div className="modal-dialog" style={{ maxWidth: "600px" }}>
                     <div className="modal-content" style={{ minWidth: "400px" }}>
                         <div className="modal-header">
                             <div style={{ width: "728px", textAlign: "center" }}><h5 className="modal-title" id="exampleModalLabel">Update Your Datails</h5></div>
@@ -66,24 +110,24 @@ const Navbar = () => {
                                         <center>
                                             <img width="150px" src={image1} alt="..." />
                                         </center>
-                                        <center><h1>User SignUp</h1></center>
+                                        <center><h1>Hello {UandV.Name}</h1></center>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputName" className="form-label">User Name</label>
-                                            <input type="text" className="form-control" name="Name" id="exampleInputName" onChange={onChange} placeholder='Enter User Name' />
+                                            <input type="text" className="form-control" name="Name" value={UandV.Name} id="exampleInputName" onChange={onChange} placeholder='Enter User Name' />
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                            <input type="email" className="form-control" name="Email" id="exampleInputEmail1" onChange={onChange} placeholder="Enter E-Mail Id" aria-describedby="emailHelp" />
+                                            <input type="email" className="form-control" name="Email" value={UandV.Email} id="exampleInputEmail1" onChange={onChange} placeholder="Enter E-Mail Id" aria-describedby="emailHelp" />
                                             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPhone" className="form-label">Phone No</label>
-                                            <input type="text" className="form-control" name="Mobile_no" id="exampleInputPhone" onChange={onChange} placeholder='Enter phone No' aria-describedby="phoneHelp" />
+                                            <input type="text" className="form-control" name="Mobile_no" readOnly value={UandV.Mobile_no} id="exampleInputPhone" onChange={onChange} placeholder='Enter phone No' aria-describedby="phoneHelp" />
                                             <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                            <input type="password" className="form-control" name="Password" id="exampleInputPassword1" onChange={onChange} placeholder='Password' />
+                                            <input type="password" className="form-control" name="Password" readOnly value={UandV.Password} id="exampleInputPassword1" onChange={onChange} placeholder='Password' />
                                         </div>
                                     </form>
                                 </div>
