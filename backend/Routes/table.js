@@ -14,38 +14,37 @@ router.post('/addtable', async (req, res) => {
         res.status(401).send({ error: "Please authenticate using a valid token " })
     }
     const data = jwt.verify(token, JWT_SECRET);
-    console.log(data.restaurant.id)
+    //console.log(data.restaurant.id)
 
     let restaurant = await Restaurant.findById(data.restaurant.id);
 
     if (!restaurant) {
         res.status(404).send({ error: "not found" })
     }
-   // console.log(restaurant.Table_require)
-    let num = new Array(restaurant.Table_require);
-   // console.log(num.length)
-
+    
     for (let i = 0; i < restaurant.Table_require; i++) {
-        let table = new Table({})
+        console.log(i);
+        let table = new Table({
+            Restaurant: data.restaurant.id,
+            Table_No: i+1
+        })
         table = await table.save();
-        num[i] = table.id;
-    
-        try {
-            let update = await Table.findOneAndUpdate({ _id: num[i] }, {
-                $push: {
-                    Restaurant: data.restaurant.id,
-                    Table_No: i
-                }
-            })
-        } catch (err) {
-            res.send(err)
-        }
-
-       // console.log(update)
+        console.log(table)
+             
     }
+    res.send("table created");
+
+    // let todo = await Restaurant.find();
+    // let result = todo.map(a => a._id.toString());
+    // //console.log(result[2])
+    // let name = new Array(Object.keys(todo).length);
+    // //let vRes = Restaurant.find({ Vendor: dVendor });
+    //     for (let i = 0; i < Object.keys(todo).length; i++) {
+    //         name[i] = result[i];
+    //         console.log(name[i])
+    // }
     
-    console.log(num)
-    res.send(num)
+
 
 })
 

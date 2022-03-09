@@ -3,6 +3,7 @@ import image1 from "./Img/addrast.png"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from "react-router-dom"
+//import Map from './Map';
 
 let t1, t2, t3, t4, food = "";
 const Addrasturent = (props) => {
@@ -26,8 +27,21 @@ const Addrasturent = (props) => {
             body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
         });
         const json = await response.json();
-        console.log(json);
-        if (json._id) {
+        if (json.authtoken) {
+            localStorage.setItem('tTokenadd', json.authtoken);
+        }
+        const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "auth-token-res": localStorage.getItem("tTokenadd"),
+            }
+        });
+      //  const json1 = await response.json();
+      //  console.log(json1);
+
+       // console.log(json);
+        if (json) {
             console.log(json._id);
             toast.success("Restaurant Added successfully", { autoClose: 1000 });
             history.push("/yourRest");
