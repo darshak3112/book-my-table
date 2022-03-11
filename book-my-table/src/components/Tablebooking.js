@@ -21,6 +21,7 @@ export const Tablebooking = () => {
   var day = dateObj.getDate() - 1;
   var year = dateObj.getFullYear();
 
+
   let da;
 
   const getDate = () => {
@@ -76,21 +77,24 @@ export const Tablebooking = () => {
     }
     setDateArray(dateArray);
 
+
   }, []);
 
   const handleChange = (time) => {
-      setSelectedTime(time);
+    setSelectedTime(time);
+    console.log("Time => ", time);
+    console.log(myparam._id)
   }
 
   const handleDateChange = (date) => {
     ////////// Don't Remove these code //////////
-    // var dateObj = new Date();
-    // var month = dateObj.getMonth() + 1;
-    // var day = dateObj.getDate() + (date - 1);
-    // var year = dateObj.getFullYear();
+    var dateObj = new Date();
+    var month = dateObj.getMonth() + 1;
+    var day = dateObj.getDate() + (date - 1);
+    var year = dateObj.getFullYear();
 
-    // var d = day + "/" + month + "/" + year;
-    // console.log(d);
+    var d = day + "/" + month + "/" + year;
+    console.log("Date => ",d);
 
     setSelectedDate(date);
 }
@@ -116,7 +120,7 @@ export const Tablebooking = () => {
             <input type="number" className="form-control" style={{ marginTop: "15px" }} id="exampleInputPerson" name="Person" placeholder='Enter Guests' />
           <h6 className="card-subtitle mb-2 text-muted my-4">Details Of Guest</h6>
             <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputName" name="Name" placeholder='Enter Guest Name' />
-            <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputMail" name="Mail" placeholder='Enter Guest Mail' />
+            {/* <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputMail" name="Mail" placeholder='Enter Guest Mail' /> */}
             <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputNum" name="Mobile" placeholder='Enter Guest Mobile Number' />
             <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputReq" name="Request" placeholder='Any Special Request (Optional)' />
           </div>

@@ -29,6 +29,9 @@ const Navbar = () => {
         if (localStorage.getItem("vTokenUp")) {
             localStorage.removeItem("vTokenUp")
         }
+        if (localStorage.getItem("tTokenadd")) {
+            localStorage.removeItem("tTokenadd")
+        }
         if (localStorage.getItem("uToken")) {
             localStorage.removeItem("uToken")
             toast.success("Logout successfully", { autoClose: 1000 });

@@ -1,9 +1,12 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
 const Restaurant = require('../models/Restaurant_information');
 const Table = require('../models/Table');
+const User = require('../models/User');
+const Booking = require('../models/Booking');
 const router = express.Router();
-var jwt = require('jsonwebtoken');
-var fetchres = require('../middleware/fetchres');
+const jwt = require('jsonwebtoken');
+const fetchuser = require('../middleware/fetchuser');
 require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -21,31 +24,50 @@ router.post('/addtable', async (req, res) => {
     if (!restaurant) {
         res.status(404).send({ error: "not found" })
     }
-    
+
     for (let i = 0; i < restaurant.Table_require; i++) {
         console.log(i);
         let table = new Table({
             Restaurant: data.restaurant.id,
-            Table_No: i+1
+            Table_No: i + 1
         })
         table = await table.save();
         console.log(table)
-             
+
     }
     res.send("table created");
 
-    // let todo = await Restaurant.find();
-    // let result = todo.map(a => a._id.toString());
-    // //console.log(result[2])
-    // let name = new Array(Object.keys(todo).length);
-    // //let vRes = Restaurant.find({ Vendor: dVendor });
-    //     for (let i = 0; i < Object.keys(todo).length; i++) {
-    //         name[i] = result[i];
-    //         console.log(name[i])
-    // }
-    
-
-
 })
+
+router.post('/tablebooking', fetchuser, [
+    body('Mobile', 'Enter a valid mobile number').isLength({ min: 10 })]
+    , async (req, res) => {
+
+        console.log(req.user.id);
+        const user = await User.findById(req.user.id);
+        //console.log(user)
+        if (!user) {
+            res.status(404).send("not found");
+        }
+        const { Person, Name, Mobile, Request, Date, Time } = req.body;
+
+        let book = await Booking.find({ Date, Time });
+        if (book) {
+            res.status(404).send("not avialable");
+        }
+        book = new Booking({
+            User: user.id,
+            Mobile_no_user: user.Mobile_no,
+            Mobile_no_guest: Mobile,
+            Guest_Name: Name,
+            Guest_Total: Person,
+            Date,
+            Time,
+            Request
+        })
+        console.log(book)
+        //res.send(book)
+
+    })
 
 module.exports = router;
