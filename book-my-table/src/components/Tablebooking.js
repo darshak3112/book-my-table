@@ -1,28 +1,22 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
 import "./css/Tablebooking.css";
-
-
 export const Tablebooking = () => {
-
   const [timeArray, setTimeArray] = useState([]);
   const [dateArray, setDateArray] = useState([]);
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
-  const [info, setInfo] = useState({ Person: "", Name: "", Mobile: "", Request: "", Date: "", Time: "", Restaurant: "" });
+  const [info, setInfo] = useState({ Person: "", Name: "", Mobile: "", Request: "", Date: "", Time: "", Restaurant1: "" });
 
   let location = useLocation();
-  const myparam = location.state.RestItem;
 
+  const myparam = location.state.RestItem;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var dateObj = new Date();
   var month = dateObj.getMonth() + 1;
   var day = dateObj.getDate() - 1;
   var year = dateObj.getFullYear();
-
-
   let da;
 
   const getDate = () => {
@@ -31,12 +25,10 @@ export const Tablebooking = () => {
     month = dateObj.getMonth() + 1;
     day = dateObj.getDate();
     year = dateObj.getFullYear();
-
     var date2 = day + "/" + month + "/" + year;
     da = days[dateObj.getDay()];
     return date2;
   }
-
 
   useEffect(() => {
     let timeOpenStamps = myparam.TimeOpen;
@@ -52,11 +44,10 @@ export const Tablebooking = () => {
       }
       else if (timeOpenStamps[i] === "P") {
         Onum = parseInt(timeOpenStamps) + 12;
-        if(Onum === 24) { Onum = 1; break; }
+        if (Onum === 24) { Onum = 1; break; }
         break;
       }
     }
-
     for (let i = 0; timeCloseStamps[i] !== '\0'; i++) {
       if (timeCloseStamps[i] === "A") {
         Cnum = parseInt(timeCloseStamps);
@@ -64,108 +55,110 @@ export const Tablebooking = () => {
       }
       else if (timeCloseStamps[i] === "P") {
         Cnum = parseInt(timeCloseStamps) + 12;
-        if(Cnum === 24) { Cnum = 1; break; }
         break;
       }
     }
 
-
     for (let i = Onum; i <= Cnum; i++) {
       tempArray.push(i);
     }
+
     setTimeArray(tempArray);
 
     for (let i = 1; i <= 7; i++) {
       dateArray.push(i);
     }
     setDateArray(dateArray);
-
-
-  }, []);
+  }, [myparam.TimeClose, myparam.TimeOpen]);
 
   const handleChange = (time) => {
     setSelectedTime(time);
-    console.log("Time => ", time);
-    console.log(myparam._id)
   }
 
   const handleDateChange = (date) => {
-    ////////// Don't Remove these code //////////
-    var dateObj = new Date();
-    var month = dateObj.getMonth() + 1;
-    var day = dateObj.getDate() + (date - 1);
-    var year = dateObj.getFullYear();
-
-    var d = day + "/" + month + "/" + year;
-    console.log("Date => ", d);
-
     setSelectedDate(date);
-    
-    const onChange = (e) => {
-
-      setInfo({ ...info, [e.target.name]: e.target.value });
-
-    }
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-
-
-      const response = await fetch("http://localhost:5000/api/restaurent/addres", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "auth-token-vendor": localStorage.getItem("vToken"),
-        },
-        body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant }),
-      });
-
-
-    }
   }
 
-  return ( //With changes
-    <>
-      <div className="table-booking">
-        <div className="card mx-3">
-          <form onSubmit={handleSubmit} >
-            <div className="card-body">
-              <center><h1>Table Booking</h1></center><hr />
-              <h5 className="card-title">Select Date</h5>
-              {dateArray.map((date, i) => (
-                <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px" }}>{getDate()}<br />{da}</button>
-              ))}
-            </div>
-            <center><button type="submit" className="btn btn-dark btn-lg ">Submit</button></center>
-          </form>
-        </div>
-        <div className="card my-3 mx-3 w-50" style={{ float: "left" }}>
-          <div className="card-body">
-            <h5 className="card-title">Select People</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Select how many Persons you are come for eat</h6>
 
-            <div className="mb-3">
-              <input type="number" className="form-control" onChange={onChange} style={{ marginTop: "15px" }} id="exampleInputPerson" name="Person" placeholder='Enter Guests' />
-              <h6 className="card-subtitle mb-2 text-muted my-4">Details Of Guest</h6>
-              <input type="text" className="form-control" onChange={onChange} style={{ marginTop: "15px" }} id="exampleInputName" name="Name" placeholder='Enter Guest Name' />
-              {/* <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputMail" name="Mail" placeholder='Enter Guest Mail' /> */}
-              <input type="text" className="form-control" onChange={onChange} style={{ marginTop: "15px" }} id="exampleInputNum" name="Mobile" placeholder='Enter Guest Mobile Number' />
-              <input type="text" className="form-control" onChange={onChange} style={{ marginTop: "15px" }} id="exampleInputReq" name="Request" placeholder='Any Special Request (Optional)' />
-            </div>
-          </div>
-        </div>
-        <div className="card my-3 mx-3">
-          <div className="card-body">
-            <h5 className="card-title">Select Time</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
-            {timeArray.map((time, i) => (
-              <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div style={{ height: "80px" }}></div>
-    </>
-  );
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-export default Tablebooking;
+    let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
+    Date = selectedDate;
+    Time = selectedTime
+    Restaurant1 = myparam._id;
+
+    const response = await fetch("http://localhost:5000/api/table/tablebooking", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token-user": localStorage.getItem("uToken"),
+      },
+      body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
+    });
+
+    console.log(response);
+  }
+
+    // const json = await response.json();
+    // if (json.authtoken) {
+    //   localStorage.setItem('tTokenadd', json.authtoken);
+    // }
+    
+    // const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     "auth-token-res": localStorage.getItem("tTokenadd"),
+    //   }
+    // });
+
+    const onChange = (e) => {
+          setInfo({ ...info, [e.target.name]: e.target.value });
+  }
+
+    return ( //With changes
+      <>
+        <div className="table-booking">
+            <div className="card mx-3">
+              <div className="card-body">
+                <center><h1>Table Booking</h1></center><hr />
+
+                <h5 className="card-title">Select Date</h5>
+                {dateArray.map((date, i) => (
+                  <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px" }}>{getDate()}<br />{da}</button>
+                ))}
+              </div>
+            </div>
+            <div className="card my-3 mx-3 w-50" style={{ float: "left" }}>
+              <div className="card-body">
+                <h5 className="card-title">Select People</h5>
+                <h6 className="card-subtitle mb-2 text-muted">Select how many Persons you are come for eat</h6>
+                <div className="mb-3">
+                  <input type="number" className="form-control" style={{ marginTop: "15px" }} id="exampleInputPerson" onChange={onChange} name="Person" placeholder='Enter Guests' />
+                  <h6 className="card-subtitle mb-2 text-muted my-4">Details Of Guest</h6>
+                  <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputName" onChange={onChange} name="Name" placeholder='Enter Guest Name' />
+                  <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputNum" onChange={onChange} name="Mobile" placeholder='Enter Guest Mobile Number' />
+                  <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputReq" onChange={onChange} name="Request" placeholder='Any Special Request (Optional)' />
+                </div>
+              </div>
+            </div>
+            <div className="card my-3 mx-3">
+              <div className="card-body">
+                <h5 className="card-title">Select Time</h5>
+                <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
+                {timeArray.map((time, i) => (
+                  <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
+                ))}
+
+              </div>
+            </div>
+            <div>
+                <button type="button" className={"btn btn-dark my-2"} style={{ width: "100%", fontSize: "20px", textAlign: "center", margin : "auto 15px" }} onClick={handleSubmit}>Booking Confirm</button></div>
+        </div>
+        <div style={{ height: "80px" }}></div>
+      </>
+    );
+  };
+
+  export default Tablebooking;
