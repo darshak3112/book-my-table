@@ -97,21 +97,8 @@ export const Tablebooking = () => {
       body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
     });
 
-    console.log(response);
+   console.log(response);
   }
-
-    // const json = await response.json();
-    // if (json.authtoken) {
-    //   localStorage.setItem('tTokenadd', json.authtoken);
-    // }
-    
-    // const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     "auth-token-res": localStorage.getItem("tTokenadd"),
-    //   }
-    // });
 
     const onChange = (e) => {
           setInfo({ ...info, [e.target.name]: e.target.value });

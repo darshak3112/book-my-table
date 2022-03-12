@@ -26,13 +26,13 @@ router.post('/addtable', async (req, res) => {
     }
 
     for (let i = 0; i < restaurant.Table_require; i++) {
-        console.log(i);
+       // console.log(i);
         let table = new Table({
             Restaurant: data.restaurant.id,
             Table_No: i + 1
         })
         table = await table.save();
-        console.log(table)
+        //console.log(table)
 
     }
     res.send("table created");
@@ -52,10 +52,15 @@ router.post('/tablebooking', fetchuser, [
         const { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = req.body;
 
         //console.log(Date, Time)
-        const restaurent = Restaurant.findById(Restaurant1)
+        const restaurent = await Restaurant.findById(Restaurant1)
         let book = await Booking.find({ Date, Time });
-        console.log("thi is "+ book)
-        if (!book) {
+        const size = Object.keys(book).length;
+        const rSize = restaurent.Table_require;
+       console.log(size)
+        if (rSize!==size) {
+            //const table = await Table.find({ Restaurant: Restaurant1 });
+            let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
+            sTable = sTable._id.toString();
             book = new Booking({
                 User: user.id,
                 Restaurant : Restaurant1,
@@ -63,13 +68,14 @@ router.post('/tablebooking', fetchuser, [
                 Mobile_no_guest: Mobile,
                 Guest_Name: Name,
                 Guest_Total: Person,
+                Table:sTable,
                 Date,
                 Time,
                 Request
             })
             book = await book.save();
-            //console.log(book)
-            res.send(book)
+            console.log(book)
+            //res.send(book)
 
         } else {
             res.status(404).send("not available");
