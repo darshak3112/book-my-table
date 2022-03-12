@@ -50,6 +50,7 @@ export const Tablebooking = () => {
       }
       else if (timeOpenStamps[i] === "P") {
         Onum = parseInt(timeOpenStamps) + 12;
+        if(Onum === 24) { Onum = 1; break; }
         break;
       }
     }
@@ -61,6 +62,7 @@ export const Tablebooking = () => {
       }
       else if (timeCloseStamps[i] === "P") {
         Cnum = parseInt(timeCloseStamps) + 12;
+        if(Cnum === 24) { Cnum = 1; break; }
         break;
       }
     }
