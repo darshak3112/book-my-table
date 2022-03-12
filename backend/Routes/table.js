@@ -49,24 +49,31 @@ router.post('/tablebooking', fetchuser, [
         if (!user) {
             res.status(404).send("not found");
         }
-        const { Person, Name, Mobile, Request, Date, Time } = req.body;
+        const { Person, Name, Mobile, Request, Date, Time, Restaurant } = req.body;
 
+        //console.log(Date, Time)
+        const restaurent = Restaurant.findById(Restaurant)
         let book = await Booking.find({ Date, Time });
-        if (book) {
-            res.status(404).send("not avialable");
+        console.log("thi is "+book)
+        if (!book) {
+            book = new Booking({
+                User: user.id,
+                Restaurant,
+                Mobile_no_user: user.Mobile_no,
+                Mobile_no_guest: Mobile,
+                Guest_Name: Name,
+                Guest_Total: Person,
+                Date,
+                Time,
+                Request
+            })
+            book = await book.save();
+            //console.log(book)
+            res.send(book)
+
+        } else {
+            res.status(404).send("not available");
         }
-        book = new Booking({
-            User: user.id,
-            Mobile_no_user: user.Mobile_no,
-            Mobile_no_guest: Mobile,
-            Guest_Name: Name,
-            Guest_Total: Person,
-            Date,
-            Time,
-            Request
-        })
-        console.log(book)
-        //res.send(book)
 
     })
 
