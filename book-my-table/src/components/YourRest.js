@@ -19,7 +19,7 @@ const YourRest = (props) => {
         Area: "",
         FoodType: "",
         FoodCategory: "",
-        Address:"",
+        Address: "",
         TimeOpen: "",
         TimeClose: "",
         Contact: "",
@@ -39,7 +39,6 @@ const YourRest = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         YoursetRestList(json);
     };
 
@@ -59,7 +58,7 @@ const YourRest = (props) => {
             Area: currentRest.Area,
             FoodType: currentRest.FoodType,
             FoodCategory: "",
-            Address:currentRest.Address,
+            Address: currentRest.Address,
             TimeOpen: currentRest.TimeOpen,
             TimeClose: currentRest.TimeClose,
             Contact: currentRest.Contact,
@@ -86,18 +85,18 @@ const YourRest = (props) => {
             UpDateRest.Table_require);
         refClose.current.click();
 
-        
+
     }
-  
+
     const onChangeOpen = (e) => {
-        if(e.target.name === "TimeOpen"){
+        if (e.target.name === "TimeOpen") {
             t1 = e.target.value;
         }
     }
     const onChangeOpenAP = (e) => {
-        if(e.target.name === "TimeOpenAp"){
+        if (e.target.name === "TimeOpenAp") {
             t2 = e.target.value;
-        } 
+        }
     }
 
     const Time = () => {
@@ -153,10 +152,10 @@ const YourRest = (props) => {
                 newRest[index].Holiday = Holiday;
                 break;
             }
-            
+
         }
         YoursetRestList(newRest);
-        toast.success("Update successfully",{autoClose:1000});
+        toast.success("Update successfully", { autoClose: 1000 });
         // useEffect(() => {
         getYourRestaurant();
         // }, []);
@@ -177,7 +176,7 @@ const YourRest = (props) => {
             return rest._id !== id;
         });
         YoursetRestList(newrestlist);
-        toast.success("Delete successfully",{autoClose:1000});
+        toast.success("Delete successfully", { autoClose: 1000 });
     }
 
 
@@ -197,11 +196,11 @@ const YourRest = (props) => {
                 Launch demo modal
             </button>
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" style={{maxWidth: "800px"}}>
-                    <div className="modal-content" style={{minWidth:"450px"}}>
+                <div className="modal-dialog" style={{ maxWidth: "800px"}}>
+                    <div className="modal-content" style={{ minWidth: "450px" }}>
                         <div className="modal-header">
-                            <div style={{width: "728px", textAlign:"center"}}><h5 className="modal-title" id="exampleModalLabel">Update Your Restaurant Datails</h5></div>
-                            <button type="button" className="btn-close" style={{margin: "0"}} data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div style={{ width: "728px", textAlign: "center" }}><h5 className="modal-title" id="exampleModalLabel">Update Your Restaurant Datails</h5></div>
+                            <button type="button" className="btn-close" style={{ margin: "0" }} data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="container">
@@ -301,55 +300,51 @@ const YourRest = (props) => {
                                                 <input type="text" name="Address" className="form-control" onChange={onChange} value={UpDateRest.Address} id="exampleInputName" placeholder='Enter Rasturent Address' />
                                             </div>
                                             <div className="row my-2">
-                                                <div className="col-6">
-                                                    <center>
-                                                        <div className="mb-3">
-                                                            <label htmlFor="exampleInputName" className="form-label mx-2">Opening Time :</label>
-                                                            <br/><select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeOpen } className='btn btn-outline-dark' name="TimeOpen" id="Otime">
-                                                                <option value="1" selected="selected">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-                                                                <option value="9">9</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                            </select>
-                                                            <select style={{ marginLeft: 10 }} onChange={onChangeOpenAP } className='btn btn-outline-dark' name="TimeOpenAp" id="OTimeZone">
-                                                                <option value="AM" selected="selected">AM</option>
-                                                                <option value="PM">PM</option>
-                                                            </select>
-                                                        </div>
-                                                    </center>
+                                                <div className="col-md-6">
+                                                    <div className="mb-3">
+                                                        <label htmlFor="exampleInputName" className="form-label mx-2">Opening Time :</label>
+                                                        <br /><select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeOpen} className='btn btn-outline-dark' name="TimeOpen" id="Otime">
+                                                            <option value="1" selected="selected">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                        <select style={{ marginLeft: 10 }} onChange={onChangeOpenAP} className='btn btn-outline-dark' name="TimeOpenAp" id="OTimeZone">
+                                                            <option value="AM" selected="selected">AM</option>
+                                                            <option value="PM">PM</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div className="col-6">
-                                                    <center>
-                                                        <div className="mb-3">
-                                                            <label htmlFor="exampleInputName" className="form-label mx-2">Closing Time :</label>
-                                                            <br/><select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeClose} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
-                                                                <option value="1" selected="selected">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-                                                                <option value="9">9</option>
-                                                                <option value="10">10</option>
-                                                                <option value="11">11</option>
-                                                                <option value="12">12</option>
-                                                            </select>
-                                                            <select style={{ marginLeft: 10 }} onChange={onChangeCloseAp} className='btn btn-outline-dark' name="TimeCloseAp" id="CTimeZone">
-                                                                <option value="AM" selected="selected">AM</option>
-                                                                <option value="PM">PM</option>
-                                                            </select>
-                                                        </div>
-                                                    </center>
+                                                <div className="col-md-6">
+                                                    <div className="mb-3">
+                                                        <label htmlFor="exampleInputName" className="form-label mx-2">Closing Time :</label>
+                                                        <br /><select style={{ marginLeft: 10, width: "100px" }} onChange={onChangeClose} className='btn btn-outline-dark' name="TimeClose" id="Ctime">
+                                                            <option value="1" selected="selected">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                        <select style={{ marginLeft: 10 }} onChange={onChangeCloseAp} className='btn btn-outline-dark' name="TimeCloseAp" id="CTimeZone">
+                                                            <option value="AM" selected="selected">AM</option>
+                                                            <option value="PM">PM</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="mb-3">
@@ -389,7 +384,7 @@ const YourRest = (props) => {
                         </div>
                     </div>
                 </div>
-                <div style={{height: "40px"}}></div>
+                <div style={{ height: "40px" }}></div>
             </div>
             <div className="container">
                 <div className="row" >

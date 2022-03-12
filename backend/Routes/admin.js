@@ -3,6 +3,7 @@ const Admin = require('../models/Admin');
 const Restaurant = require('../models/Restaurant_information');
 const User = require('../models/User');
 const Vendor = require('../models/Vendor');
+const Table = require('../models/Table');
 const router = express.Router();
 const { body, validationResult, sanitize } = require('express-validator');
 const bcrypt = require('bcryptjs');
@@ -150,7 +151,7 @@ router.delete('/deleteres/:id', fetchadmin, async (req, res) => {
         //delete
         let dRes = await Restaurant.findById(req.params.id);
         if (!dRes) { return res.status(404).send("not found") }
-
+        let dTable = await Table.deleteMany({ Restaurant: req.params.id });
         dRes = await Restaurant.findByIdAndDelete(req.params.id);
         res.json({ "success": "restaurent has been deleted", dRes: dRes });
     } catch (error) {
@@ -250,14 +251,21 @@ router.delete('/deletevendor/:id', fetchadmin, async (req, res) => {
         let dVendor = await Vendor.findById(req.params.id);
         if (!dVendor) { return res.status(404).send("not found") }
 
-        console.log(req.params.id)
-        // if (dUser.User.toString() !== req.user.id) {
-        //     return res.status(401).send("not allowed");
-        // }
 
-        console.log("this is " + dVendor._id.toString())
         dVendor = dVendor._id.toString();
-        let vRes = await Restaurant.deleteMany({ Vendor: dVendor });
+
+        let vRes = await Restaurant.find({ Vendor: req.params.id });
+
+        let result = vRes.map(a => a._id.toString());
+
+        let name = new Array(Object.keys(vRes).length);
+        for (let i = 0; i < Object.keys(vRes).length; i++) {
+            name[i] = result[i];
+            console.log(name[i])
+            let table = await Table.deleteMany({Restaurant:name[i]});
+        }
+
+        vRes = await Restaurant.deleteMany({ Vendor: dVendor });
         dVendor = await Vendor.findByIdAndDelete(req.params.id);
         console.log(dVendor)
         res.json({ "success": "vendor and restaurent has been deleted", dVendor: dVendor });
@@ -294,7 +302,7 @@ router.post('/fetchallres/:id', fetchadmin, [
     body('Name', 'Enter a valid name').isLength({ min: 2 }),
     body('Email', 'Enter a valid email').isEmail(),
     body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 })
-],async (req, res) => {
+], async (req, res) => {
     try {
         const allres = await Restaurant.find({ Vendor: req.params.id });
         res.json(allres);
@@ -310,7 +318,7 @@ router.patch('/updatevendor/:id', fetchadmin, [
     body('Name', 'Enter a valid name').isLength({ min: 2 }),
     body('Email', 'Enter a valid email').isEmail(),
     body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 })
-],  async (req, res) => {
+], async (req, res) => {
     try {
         const { Name, Email, Mobile_no } = req.body;
         //new object
@@ -324,7 +332,7 @@ router.patch('/updatevendor/:id', fetchadmin, [
         if (!uVendor) { return res.status(404).send("not found") }
 
         uVendor = await Vendor.findByIdAndUpdate(req.params.id, { $set: newVendor })
-        console.log("thi is "+{newVendor});
+        console.log("thi is " + { newVendor });
         res.json({ uVendor });
     } catch (error) {
         console.error(error.message);
@@ -348,7 +356,7 @@ router.patch('/updateuser/:id', fetchadmin, async (req, res) => {
         if (!uUser) { return res.status(404).send("not found") }
 
         uUser = await User.findByIdAndUpdate(req.params.id, { $set: newUser })
-        console.log("thi is "+{newUser});
+        console.log("thi is " + { newUser });
         res.json({ uUser });
     } catch (error) {
         console.error(error.message);
