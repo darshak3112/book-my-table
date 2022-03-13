@@ -7,6 +7,7 @@ export const Tablebooking = () => {
   const [dateArray, setDateArray] = useState([]);
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
+  const [passingDate, setPassingDate] = useState('');
   const [info, setInfo] = useState({ Person: "", Name: "", Mobile: "", Request: "", Date: "", Time: "", Restaurant1: "" });
 
   let location = useLocation();
@@ -76,6 +77,14 @@ export const Tablebooking = () => {
   }
 
   const handleDateChange = (date) => {
+    var dateObj = new Date();
+    var month = dateObj.getMonth() + 1;
+    var day = dateObj.getDate() + (date - 1);
+    var year = dateObj.getFullYear();
+
+    var d = day + "/" + month + "/" + year;
+    setPassingDate(d);
+
     setSelectedDate(date);
   }
 
@@ -84,7 +93,7 @@ export const Tablebooking = () => {
     e.preventDefault();
 
     let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
-    Date = selectedDate;
+    Date = passingDate;
     Time = selectedTime
     Restaurant1 = myparam._id;
 
@@ -99,19 +108,6 @@ export const Tablebooking = () => {
 
     console.log(response);
   }
-
-    // const json = await response.json();
-    // if (json.authtoken) {
-    //   localStorage.setItem('tTokenadd', json.authtoken);
-    // }
-    
-    // const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     "auth-token-res": localStorage.getItem("tTokenadd"),
-    //   }
-    // });
 
     const onChange = (e) => {
           setInfo({ ...info, [e.target.name]: e.target.value });
