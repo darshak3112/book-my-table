@@ -106,7 +106,7 @@ export const Tablebooking = () => {
       body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
     });
 
-    console.log(response);
+   console.log(response);
   }
 
     const onChange = (e) => {
