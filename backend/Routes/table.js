@@ -56,11 +56,15 @@ router.post('/tablebooking', fetchuser, [
         let book = await Booking.find({ Date, Time });
         const size = Object.keys(book).length;
         const rSize = restaurent.Table_require;
-       console.log(size)
+       console.log("size : ",size)
         if (rSize!==size) {
-            //const table = await Table.find({ Restaurant: Restaurant1 });
-            let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
-            sTable = sTable._id.toString();
+            let table = await Table.findOne({ Restaurant: Restaurant1 ,Table_No: size+1});
+            //let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
+           let sTable = table._id.toString();
+            //console.log("restau : ",restaurent)
+            
+            console.log("thi is ",sTable);
+            
             book = new Booking({
                 User: user.id,
                 Restaurant : Restaurant1,

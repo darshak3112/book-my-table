@@ -105,8 +105,8 @@ export const Tablebooking = () => {
       },
       body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
     });
-
-   console.log(response);
+    const json = await response.json();
+    console.log(json);
   }
 
     const onChange = (e) => {
