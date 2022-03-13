@@ -6,6 +6,10 @@ const BookingSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Restaurent_information'
     },
+    Vendor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Vendor'
+    },
     User: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
