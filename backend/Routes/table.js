@@ -10,6 +10,7 @@ const fetchuser = require('../middleware/fetchuser');
 require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
+//for table creation
 router.post('/addtable', async (req, res) => {
 
     const token = req.header('auth-token-res');
@@ -26,7 +27,7 @@ router.post('/addtable', async (req, res) => {
     }
 
     for (let i = 0; i < restaurant.Table_require; i++) {
-       // console.log(i);
+        // console.log(i);
         let table = new Table({
             Restaurant: data.restaurant.id,
             Table_No: i + 1
@@ -39,52 +40,85 @@ router.post('/addtable', async (req, res) => {
 
 })
 
+//for table booking
 router.post('/tablebooking', fetchuser, [
     body('Mobile', 'Enter a valid mobile number').isLength({ min: 10 })]
     , async (req, res) => {
 
-        console.log(req.user.id);
-        const user = await User.findById(req.user.id);
-        //console.log(user)
-        if (!user) {
-            res.status(404).send("not found");
-        }
-        const { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = req.body;
+        //console.log(req.user.id);
+        try {
+            const user = await User.findById(req.user.id);
+            //console.log(user)
+            if (!user) {
+                res.status(404).send("not found");
+            }
+            const { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = req.body;
 
-        //console.log(Date, Time)
-        const restaurent = await Restaurant.findById(Restaurant1)
-        let book = await Booking.find({ Date, Time });
-        const size = Object.keys(book).length;
-        const rSize = restaurent.Table_require;
-       console.log("size : ",size)
-        if (rSize!==size) {
-            let table = await Table.findOne({ Restaurant: Restaurant1 ,Table_No: size+1});
-            //let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
-           let sTable = table._id.toString();
-            //console.log("restau : ",restaurent)
-            
-            console.log("thi is ",sTable);
-            
-            book = new Booking({
-                User: user.id,
-                Restaurant : Restaurant1,
-                Mobile_no_user: user.Mobile_no,
-                Mobile_no_guest: Mobile,
-                Guest_Name: Name,
-                Guest_Total: Person,
-                Table:sTable,
-                Date,
-                Time,
-                Request
-            })
-            book = await book.save();
-            console.log(book)
-            //res.send(book)
+            //console.log(Date, Time)
+            const restaurent = await Restaurant.findById(Restaurant1)
+            let book = await Booking.find({ Date, Time });
+            const size = Object.keys(book).length;
+            const rSize = restaurent.Table_require;
+            //console.log("size : ", size)
+            if (rSize !== size) {
+                let table = await Table.findOne({ Restaurant: Restaurant1, Table_No: size + 1 });
+                //let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
+                let sTable = table._id.toString();
+                //console.log("restau : ",restaurent)
 
-        } else {
-            res.status(404).send("not available");
+                // console.log("thi is ", sTable);
+
+                book = new Booking({
+                    User: user.id,
+                    Restaurant: Restaurant1,
+                    Mobile_no_user: user.Mobile_no,
+                    Mobile_no_guest: Mobile,
+                    Guest_Name: Name,
+                    Guest_Total: Person,
+                    Table: sTable,
+                    Date,
+                    Time,
+                    Request
+                })
+                book = await book.save();
+                console.log(book)
+                res.status(200).json({ "success": "completed" });
+
+
+            } else {
+                res.status(404).json({ "error": "not available" });
+            }
+        } catch (err) {
+            res.status(500).send("server error");
         }
 
     })
+
+//for booking history user
+router.post('/bookinghistory', fetchuser, async (req, res) => {
+
+    //console.log(req.user.id);
+    const user = await User.findById(req.user.id);
+    //console.log(user)
+    if (!user) {
+        res.status(404).send("not found");
+    }
+
+    try {
+        let book = await Booking.find({ User: req.user.id });
+
+
+        if (book) {
+            res.json(book)
+
+        } else {
+            res.status(404).json({ "error": "not available" });
+        }
+    } catch (err) {
+        res.status(500).send("server error");
+    }
+
+})
+
 
 module.exports = router;
