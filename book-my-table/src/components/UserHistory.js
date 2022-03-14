@@ -4,7 +4,6 @@ import YorRestItem from './History_Users';
 const UserHistory = () => {
     const RestInitial = []
     const [YourRestList, YoursetRestList] = useState(RestInitial);
-    const [json, setJson] = useState('');
 
     const getYourRestaurant = async () => {
 
@@ -16,9 +15,7 @@ const UserHistory = () => {
             },
         });
         const json = await response.json();
-        console.log(json);
         YoursetRestList(json);
-        setJson(json); 
     };
 
     useEffect(() => {
@@ -34,8 +31,8 @@ const UserHistory = () => {
                     <div className="container mx-3">
                         {YourRestList.length === 0 && 'No Restaurant is Booked'}
                     </div>
-                    {YourRestList.map((YourRestItem) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={json} />
+                    {YourRestList.map((YourRestList) => {
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} />
                     })}
                 </div>
             </div>
