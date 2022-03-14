@@ -38,6 +38,11 @@ const BookingSchema = new Schema({
         type: String,
         require: true
     },
+    Restaurant_Name: {
+        type: String,
+        require: true
+    },
+
     Table_No: {
         type: Number,
         require: true
