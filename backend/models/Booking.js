@@ -38,6 +38,10 @@ const BookingSchema = new Schema({
         type: String,
         require: true
     },
+    Table_No: {
+        type: Number,
+        require: true
+    },
     Request: {
         type: String,
         default: null
