@@ -96,7 +96,7 @@ export const Tablebooking = () => {
     Date = passingDate;
     Time = selectedTime
     Restaurant1 = myparam._id;
-
+//comment
     const response = await fetch("http://localhost:5000/api/table/tablebooking", {
       method: 'POST',
       headers: {
