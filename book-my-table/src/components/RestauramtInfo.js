@@ -22,7 +22,7 @@ const RestauramtInfo = () => {
     const handle = () => {
         if(!localStorage.getItem("uToken")){
             toast.warning("You have to login first",{autoClose:1000});
-            history.push("/CheckingIn");
+            history.push("/SignIn");
         }
         else{
             history.push("/tablebooking", { RestItem: myparam });
