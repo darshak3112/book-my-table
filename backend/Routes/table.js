@@ -66,6 +66,7 @@ router.post('/tablebooking', fetchuser, [
                 let table = await Table.findOne({ Restaurant: Restaurant1, Table_No: size + 1 });
                 //let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
                 let sTable = table._id.toString();
+                let Table_No = table.Table_No;
                 //console.log("restau : ",restaurent)
 
                 console.log("thi is ", restaurent.Vendor);
@@ -79,6 +80,7 @@ router.post('/tablebooking', fetchuser, [
                     Guest_Name: Name,
                     Guest_Total: Person,
                     Table: sTable,
+                    Table_No,
                     Date,
                     Time,
                     Request
