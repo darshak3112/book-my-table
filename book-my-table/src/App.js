@@ -26,9 +26,10 @@ import { ToastContainer} from 'react-toastify';
 
 import RestaurantList from "./components/RestaurantList";
 import RestaurantPending from "./components/RestaurantPending";
-import ActiveRes from "./components/AdminActiveRes"
-import ALLUser from "./components/AdminAllUser"
-import ALLVendor from "./components/AdminAllVendor"
+import ActiveRes from "./components/AdminActiveRes";
+import ALLUser from "./components/AdminAllUser";
+import ALLVendor from "./components/AdminAllVendor";
+import History from "./components/UserHistory";
 
 
 function App() {
@@ -98,6 +99,9 @@ function App() {
             </Route>
             <Route exact path="/AdminAllVendor">
               <ALLVendor/>
+            </Route>
+            <Route exact path="/BookingHistory">
+              <History/>
             </Route>
           </Switch>
         </div>

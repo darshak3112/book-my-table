@@ -178,7 +178,20 @@ const Navbar = () => {
                                     </>
                                     :
                                     <>
-                                        {!localStorage.getItem("vToken") ?
+                                    {localStorage.getItem("uToken") ? 
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Restaurants</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className={`nav-link ${location.pathname === '/BookingHistory' ? "active" : ""}`} to="/BookingHistory">Booked tables</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
+                                        </li>
+                                    </>
+                                    : 
+                                        !localStorage.getItem("vToken") ?
                                             <>
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/reasturent' ? "active" : ""}`} to="/reasturent">Restaurants</Link>
@@ -200,7 +213,9 @@ const Navbar = () => {
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
                                                 </li>
-                                            </>}
+                                            </>
+                                    }
+                                    
                                     </>
                                 }
                             </ul>
