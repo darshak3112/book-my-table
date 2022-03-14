@@ -22,6 +22,10 @@ const BookingSchema = new Schema({
         type: String,
         require: true,
     },
+    Guest_Name: {
+        type: String,
+        require: true,
+    },
     Mobile_no_guest: {
         type: String,
         require: true,
@@ -45,6 +49,10 @@ const BookingSchema = new Schema({
     Time: {
         type: String,
         require: true
+    },
+    Boking_Date: {
+        type: Date,
+        default: Date.now
     }
 });
 
