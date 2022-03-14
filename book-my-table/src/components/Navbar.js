@@ -207,6 +207,9 @@ const Navbar = () => {
                                                     <Link className={`nav-link ${location.pathname === '/yourRest' ? "active" : ""}`} to="/yourRest">Your Restaurant</Link>
                                                 </li>
                                                 <li className="nav-item">
+                                                    <Link className={`nav-link ${location.pathname === '/BookingHistoryVendors' ? "active" : ""}`} to="/BookingHistoryVendors">Booked tables</Link>
+                                                </li>
+                                                <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
                                                 </li>
                                             </>

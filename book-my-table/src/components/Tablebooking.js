@@ -165,7 +165,7 @@ export const Tablebooking = () => {
           </div>
         </div>
         <div>
-          <button type="button" className={"btn btn-dark my-2"} style={{ width: "100%", fontSize: "20px", textAlign: "center", margin: "auto 15px" }} onClick={handleSubmit}>Booking Confirm</button></div>
+          <button type="button" className={"btn btn-dark my-2"} style={{ width: "95%", fontSize: "20px", textAlign: "center", marginLeft : "2.5%" }} onClick={handleSubmit}>Booking Confirm</button></div>
       </div>
       <div style={{ height: "80px" }}></div>
     </>
