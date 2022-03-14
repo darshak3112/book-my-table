@@ -30,6 +30,7 @@ import ActiveRes from "./components/AdminActiveRes";
 import ALLUser from "./components/AdminAllUser";
 import ALLVendor from "./components/AdminAllVendor";
 import History from "./components/UserHistory";
+import HistoryVendor from "./components/VendorHistory";
 
 
 function App() {
@@ -102,6 +103,9 @@ function App() {
             </Route>
             <Route exact path="/BookingHistory">
               <History/>
+            </Route>
+            <Route exact path="/BookingHistoryVendors">
+              <HistoryVendor/>
             </Route>
           </Switch>
         </div>
