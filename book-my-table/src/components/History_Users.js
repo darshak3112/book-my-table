@@ -14,36 +14,17 @@ const History_Users = (props) => {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <div className="row">
-                                    <div className="col-9">
-                                        <center><h2 className="card-title" style={{ marginRight: "120px" }}>{YourRestItem.Name}</h2></center>
-                                    </div>
-                                    <div className="col-3">
-                                        <div style={{ textAlign: "end" }}>
-                                            <span className={`badge bg-${YourRestItem.Active ? "success" : "danger"}`}>{YourRestItem.Active ? "Active" : "Panding"}</span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div className="card-text" style={{ marginTop: "5px" }}>
                                     <table>
                                         <tr>
                                             <td>
-                                                <table>
-                                                    <tr><td><b> Guest Name :</b> {YourRestItem.FoodType}</td></tr>
-                                                    <tr><td style={{ width: "400px" }}><b> Facility : </b>{YourRestItem.Facility}</td></tr>
-                                                    <tr><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
-                                                    <tr><td><b> Address :</b> {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
-                                                    <tr><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> FoodCategory : </b>{YourRestItem.FoodCategory}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Opening Time :</b> {YourRestItem.TimeOpen}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Table require :</b> {YourRestItem.Table_require}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Contact No :</b> {YourRestItem.Contact}</div></td></tr>
-                                                    <tr><td></td></tr>
-                                                </table>
+                                                <tr><td style={{width : "170px"}}><b> Guest Name </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Guest_Name}</td></tr>
+                                                <tr><td style={{width : "170px"}}><b> Guest Mobile Number </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Mobile_no_guest}</td></tr>
+                                                <tr><td style={{width : "170px"}}><b> Totle Guest </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Guest_Total}</td></tr>
+                                                <tr><td style={{width : "170px"}}><b> Bookig Date </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Boking_Date}<br /></td></tr>
+                                                <tr><td style={{width : "170px"}}><b> Date </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Date}</td></tr>
+                                                <tr><td style={{width : "170px"}}><b> Time </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Time}</td></tr>
+                                                <tr><td style={{width : "170px"}}><b> Special Request </b></td><td> : </td><td  style={{paddingLeft : "10px"}}> {YourRestItem.Request}</td></tr>
                                             </td>
                                         </tr>
                                     </table>

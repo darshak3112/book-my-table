@@ -128,10 +128,6 @@ const Navbar = () => {
                                             <input type="text" className="form-control" name="Mobile_no" readOnly value={UandV.Mobile_no} id="exampleInputPhone" onChange={onChange} placeholder='Enter phone No' aria-describedby="phoneHelp" />
                                             <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                                         </div>
-                                        <div className="mb-3">
-                                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                            <input type="password" className="form-control" name="Password" readOnly value={UandV.Password} id="exampleInputPassword1" onChange={onChange} placeholder='Password' />
-                                        </div>
                                     </form>
                                 </div>
                             </div>
