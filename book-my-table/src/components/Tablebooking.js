@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./css/Tablebooking.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Tablebooking = () => {
   const [timeArray, setTimeArray] = useState([]);
   const [dateArray, setDateArray] = useState([]);
@@ -118,7 +120,12 @@ export const Tablebooking = () => {
       body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
     });
     const json = await response.json();
-    console.log(json);
+    if(json.success==="completed"){
+      toast.success("Your Table is successfully book",{autoClose:1000});
+    }
+    else{
+      toast.error("Something worang in booking",{autoClose:1000});
+    }
   }
 
   const onChange = (e) => {
@@ -146,10 +153,10 @@ export const Tablebooking = () => {
             <h5 className="card-title">Select People</h5>
             <h6 className="card-subtitle mb-2 text-muted">Select how many Persons you are come for eat</h6>
             <div className="mb-3">
-              <input type="number" className="form-control" style={{ marginTop: "15px" }} id="exampleInputPerson" onChange={onChange} name="Person" placeholder='Enter Guests' />
+              <input type="number" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputPerson" onChange={onChange} name="Person" placeholder='Enter Guests' />
               <h6 className="card-subtitle mb-2 text-muted my-4">Details Of Guest</h6>
-              <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputName" onChange={onChange} name="Name" placeholder='Enter Guest Name' />
-              <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputNum" onChange={onChange} name="Mobile" placeholder='Enter Guest Mobile Number' />
+              <input type="text" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputName" onChange={onChange} name="Name" placeholder='Enter Guest Name' />
+              <input type="text" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputNum" onChange={onChange} name="Mobile" placeholder='Enter Guest Mobile Number' />
               <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputReq" onChange={onChange} name="Request" placeholder='Any Special Request (Optional)' />
             </div>
           </div>

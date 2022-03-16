@@ -30,33 +30,40 @@ const RestaurentPendingListAdmin = (props) => {
                                 </div>
                                 <div className="card-text" style={{ marginTop: "5px" }}>
                                     <table>
-                                        <tr>
-                                            <td>
-                                                <table>
-                                                    <tr><td><b> Food Type :</b> {YourRestItem.FoodType}</td></tr>
-                                                    <tr><td style={{ width: "400px" }}><b> Facility : </b>{YourRestItem.Facility}</td></tr>
-                                                    <tr><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
-                                                    <tr><td><b> Address :</b> {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
-                                                    <tr><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> FoodCategory : </b>{YourRestItem.FoodCategory}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Opening Time :</b> {YourRestItem.TimeOpen}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Table require :</b> {YourRestItem.Table_require}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Contact No :</b> {YourRestItem.Contact}</div></td></tr>
-                                                    <tr><td></td></tr>
-                                                </table>
-                                            </td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+
+                                                            <tr><td><b> Food Type :</b> {YourRestItem.FoodType}</td></tr>
+                                                            <tr><td style={{ width: "400px" }}><b> Facility : </b>{YourRestItem.Facility}</td></tr>
+                                                            <tr><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
+                                                            <tr><td><b> Address :</b> {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
+                                                            <tr><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> FoodCategory : </b>{YourRestItem.FoodCategory}</div></td></tr>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> Opening Time :</b> {YourRestItem.TimeOpen}</div></td></tr>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> Table require :</b> {YourRestItem.Table_require}</div></td></tr>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> Contact No :</b> {YourRestItem.Contact}</div></td></tr>
+                                                            <tr><td></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="form-check form-switch" style={{fontSize: "20px" }}>
+                        <div className="form-check form-switch" style={{ fontSize: "20px" }}>
                             <input className="form-check-input position-absolute bottom-0 end-0 mb-2 me-2" type="checkbox" onChange={handleSwitch} role="switch" checked={false} id="flexSwitchCheckDefault" />
                         </div>
                     </div>

@@ -89,17 +89,59 @@ const Navbar = () => {
 
     const updateUser = async (id,name,email) => {
         console.log(id,name,email)
+        const response = await fetch(`http://localhost:5000/api/userAuth/updateuser/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-user": localStorage.getItem("uToken"),
+            },
+            body: JSON.stringify({name,email}),
+        });
+        const json = await response.json();
+        console.log(json);
+        let newuandv = JSON.parse(JSON.stringify(UandV))
+        for (let index = 0; index < newuandv.length; index++) {
+            const element = newuandv[index];
+            if (element._id === id) {
+                newuandv[index].Name = name;
+                newuandv[index].Email = email;
+                break;
+            }
+        }
+        setUandV(newuandv);
+        toast.success("Update successfully", { autoClose: 1000 });
     }
 
     const updateVendor = async (id,name,email) => {
         console.log(id,name,email)
+        const response = await fetch(`http://localhost:5000/api/vendorAuth/updatevendor/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-vendor": localStorage.getItem("uToken"),
+            },
+            body: JSON.stringify({name,email}),
+        });
+        const json = await response.json();
+        console.log(json);
+        let newuandv = JSON.parse(JSON.stringify(UandV))
+        for (let index = 0; index < newuandv.length; index++) {
+            const element = newuandv[index];
+            if (element._id === id) {
+                newuandv[index].Name = name;
+                newuandv[index].Email = email;
+                break;
+            }
+        }
+        setUandV(newuandv);
+        toast.success("Update successfully", { autoClose: 1000 });
     }
     return (
         <>
             <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 Launch demo modal
             </button>
-            <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+            <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
                 <div className="modal-dialog" style={{ maxWidth: "600px" }}>
                     <div className="modal-content" style={{ minWidth: "400px" }}>
                         <div className="modal-header">
@@ -134,7 +176,7 @@ const Navbar = () => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" ref={refClose} data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-dark" onClick={handleSubmit}>Save changes</button>
+                            <button type="button" className="btn btn-dark" onClick={handleSubmit}>Save changes</button>
                         </div>
                     </div>
                 </div>

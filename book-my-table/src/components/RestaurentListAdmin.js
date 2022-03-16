@@ -26,28 +26,33 @@ const YorRestItem = (props) => {
                                 </div>
                                 <div className="card-text" style={{ marginTop: "5px" }}>
                                     <table>
-                                        <tr>
-                                            <td>
-                                                <table>
-                                                    <tr><td><b> Food Type :</b> {YourRestItem.FoodType}</td></tr>
-                                                    <tr><td style={{ width: "400px" }}><b> Facility : </b>{YourRestItem.Facility}</td></tr>
-                                                    <tr><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
-                                                    <tr><td><b> Address :</b> {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
-                                                    <tr><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> FoodCategory : </b>{YourRestItem.FoodCategory}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Opening Time :</b> {YourRestItem.TimeOpen}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Table require :</b> {YourRestItem.Table_require}</div></td></tr>
-                                                    <tr><td><div style={{ marginLeft: "10px" }}><b> Contact No :</b> {YourRestItem.Contact}</div></td></tr>
-                                                    <tr><td></td></tr>
-                                                </table>
-                                            </td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr><td><b> Food Type :</b> {YourRestItem.FoodType}</td></tr>
+                                                            <tr><td style={{ width: "400px" }}><b> Facility : </b>{YourRestItem.Facility}</td></tr>
+                                                            <tr><td><b> Closing Time :</b> {YourRestItem.TimeClose}</td></tr>
+                                                            <tr><td><b> Address :</b> {YourRestItem.City},{YourRestItem.Area}<br /></td></tr>
+                                                            <tr><td><b> Holiday :</b> {YourRestItem.Holiday}</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> FoodCategory : </b>{YourRestItem.FoodCategory}</div></td></tr>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> Opening Time :</b> {YourRestItem.TimeOpen}</div></td></tr>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> Table require :</b> {YourRestItem.Table_require}</div></td></tr>
+                                                            <tr><td><div style={{ marginLeft: "10px" }}><b> Contact No :</b> {YourRestItem.Contact}</div></td></tr>
+                                                            <tr><td></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
-
                                     <div style={{ textAlign: "end" }} className="row">
                                         <p>
                                             <i style={{ cursor: 'pointer' }} className="fas fa-trash mx-2" onClick={() => deleteRest(YourRestItem._id)}></i>
