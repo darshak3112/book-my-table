@@ -123,8 +123,11 @@ export const Tablebooking = () => {
     if(json.success==="completed"){
       toast.success("Your Table is successfully book",{autoClose:1000});
     }
+    else if(json.fill==="please fill all details"){
+      toast.error("please fill all details",{autoClose:1000});
+    }
     else{
-      toast.error("Something worang in booking",{autoClose:1000});
+      toast.error("Booking not available",{autoClose:1000});
     }
   }
 
@@ -151,13 +154,13 @@ export const Tablebooking = () => {
         <div className="card my-3 mx-3 w-50" style={{ float: "left" }}>
           <div className="card-body">
             <h5 className="card-title">Select People</h5>
-            <h6 className="card-subtitle mb-2 text-muted">Select how many Persons you are come for eat</h6>
+            <h6 className="card-subtitle mb-2 text-muted">Select how many Persons you are come for meal</h6>
             <div className="mb-3">
-              <input type="number" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputPerson" onChange={onChange} name="Person" placeholder='Enter Guests' />
+              <input type="text" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputPerson" onChange={onChange} name="Person" placeholder='Enter Guests' />
               <h6 className="card-subtitle mb-2 text-muted my-4">Details Of Guest</h6>
               <input type="text" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputName" onChange={onChange} name="Name" placeholder='Enter Guest Name' />
               <input type="text" className="form-control" required style={{ marginTop: "15px" }} id="exampleInputNum" onChange={onChange} name="Mobile" placeholder='Enter Guest Mobile Number' />
-              <input type="text" className="form-control" style={{ marginTop: "15px" }} id="exampleInputReq" onChange={onChange} name="Request" placeholder='Any Special Request (Optional)' />
+              <input type="text" className="form-control" minLength={10} style={{ marginTop: "15px" }} id="exampleInputReq" onChange={onChange} name="Request" placeholder='Any Special Request (Optional)' />
             </div>
           </div>
         </div>

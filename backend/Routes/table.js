@@ -57,6 +57,10 @@ router.post('/tablebooking', fetchuser, [
             }
             const { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = req.body;
 
+            // if (Mobile.length() < 10) {
+            //     res.status(404).send("enter valid monile number");
+            // }
+
             //console.log(Date, Time)
             const restaurent = await Restaurant.findById(Restaurant1)
             let book = await Booking.find({ Date, Time });
@@ -69,31 +73,41 @@ router.post('/tablebooking', fetchuser, [
                 let sTable = table._id.toString();
                 let Table_No = table.Table_No;
                 let Restaurant_Name = restaurent.Name;
-                //console.log("restau : ",restaurent)
-
-                console.log("thi is ", restaurent.Vendor);
-
-                book = new Booking({
-                    Vendor: restaurent.Vendor,
-                    User: user.id,
-                    Restaurant: Restaurant1,
-                    Mobile_no_user: user.Mobile_no,
-                    Mobile_no_guest: Mobile,
-                    Guest_Name: Name,
-                    Guest_Total: Person,
-                    Table: sTable,
-                    Table_No,
-                    Restaurant_Name,
-                    Date,
-                    Time,
-                    Request
-                })
-                //console.log("this is ",book)
-                book = await book.save();
-                //console.log(book)
-                res.status(200).json({ "success": "completed" });
+                console.log("Person : ", Person.length)
+                console.log("Name : ", Name.length)
+                console.log("Mobile : ", Mobile.length)
+                console.log("Date : ", Date.length)
+                console.log("Time : ", Time.length)
 
 
+
+                //console.log("thi is ", restaurent.Vendor);
+                if (Person.length > 0 && Name.length > 0 && Mobile.length<13 && Date.length > 0) {
+                    console.log("hello")
+                    book = new Booking({
+                        Vendor: restaurent.Vendor,
+                        User: user.id,
+                        Restaurant: Restaurant1,
+                        Mobile_no_user: user.Mobile_no,
+                        Mobile_no_guest: Mobile,
+                        Guest_Name: Name,
+                        Guest_Total: Person,
+                        Table: sTable,
+                        Table_No,
+                        Restaurant_Name,
+                        Date,
+                        Time,
+                        Request
+                    })
+                    //console.log("this is ",book)
+                    book = await book.save();
+                    //console.log(book)
+                    res.status(200).json({ "success": "completed" });
+
+                } else {
+                    res.status(404).json({ "fill": "please fill all details" });
+
+                }
             } else {
                 res.status(404).json({ "error": "not available" });
             }

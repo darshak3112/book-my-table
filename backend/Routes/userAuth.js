@@ -150,7 +150,7 @@ router.patch('/updateuser/:id', fetchuser, [
             return res.status(401).send("not allowed");
         }
 
-        uUser = await User.findByIdAndUpdate(req.params.id, { $set: newVenor })
+        uUser = await User.findByIdAndUpdate(req.params.id, { $set: newUser })
         res.json({ uUser });
     } catch (error) {
         console.error(error.message);

@@ -41,7 +41,7 @@ const History_Users = (props) => {
                             </div>
                             <div className="row" style={{ textAlign: "end" }}>
                                 <p>
-                                    You Can Cancel Your Booking Before 30 Minutes Of Booking Ttme <button type="button" style={{marginRight:"10px",markerEnd:"1px"}} className="btn btn-outline-danger">Cencle</button>
+                                    You Can Cancel Your Booking Before 30 Minutes Of Booking Ttme <button type="button" style={{marginRight:"10px",markerEnd:"1px"}} className="btn btn-outline-danger">Cancle</button>
                                 </p>
                             </div>
                         </div>
