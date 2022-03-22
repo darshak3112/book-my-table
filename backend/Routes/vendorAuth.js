@@ -142,23 +142,23 @@ router.patch('/updatevendor/:id', fetchvendor, [
         const newVenor = {};
         if (Name) { newVenor.Name = Name };
         if (Email) { newVenor.Email = Email };
-        if (Mobile_no) { newVenor.Mobile_no = Mobile_no };
+        // if (Mobile_no) { newVenor.Mobile_no = Mobile_no };
 
-        try {
-            if (Password) {
+        // try {
+        //     if (Password) {
                 
-                    sucees = true;
-                    const salt = await bcrypt.genSalt(10);
-                    const pass = await bcrypt.hash(req.body.Password, salt);
-                    console.log(pass)
-                    newVenor.Password = pass;
+        //             sucees = true;
+        //             const salt = await bcrypt.genSalt(10);
+        //             const pass = await bcrypt.hash(req.body.Password, salt);
+        //             console.log(pass)
+        //             newVenor.Password = pass;
                 
-            }
-        }
-        catch (err) {
-            success = false
-            return res.status(400).json({ success, error:err });
-        }
+        //     }
+        // }
+        // catch (err) {
+        //     success = false
+        //     return res.status(400).json({ success, error:err });
+        // }
 
         let uVendor = await Vendor.findById(req.params.id);
         if (!uVendor) { return res.status(404).send("not found") }

@@ -142,23 +142,23 @@ router.patch('/updateuser/:id', fetchuser, [
         const newUser = {};
         if (Name) { newUser.Name = Name };
         if (Email) { newUser.Email = Email };
-        if (Mobile_no) { newUser.Mobile_no = Mobile_no };
+        // if (Mobile_no) { newUser.Mobile_no = Mobile_no };
 
-        try {
-            if (Password) {
+        // try {
+        //     if (Password) {
                 
-                    sucees = true;
-                    const salt = await bcrypt.genSalt(10);
-                    const pass = await bcrypt.hash(req.body.Password, salt);
-                    console.log(pass)
-                    newVenor.Password = pass;
+        //             sucees = true;
+        //             const salt = await bcrypt.genSalt(10);
+        //             const pass = await bcrypt.hash(req.body.Password, salt);
+        //             console.log(pass)
+        //             newVenor.Password = pass;
                 
-            }
-        }
-        catch (err) {
-            success = false
-            return res.status(400).json({ success, error:err });
-        }
+        //     }
+        // }
+        // catch (err) {
+        //     success = false
+        //     return res.status(400).json({ success, error:err });
+        // }
 
         let uUser = await User.findById(req.params.id);
         if (!uUser) { return res.status(404).send("not found") }

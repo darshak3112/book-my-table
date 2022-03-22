@@ -9,6 +9,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
 const fetchvendor = require('../middleware/fetchvendor');
+const { findByIdAndDelete } = require('../models/User');
 require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -104,15 +105,15 @@ router.post('/tablebooking', fetchuser, [
 
 //for booking history user
 router.post('/bookinghistory', fetchuser, async (req, res) => {
-
-    //console.log(req.user.id);
-    const user = await User.findById(req.user.id);
-    //console.log(user)
-    if (!user) {
-        res.status(404).send("not found");
-    }
-
     try {
+        //console.log(req.user.id);
+        const user = await User.findById(req.user.id);
+        //console.log(user)
+        if (!user) {
+            res.status(404).send("not found");
+        }
+
+
         let book = await Booking.find({ User: req.user.id });
 
 
@@ -155,5 +156,54 @@ router.post('/bookinghistoryvendor', fetchvendor, async (req, res) => {
 
 })
 
+
+//for canceltable
+router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
+
+    try {
+        let tableData = await Booking.findById(req.params.id);
+
+        const getDate = () => {
+            let date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            return day + "/" + month + "/" + year;
+
+        }
+
+        const getTime = () => {
+            let date = new Date();
+            let time = date.getHours();
+            return time.toString();;
+        }
+
+        if (tableData) {
+
+            // console.log(tableData.User.toString())
+            if (req.user.id === tableData.User.toString()) {
+
+                if (tableData.Date === getDate() && tableData.Time > getTime()) {
+                    let cBooking = await Booking.findByIdAndDelete(req.params.id);
+                    if (cBooking) {
+                        res.status(200).send("booking cancelled")
+                    }
+
+                } else {
+                    res.status(404).send("time exceed")
+                }
+
+            } else {
+                res.status(404).send("not available")
+            }
+        } else {
+            res.status(404).send("not available")
+        }
+
+    } catch (err) {
+        res.status(500).send("server error");
+    }
+
+})
 
 module.exports = router;
