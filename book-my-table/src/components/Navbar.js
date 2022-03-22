@@ -87,15 +87,15 @@ const Navbar = () => {
         setUandV({ ...UandV, [e.target.name]: e.target.value })
     }
 
-    const updateUser = async (id,name,email) => {
-        console.log(id,name,email)
+    const updateUser = async (id,Name,Email) => {
+        console.log(id,Name,Email)
         const response = await fetch(`http://localhost:5000/api/userAuth/updateuser/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "auth-token-user": localStorage.getItem("uToken"),
             },
-            body: JSON.stringify({name,email}),
+            body: JSON.stringify({Name,Email}),
         });
         const json = await response.json();
         console.log(json);
@@ -103,8 +103,8 @@ const Navbar = () => {
         for (let index = 0; index < newuandv.length; index++) {
             const element = newuandv[index];
             if (element._id === id) {
-                newuandv[index].Name = name;
-                newuandv[index].Email = email;
+                newuandv[index].Name = Name;
+                newuandv[index].Email = Email;
                 break;
             }
         }
@@ -112,15 +112,15 @@ const Navbar = () => {
         toast.success("Update successfully", { autoClose: 1000 });
     }
 
-    const updateVendor = async (id,name,email) => {
-        console.log(id,name,email)
+    const updateVendor = async (id,Name,Email) => {
+        console.log(id,Name,Email)
         const response = await fetch(`http://localhost:5000/api/vendorAuth/updatevendor/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token-vendor": localStorage.getItem("uToken"),
+                "auth-token-vendor": localStorage.getItem("vToken"),
             },
-            body: JSON.stringify({name,email}),
+            body: JSON.stringify({Name,Email}),
         });
         const json = await response.json();
         console.log(json);
@@ -128,8 +128,8 @@ const Navbar = () => {
         for (let index = 0; index < newuandv.length; index++) {
             const element = newuandv[index];
             if (element._id === id) {
-                newuandv[index].Name = name;
-                newuandv[index].Email = email;
+                newuandv[index].Name = Name;
+                newuandv[index].Email = Email;
                 break;
             }
         }
