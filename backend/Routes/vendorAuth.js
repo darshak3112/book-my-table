@@ -128,12 +128,10 @@ router.get('/getvendor', fetchvendor, async (req, res) => {
 //update vendor
 router.patch('/updatevendor/:id', fetchvendor, [
     body('Name', 'Enter a valid name').isLength({ min: 2 }),
-    body('Email', 'Enter a valid email').isEmail(),
-    body('Mobile_no', 'Enter a valid mobile number').isLength({ min: 10 }),
-    body('Password', 'Password must be atleast 6 characters').isLength({ min: 6 })
+    body('Email', 'Enter a valid email').isEmail()    
 ], async (req, res) => {
     try {
-        const { Name, Email, Mobile_no, Password } = req.body;
+        const { Name, Email } = req.body;
         let success = false;
         let vendor = await Vendor.findById(req.params.id);
         if (!vendor) { return res.status(404).send("not found") }
@@ -142,31 +140,11 @@ router.patch('/updatevendor/:id', fetchvendor, [
         const newVenor = {};
         if (Name) { newVenor.Name = Name };
         if (Email) { newVenor.Email = Email };
-        // if (Mobile_no) { newVenor.Mobile_no = Mobile_no };
-
-        // try {
-        //     if (Password) {
-                
-        //             sucees = true;
-        //             const salt = await bcrypt.genSalt(10);
-        //             const pass = await bcrypt.hash(req.body.Password, salt);
-        //             console.log(pass)
-        //             newVenor.Password = pass;
-                
-        //     }
-        // }
-        // catch (err) {
-        //     success = false
-        //     return res.status(400).json({ success, error:err });
-        // }
-
+        
         let uVendor = await Vendor.findById(req.params.id);
         if (!uVendor) { return res.status(404).send("not found") }
 
-        // console.log("res=== "+req.vendor.id)
-        // console.log("ven ===  "+uVendor.id)
-        // console.log(uVendor.id===req.vendor.id)
-        // console.log(uVendor.Vendor.toString())
+        
         if (uVendor.id !== req.vendor.id) {
             return res.status(401).send("not allowed");
         }
