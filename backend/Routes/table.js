@@ -43,6 +43,40 @@ router.post('/addtable', async (req, res) => {
 
 })
 
+//for showing data
+router.post('/showbooking', fetchuser, async (req, res) => {
+    try {
+        const { restaurent1, Date, oTime, cTime } = req.body;
+        const newLocal = "622ca4e75deb66d7d9645387";
+        let restaurant = await Restaurant.findById(newLocal);
+        //console.log(restaurant)
+        let history = await Booking.find({ Restaurant: newLocal, Date })
+        restaurant = restaurant.Table_require;
+        let ary = new Array();
+        //console.log(history)
+
+
+        console.log(restaurant)
+        for (let i = oTime; i < cTime; i++) {
+           // let ex = i.toString();
+            let data = history.filter(e => e.Time === i.toString());
+            let count = Object.keys(data).length;
+            if (restaurant === count) {
+                console.log(i + "==" + restaurant)
+                ary.push({"time":i.toString()})
+            }
+           // console.log(typeof ex)
+
+        }
+        console.log(ary);
+        res.send("hii")
+
+    } catch (err) {
+        res.status(500).send("server error");
+    }
+
+})
+
 //for table booking
 router.post('/tablebooking', fetchuser, [
     body('Mobile', 'Enter a valid mobile number').isLength({ min: 10 })]
@@ -73,16 +107,9 @@ router.post('/tablebooking', fetchuser, [
                 let sTable = table._id.toString();
                 let Table_No = table.Table_No;
                 let Restaurant_Name = restaurent.Name;
-                console.log("Person : ", Person.length)
-                console.log("Name : ", Name.length)
-                console.log("Mobile : ", Mobile.length)
-                console.log("Date : ", Date.length)
-                console.log("Time : ", Time.length)
-
-
 
                 //console.log("thi is ", restaurent.Vendor);
-                if (Person.length > 0 && Name.length > 0 && Mobile.length<13 && Date.length > 0) {
+                if (Person.length > 0 && Name.length > 0 && Mobile.length < 13 && Date.length > 0) {
                     console.log("hello")
                     book = new Booking({
                         Vendor: restaurent.Vendor,
