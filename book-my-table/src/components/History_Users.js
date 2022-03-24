@@ -8,6 +8,7 @@ const History_Users = (props) => {
         let t = d[1].split(".");
         return d[0] + " " + t[0];
     }
+    
     return (
         <>
             <div className="card border-dark my-3 mx-3" style={{ border: "light", width: "93%" }}>
@@ -40,8 +41,10 @@ const History_Users = (props) => {
                                 </div>
                             </div>
                             <div className="row" style={{ textAlign: "end" }}>
-                                <p>
-                                    You Can Cancel Your Booking Before 30 Minutes Of Booking Ttme <button type="button" style={{marginRight:"10px",markerEnd:"1px"}} className="btn btn-outline-danger">Cancle</button>
+                                <p>You Can Cancel Your Booking Before 30 Minutes Of Booking Time
+                                    {true?
+                                    <button disabled type="button" style={{marginRight:"10px",markerEnd:"1px"}} className="btn btn-outline-danger">Cancle</button>:<button type="button" style={{marginRight:"10px",markerEnd:"1px"}} className="btn btn-outline-danger">Cancle</button>
+                                }
                                 </p>
                             </div>
                         </div>
