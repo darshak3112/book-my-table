@@ -47,7 +47,7 @@ router.post('/addtable', async (req, res) => {
 router.post('/showbooking', fetchuser, async (req, res) => {
     try {
         const { restaurent1, Date, oTime, cTime } = req.body;
-       // const newLocal = "622ca4e75deb66d7d9645387";
+        // const newLocal = "622ca4e75deb66d7d9645387";
         let restaurant = await Restaurant.findById(restaurent1);
         //console.log(restaurant)
         let history = await Booking.find({ Restaurant: restaurent1, Date })
@@ -58,14 +58,14 @@ router.post('/showbooking', fetchuser, async (req, res) => {
 
         console.log(restaurant)
         for (let i = oTime; i < cTime; i++) {
-           // let ex = i.toString();
+            // let ex = i.toString();
             let data = history.filter(e => e.Time === i.toString());
             let count = Object.keys(data).length;
             if (restaurant === count) {
                 console.log(i + "==" + restaurant)
-                ary.push({"time":i.toString()})
+                ary.push({ "time": i.toString() })
             }
-           // console.log(typeof ex)
+            // console.log(typeof ex)
 
         }
         console.log(ary);
@@ -219,13 +219,16 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
             return time.toString();;
         }
 
+        console.log("thi ", tableData.Date>=getDate())
+
         if (tableData) {
 
-            // console.log(tableData.User.toString())
+            console.log(req.user.id)
             if (req.user.id === tableData.User.toString()) {
 
-                if (tableData.Date === getDate() && tableData.Time > getTime()) {
+                if (tableData.Date >= getDate() && tableData.Time > getTime()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
+                    console.log(cBooking)
                     if (cBooking) {
                         res.status(200).send("booking cancelled")
                     }
@@ -235,7 +238,7 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
                 }
 
             } else {
-                res.status(404).send("not available")
+                res.status(404).send("not available1")
             }
         } else {
             res.status(404).send("not available")
