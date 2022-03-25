@@ -2,12 +2,13 @@ import React from 'react';
 import image1 from "./Img/rastLogo.jpg";
 
 const History_Users = (props) => {
-    const { YourRestItem } = props;
+    const { YourRestItem, deleteBooking ,checkTableTime} = props;
     const bookingDateOfTable = (date) => {
         let d = date.split("T");
         let t = d[1].split(".");
         return d[0] + " " + t[0];
     }
+
     return (
         <>
             <div className="card border-dark my-3 mx-3" style={{ border: "light", width: "93%" }}>
@@ -40,8 +41,10 @@ const History_Users = (props) => {
                                 </div>
                             </div>
                             <div className="row" style={{ textAlign: "end" }}>
-                                <p>
-                                    You Can Cancel Your Booking Before 30 Minutes Of Booking Ttme <button type="button" style={{marginRight:"10px",markerEnd:"1px"}} className="btn btn-outline-danger">Cancle</button>
+                                <p>You Can Cancel Your Booking Before 1 hour Of Booking Time
+                                    {checkTableTime(YourRestItem.Date,YourRestItem.Time) ?
+                                        <button type="button" style={{ marginRight: "10px", markerEnd: "1px" }} onClick={() => deleteBooking(YourRestItem._id)} className="btn btn-outline-danger">Cancle</button> : <button type="button" style={{ marginRight: "10px", markerEnd: "1px" }} disabled className="btn btn-outline-danger">Cancle</button>
+                                    }
                                 </p>
                             </div>
                         </div>

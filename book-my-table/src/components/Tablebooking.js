@@ -13,6 +13,8 @@ export const Tablebooking = () => {
   const [info, setInfo] = useState({ Person: "", Name: "", Mobile: "", Request: "", Date: "", Time: "", Restaurant1: "" });
   const [timeInfo, setTimeInfo] = useState({ restaurent1: "", Date: "", oTime: "", cTime: "" });
   const [fullTables, setFullTables] = useState('');
+  const [opening_Time, setopening_Time] = useState('');
+  const [closing_Time, setclosing_Time] = useState('');
 
   let location = useLocation();
 
@@ -22,19 +24,7 @@ export const Tablebooking = () => {
   var month = dateObj.getMonth() + 1;
   var day = dateObj.getDate() - 1;
   var year = dateObj.getFullYear();
-  let da;
-
-  let numdate;
-  switch(myparam.Holiday) {
-    case "Monday" : numdate = 0; break;
-    case "Tuesday" : numdate = 1; break;
-    case "Wednesday" : numdate = 2; break;
-    case "Thursday" : numdate = 3; break;
-    case "Friday" : numdate = 4; break;
-    case "Saturday" : numdate = 5; break;
-    case "Sunday" : numdate = 6; break;
-    default : numdate = 100;
-  }
+  let da, currentDay;
 
   const getDate = () => {
     var dateObj2 = day + 1;
@@ -44,6 +34,7 @@ export const Tablebooking = () => {
     year = dateObj.getFullYear();
     var date2 = day + "/" + month + "/" + year;
     da = days[dateObj.getDay()];
+    currentDay = days[dateObj.getDay() + 1];
     return date2;
   }
 
@@ -76,12 +67,19 @@ export const Tablebooking = () => {
       }
     }
 
+    let temp = 0;
     for (let i = Onum; i <= Cnum; i++) {
-      let j = 0;
-      if(fullTables[j].time !== i) {
-        tempArray.push(i);
-      }
-      j++;
+      var today = new Date(),
+      currentHour = today.getHours();
+
+        if(i > currentHour) {
+          if(temp === 0) { 
+            setopening_Time(i); 
+            temp++; 
+          }
+          tempArray.push(i);
+          setclosing_Time(i);
+        }
     }
 
     setTimeArray(tempArray);
@@ -90,7 +88,7 @@ export const Tablebooking = () => {
       dateArray.push(i);
     }
     setDateArray(dateArray);
-  }, [fullTables, myparam.TimeClose, myparam.TimeOpen]);
+  }, [myparam.TimeClose, myparam.TimeOpen]);
 
   const handleChange = (time) => {
     setSelectedTime(time);
@@ -116,8 +114,8 @@ export const Tablebooking = () => {
 
     Date = d;
     restaurent1 = myparam._id;
-    oTime = parseInt(myparam.TimeOpen);
-    cTime = parseInt(myparam.TimeClose);
+    oTime = opening_Time;
+    cTime = closing_Time;
 
     //comment
     const response = await fetch("http://localhost:5000/api/table/showbooking", {
@@ -138,8 +136,8 @@ export const Tablebooking = () => {
     e.preventDefault();
 
     let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
-    Date = passingDate;
-    Time = selectedTime
+    Date = opening_Time;
+    Time = closing_Time;
     Restaurant1 = myparam._id;
 
     //comment
@@ -177,7 +175,7 @@ export const Tablebooking = () => {
             <h5 className="card-title">Select Date</h5>
             {dateArray.map((date, i) => (
               <>
-                {i !== numdate ?
+                {currentDay !== myparam.Holiday  ?
                   <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px", height : "110px" }}>{getDate()}<br />{da}</button>                
                 : <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px", height : "110px" }} disabled>{getDate()}<br />{da}<br /><b><u>Holiday</u></b></button>}</>
             ))}
