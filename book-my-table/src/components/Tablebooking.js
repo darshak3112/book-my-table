@@ -104,7 +104,7 @@ export const Tablebooking = () => {
     setPassingDate(d);
 
     setSelectedDate(date);
-
+    // console.log(passingDate);
     getTimeSlots(d);
   }
 
@@ -136,8 +136,8 @@ export const Tablebooking = () => {
     e.preventDefault();
 
     let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
-    Date = opening_Time;
-    Time = closing_Time;
+    Date = passingDate;
+    Time = selectedDate;
     Restaurant1 = myparam._id;
 
     //comment
