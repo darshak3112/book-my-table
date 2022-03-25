@@ -33,12 +33,33 @@ const UserHistory = () => {
             },
         });
         const json = await response.json();
-        console.log(json);
+        // if(json==="booking cancelled"){
+        toast.success("Booking canceled successfully", { autoClose: 1000 });
+        // }
+        // else{
+        //     toast.error("Booking not cancele successfully", { autoClose: 1000 });
+        // }
+        getYourRestaurant();
+        console.log(json.status);
         const newrestlist = YourRestList.filter((rest) => {
             return rest._id !== id;
         });
         YoursetRestList(newrestlist);
-        toast.success("Booking canceled successfully", { autoClose: 1000 });
+    }
+
+    const checkTableTime = (bookingDate, Time) => {
+        let bookinTime = parseInt(Time) - 1;
+        let today = new Date();
+        let todayDateAndTime = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + " " + today.getHours();
+        let bookingDateAndTime = bookingDate + " " + bookinTime;
+        console.log(todayDateAndTime)
+        console.log(bookingDateAndTime)
+        if (todayDateAndTime < bookingDateAndTime) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     return (
@@ -51,7 +72,7 @@ const UserHistory = () => {
                         {YourRestList.length === 0 && 'No Restaurant is Booked'}
                     </div>
                     {YourRestList.map((YourRestList) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} deleteBooking={deleteBooking}/>
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} deleteBooking={deleteBooking} checkTableTime={checkTableTime} />
                     })}
                 </div>
             </div>
