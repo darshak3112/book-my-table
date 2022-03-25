@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import YorRestItem from './History_Users';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const UserHistory = () => {
     const RestInitial = []
     const [YourRestList, YoursetRestList] = useState(RestInitial);
@@ -22,6 +23,24 @@ const UserHistory = () => {
         getYourRestaurant();
     }, []);
 
+    const deleteBooking = async (id) => {
+        // Api call 
+        const response = await fetch(`http://localhost:5000/api/table/cancelbooking/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-user": localStorage.getItem("uToken"),
+            },
+        });
+        const json = await response.json();
+        console.log(json);
+        const newrestlist = YourRestList.filter((rest) => {
+            return rest._id !== id;
+        });
+        YoursetRestList(newrestlist);
+        toast.success("Booking canceled successfully", { autoClose: 1000 });
+    }
+
     return (
         <>
             <div className="container">
@@ -32,7 +51,7 @@ const UserHistory = () => {
                         {YourRestList.length === 0 && 'No Restaurant is Booked'}
                     </div>
                     {YourRestList.map((YourRestList) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} />
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} deleteBooking={deleteBooking}/>
                     })}
                 </div>
             </div>
