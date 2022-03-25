@@ -10,7 +10,11 @@ export const Tablebooking = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [passingDate, setPassingDate] = useState('');
+  const [Times, setTimes] = useState('');
   const [info, setInfo] = useState({ Person: "", Name: "", Mobile: "", Request: "", Date: "", Time: "", Restaurant1: "" });
+  const [timeInfo, setTimeInfo] = useState({ restaurent1: "", Date: "", oTime: "", cTime: "" });
+  const [fullTables, setFullTables] = useState('');
+  const check = false;
 
   let location = useLocation();
 
@@ -75,7 +79,11 @@ export const Tablebooking = () => {
     }
 
     for (let i = Onum; i <= Cnum; i++) {
-      tempArray.push(i);
+      let j = 0;
+      if(fullTables[j].time !== i) {
+        tempArray.push(i);
+      }
+      j++;
     }
 
     setTimeArray(tempArray);
@@ -100,8 +108,33 @@ export const Tablebooking = () => {
     setPassingDate(d);
 
     setSelectedDate(date);
+
+    getTimeSlots(d);
   }
 
+  const getTimeSlots = async (d) => {
+
+    let { restaurent1, Date, oTime, cTime } = timeInfo;
+
+    Date = d;
+    restaurent1 = myparam._id;
+    oTime = parseInt(myparam.TimeOpen);
+    cTime = parseInt(myparam.TimeClose);
+
+    //comment
+    const response = await fetch("http://localhost:5000/api/table/showbooking", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token-user": localStorage.getItem("uToken"),
+      },
+      body: JSON.stringify({ restaurent1, Date, oTime, cTime }),
+    });
+
+    const json = await response.json();
+    setFullTables(json);
+    console.log(json);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,6 +143,7 @@ export const Tablebooking = () => {
     Date = passingDate;
     Time = selectedTime
     Restaurant1 = myparam._id;
+
     //comment
     const response = await fetch("http://localhost:5000/api/table/tablebooking", {
       method: 'POST',
@@ -168,9 +202,11 @@ export const Tablebooking = () => {
           <div className="card-body">
             <h5 className="card-title">Select Time</h5>
             <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
-            {timeArray.map((time, i) => (
+            {
+            selectedDate !== "" ?
+              timeArray.map((time, i) => (
               <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
-            ))}
+            )) : <p></p>}
 
           </div>
         </div>

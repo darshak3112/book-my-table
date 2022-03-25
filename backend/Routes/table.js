@@ -49,11 +49,11 @@ router.post('/showbooking', fetchuser, async (req, res) => {
         const { restaurent1, Date, oTime, cTime } = req.body;
        // const newLocal = "622ca4e75deb66d7d9645387";
         let restaurant = await Restaurant.findById(restaurent1);
-        //console.log(restaurant)
+        console.log(restaurant)
         let history = await Booking.find({ Restaurant: restaurent1, Date })
         restaurant = restaurant.Table_require;
         let ary = new Array();
-        //console.log(history)
+        console.log(history)
 
 
         console.log(restaurant)
@@ -62,14 +62,13 @@ router.post('/showbooking', fetchuser, async (req, res) => {
             let data = history.filter(e => e.Time === i.toString());
             let count = Object.keys(data).length;
             if (restaurant === count) {
-                console.log(i + "==" + restaurant)
                 ary.push({"time":i.toString()})
             }
            // console.log(typeof ex)
 
         }
         console.log(ary);
-        res.send("hii")
+        res.json(ary);
 
     } catch (err) {
         res.status(500).send("server error");
@@ -104,7 +103,7 @@ router.post('/tablebooking', fetchuser, [
             if (rSize !== size) {
                 let table = await Table.findOne({ Restaurant: Restaurant1, Table_No: size + 1 });
                 //let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
-                let sTable = table._id.toString();
+                let sTable = table._id;
                 let Table_No = table.Table_No;
                 let Restaurant_Name = restaurent.Name;
 
