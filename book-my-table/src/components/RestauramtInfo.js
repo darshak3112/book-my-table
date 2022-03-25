@@ -64,18 +64,18 @@ const RestauramtInfo = () => {
                             <i className="fas fa-map-marker-alt mx-1"></i>
                             {capitalize(myparam.Address)} , {capitalize(myparam.Area)} , {capitalize(myparam.City)}
                         </p>
-                        <div className="row mx-1 mb-2" style={{ height: "70px", fontFamily: 'Cormorant Garamond' }}>
+                        <div className="row mx-1 mb-2" style={{ height: "20%", fontFamily: 'Cormorant Garamond' }}>
                             {/* Todo In future */}
-                            <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
+                            <div className="col-3 mx-1" style={{ border: "1px solid black", height: "150%" ,borderRadius: "10px", textAlign: "center" }}>
                                 <div className='mt-2'><i className="fa fa-star mx-1"></i><b>4.3</b></div>
                                 <div style={{ fontSize: "12px" }}>50+ Ratings</div>
                             </div>
 
-                            <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
+                            <div className="col-3 mx-1" style={{ border: "1px solid black", height: "150%" ,borderRadius: "10px", textAlign: "center" }}>
                                 <div className='mt-2'>Open At</div>
                                 <div style={{ fontSize: "12px" }}><i className="far fa-clock mx-1"></i><b>{myparam.TimeOpen}</b></div>
                             </div>
-                            <div className="col-3 mx-1" style={{ border: "1px solid black", borderRadius: "10px", textAlign: "center" }}>
+                            <div className="col-3 mx-1" style={{ border: "1px solid black", height: "150%" ,borderRadius: "10px", textAlign: "center" }}>
                                 <div className='mt-2'>Close At</div>
                                 <div style={{ fontSize: "12px" }}><i className="far fa-clock mx-1"></i><b>{myparam.TimeClose}</b></div>
                             </div>
