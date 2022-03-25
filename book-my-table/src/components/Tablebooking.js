@@ -10,11 +10,9 @@ export const Tablebooking = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [passingDate, setPassingDate] = useState('');
-  const [Times, setTimes] = useState('');
   const [info, setInfo] = useState({ Person: "", Name: "", Mobile: "", Request: "", Date: "", Time: "", Restaurant1: "" });
   const [timeInfo, setTimeInfo] = useState({ restaurent1: "", Date: "", oTime: "", cTime: "" });
   const [fullTables, setFullTables] = useState('');
-  const check = false;
 
   let location = useLocation();
 
@@ -92,7 +90,7 @@ export const Tablebooking = () => {
       dateArray.push(i);
     }
     setDateArray(dateArray);
-  }, [myparam.TimeClose, myparam.TimeOpen]);
+  }, [fullTables, myparam.TimeClose, myparam.TimeOpen]);
 
   const handleChange = (time) => {
     setSelectedTime(time);
