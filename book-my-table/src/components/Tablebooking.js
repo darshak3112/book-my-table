@@ -27,7 +27,7 @@ export const Tablebooking = () => {
   var month = dateObj.getMonth() + 1;
   var day = dateObj.getDate() - 1;
   var year = dateObj.getFullYear();
-  today = (day+1) + "/" + month + "/" + year;
+  today = (day + 1) + "/" + month + "/" + year;
   let da, currentDay;
 
   const getDate = () => {
@@ -71,29 +71,14 @@ export const Tablebooking = () => {
       }
     }
 
-    let temp = 0, extra = 0;
+    let temp = 0;
     for (let i = Onum; i <= Cnum; i++) {
-      var todays = new Date();
-      var currentHour = todays.getHours();
-
-      if(passingDate === today) {
-        if(i > currentHour) {
-          if(temp === 0) {
-            setopening_Time(i);
-            temp++;
-          }
-          tempArray.push(i);
-          setclosing_Time(i);
-        }
-      } else {
-        if(temp === 0) {
-            setopening_Time(i);
-            temp++;
-          }
-          tempArray.push(i);
-          setclosing_Time(i);
+      if (temp === 0) {
+        setopening_Time(i);
+        temp++;
       }
-
+      tempArray.push(i);
+      setclosing_Time(i);
     }
 
     setTimeArray(tempArray);
@@ -107,7 +92,6 @@ export const Tablebooking = () => {
   const handleChange = (time) => {
     setSelectedTime(time);
 
-    getTimeSlots(passingDate);
     console.log(passingDate);
   }
 
@@ -116,11 +100,11 @@ export const Tablebooking = () => {
     var month = dateObj.getMonth() + 1;
     var day = dateObj.getDate() + (date - 1);
     var year = dateObj.getFullYear();
-    setPass(day);
     var d = day + "/" + month + "/" + year;
     setPassingDate(d);
 
     setSelectedDate(date);
+    setPass(day);
     // console.log(passingDate);
   }
 
@@ -145,37 +129,66 @@ export const Tablebooking = () => {
 
     const json = await response.json();
     setFullTables(json);
-    console.log(json);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
-    Date = passingDate;
-    Time = selectedDate;
-    Restaurant1 = myparam._id;
+    const date = new Date();
+    var h = date.getHours();
+    var d = date.getDate();
 
-    //comment
-    const response = await fetch("http://localhost:5000/api/table/tablebooking", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "auth-token-user": localStorage.getItem("uToken"),
-      },
-      body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
-    });
-    const json = await response.json();
-    if (json.success === "completed") {
-      toast.success("Your Table is successfully book", { autoClose: 1000 });
-    }
-    else if (json.fill === "please fill all details") {
-      toast.error("please fill all details", { autoClose: 1000 });
-    }
-    else {
-      toast.error("Booking not available", { autoClose: 1000 });
-    }
-  }
+    console.log("Date - ", d);
+    console.log("Date - ", passingDate);
+    console.log("Hour - ", h);
+    console.log((d === parseInt(passingDate)));
+
+    if (d === parseInt(passingDate) && parseInt(selectedTime) <= parseInt(h)) {
+        toast.error("You can't book table of past time", { autoClose: 1000 });
+    } else {
+        getTimeSlots(passingDate);
+
+        var flag = true;
+
+        for (let element of fullTables) {
+          if (parseInt(element.time) === parseInt(selectedTime)) {
+            flag = false;
+            break;
+          } else {
+            flag = true;
+          }
+        };
+
+        if (flag === false) {
+          toast.error("It is already full!", { autoClose: 1000 });
+        } else {
+          let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
+          Date = passingDate;
+          Time = selectedTime;
+          Restaurant1 = myparam._id;
+
+          //comment
+          const response = await fetch("http://localhost:5000/api/table/tablebooking", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              "auth-token-user": localStorage.getItem("uToken"),
+            },
+            body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
+          });
+          const json = await response.json();
+          if (json.success === "completed") {
+            toast.success("Your Table is successfully book", { autoClose: 1000 });
+          }
+          else if (json.fill === "please fill all details") {
+            toast.error("please fill all details", { autoClose: 1000 });
+          }
+          else {
+            toast.error("Booking not available", { autoClose: 1000 });
+          }
+        }
+      }
+  } 
 
   const onChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -214,7 +227,7 @@ export const Tablebooking = () => {
           <div className="card-body">
             <h5 className="card-title">Select Time</h5>
             <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
-            { timeArray.map((time, i) => (
+            {timeArray.map((time, i) => (
               <>
                 {selectedDate !== prevSelectedDate ?
                   <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
