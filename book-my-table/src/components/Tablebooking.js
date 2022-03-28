@@ -15,6 +15,9 @@ export const Tablebooking = () => {
   const [fullTables, setFullTables] = useState('');
   const [opening_Time, setopening_Time] = useState('');
   const [closing_Time, setclosing_Time] = useState('');
+  const [pass, setPass] = useState('');
+  const [prevSelectedDate, setPrevSelectedDate] = useState('');
+  let today = 0;
 
   let location = useLocation();
 
@@ -24,6 +27,7 @@ export const Tablebooking = () => {
   var month = dateObj.getMonth() + 1;
   var day = dateObj.getDate() - 1;
   var year = dateObj.getFullYear();
+  today = (day+1) + "/" + month + "/" + year;
   let da, currentDay;
 
   const getDate = () => {
@@ -67,19 +71,29 @@ export const Tablebooking = () => {
       }
     }
 
-    let temp = 0;
+    let temp = 0, extra = 0;
     for (let i = Onum; i <= Cnum; i++) {
-      var today = new Date(),
-      currentHour = today.getHours();
+      var todays = new Date();
+      var currentHour = todays.getHours();
 
+      if(passingDate === today) {
         if(i > currentHour) {
-          if(temp === 0) { 
-            setopening_Time(i); 
-            temp++; 
+          if(temp === 0) {
+            setopening_Time(i);
+            temp++;
           }
           tempArray.push(i);
           setclosing_Time(i);
         }
+      } else {
+        if(temp === 0) {
+            setopening_Time(i);
+            temp++;
+          }
+          tempArray.push(i);
+          setclosing_Time(i);
+      }
+
     }
 
     setTimeArray(tempArray);
@@ -99,7 +113,7 @@ export const Tablebooking = () => {
     var month = dateObj.getMonth() + 1;
     var day = dateObj.getDate() + (date - 1);
     var year = dateObj.getFullYear();
-
+    setPass(day);
     var d = day + "/" + month + "/" + year;
     setPassingDate(d);
 
@@ -150,14 +164,14 @@ export const Tablebooking = () => {
       body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
     });
     const json = await response.json();
-    if(json.success==="completed"){
-      toast.success("Your Table is successfully book",{autoClose:1000});
+    if (json.success === "completed") {
+      toast.success("Your Table is successfully book", { autoClose: 1000 });
     }
-    else if(json.fill==="please fill all details"){
-      toast.error("please fill all details",{autoClose:1000});
+    else if (json.fill === "please fill all details") {
+      toast.error("please fill all details", { autoClose: 1000 });
     }
-    else{
-      toast.error("Booking not available",{autoClose:1000});
+    else {
+      toast.error("Booking not available", { autoClose: 1000 });
     }
   }
 
@@ -175,9 +189,9 @@ export const Tablebooking = () => {
             <h5 className="card-title">Select Date</h5>
             {dateArray.map((date, i) => (
               <>
-                {currentDay !== myparam.Holiday  ?
-                  <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px", height : "110px" }}>{getDate()}<br />{da}</button>                
-                : <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px", height : "110px" }} disabled>{getDate()}<br />{da}<br /><b><u>Holiday</u></b></button>}</>
+                {currentDay !== myparam.Holiday ?
+                  <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px", height: "110px" }}>{getDate()}<br />{da}</button>
+                  : <button type="button" className={`btn ${selectedDate === date ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleDateChange(date)} style={{ marginTop: "10px", width: "130px", height: "110px" }} disabled>{getDate()}<br />{da}<br /><b><u>Holiday</u></b></button>}</>
             ))}
           </div>
         </div>
@@ -198,16 +212,19 @@ export const Tablebooking = () => {
           <div className="card-body">
             <h5 className="card-title">Select Time</h5>
             <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
+            {console.log(today)}
             {
-            selectedDate !== "" ?
-              timeArray.map((time, i) => (
-              <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
-            )) : <p></p>}
+            timeArray.map((time, i) => (
+              <>
+                {selectedDate !== prevSelectedDate ?
+                  <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
+                  : <p></p>}</>
+            ))}
 
           </div>
         </div>
         <div>
-          <button type="button" className={"btn btn-dark my-2"} style={{ width: "95%", fontSize: "20px", textAlign: "center", marginLeft : "2.5%" }} onClick={handleSubmit}>Booking Confirm</button></div>
+          <button type="button" className={"btn btn-dark my-2"} style={{ width: "95%", fontSize: "20px", textAlign: "center", marginLeft: "2.5%" }} onClick={handleSubmit}>Booking Confirm</button></div>
       </div>
       <div style={{ height: "80px" }}></div>
     </>
