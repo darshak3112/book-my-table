@@ -199,19 +199,16 @@ router.post('/bookinghistoryvendor', fetchvendor, async (req, res) => {
 
 //for canceltable
 router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
-
+    let success = false;
     try {
         let tableData = await Booking.findById(req.params.id);
-
         const getDate = () => {
             let date = new Date();
             let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             return day + "/" + month + "/" + year;
-
         }
-
         const getTime = () => {
             let date = new Date();
             let time = date.getHours();
@@ -219,31 +216,28 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
         }
 
         if (tableData) {
-
             // console.log(tableData.User.toString())
             if (req.user.id === tableData.User.toString()) {
-
-                if (tableData.Date === getDate() && tableData.Time > getTime()) {
+                if (tableData.Date >= getDate() && tableData.Time > getTime()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
-                        res.status(200).send("booking cancelled")
+                        success = true;
+                        res.status(200).send({success,cBooking})
                     }
 
                 } else {
-                    res.status(404).send("time exceed")
+                    res.status(404).send({success,error:"time exceed"})
                 }
 
             } else {
-                res.status(404).send("not available")
+                res.status(404).send({success,error:"not available"})
             }
         } else {
-            res.status(404).send("not available")
+            res.status(404).send({success,error:"not available"})
         }
-
     } catch (err) {
-        res.status(500).send("server error");
+        res.status(500).send({success,error:"server error"});
     }
-
 })
 
 module.exports = router;

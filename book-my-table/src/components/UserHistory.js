@@ -24,7 +24,6 @@ const UserHistory = () => {
     }, []);
 
     const deleteBooking = async (id) => {
-        // Api call 
         const response = await fetch(`http://localhost:5000/api/table/cancelbooking/${id}`, {
             method: "DELETE",
             headers: {
@@ -33,18 +32,18 @@ const UserHistory = () => {
             },
         });
         const json = await response.json();
-        // if(json==="booking cancelled"){
-        toast.success("Booking canceled successfully", { autoClose: 1000 });
-        // }
-        // else{
-        //     toast.error("Booking not cancele successfully", { autoClose: 1000 });
-        // }
-        getYourRestaurant();
-        console.log(json.status);
-        const newrestlist = YourRestList.filter((rest) => {
-            return rest._id !== id;
-        });
-        YoursetRestList(newrestlist);
+        console.log(json.success)
+        if (json.success === true) {
+            toast.success("Booking canceled successfully", { autoClose: 1000 });
+            getYourRestaurant();
+            const newrestlist = YourRestList.filter((rest) => {
+                return rest._id !== id;
+            });
+            YoursetRestList(newrestlist);
+        }
+        else {
+            toast.error("Booking not cancele successfully", { autoClose: 1000 });
+        }
     }
 
     const checkTableTime = (bookingDate, Time) => {
@@ -52,8 +51,6 @@ const UserHistory = () => {
         let today = new Date();
         let todayDateAndTime = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + " " + today.getHours();
         let bookingDateAndTime = bookingDate + " " + bookinTime;
-        console.log(todayDateAndTime)
-        console.log(bookingDateAndTime)
         if (todayDateAndTime < bookingDateAndTime) {
             return true;
         }
