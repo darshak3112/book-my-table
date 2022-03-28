@@ -106,6 +106,9 @@ export const Tablebooking = () => {
 
   const handleChange = (time) => {
     setSelectedTime(time);
+
+    getTimeSlots(passingDate);
+    console.log(passingDate);
   }
 
   const handleDateChange = (date) => {
@@ -119,7 +122,6 @@ export const Tablebooking = () => {
 
     setSelectedDate(date);
     // console.log(passingDate);
-    getTimeSlots(d);
   }
 
   const getTimeSlots = async (d) => {
@@ -212,9 +214,7 @@ export const Tablebooking = () => {
           <div className="card-body">
             <h5 className="card-title">Select Time</h5>
             <h6 className="card-subtitle mb-2 text-muted">Select which time do you want</h6>
-            {console.log(today)}
-            {
-            timeArray.map((time, i) => (
+            { timeArray.map((time, i) => (
               <>
                 {selectedDate !== prevSelectedDate ?
                   <button type="button" className={`btn ${selectedTime === time ? 'btn-success' : 'btn-outline-secondary'} btn-lg mx-2`} onClick={() => handleChange(time)} style={{ marginTop: "10px", width: "100px" }}>{time} : 00</button>
