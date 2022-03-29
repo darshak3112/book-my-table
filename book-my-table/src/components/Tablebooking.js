@@ -5,6 +5,11 @@ import "./css/Tablebooking.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export const Tablebooking = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
+
   const [timeArray, setTimeArray] = useState([]);
   const [dateArray, setDateArray] = useState([]);
   const [selectedTime, setSelectedTime] = useState('');
@@ -42,11 +47,9 @@ export const Tablebooking = () => {
     return date2;
   }
 
-  const reRender = 200;
+  const reRender = 0;
   useEffect(() => {
-
     const interval = setInterval(() => {
-
       let timeOpenStamps = myparam.TimeOpen;
       let timeCloseStamps = myparam.TimeClose;
       let Onum = 0, Cnum = 0;
@@ -158,12 +161,8 @@ export const Tablebooking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const date = new Date();
-    var h = date.getHours();
-    var d = date.getDate();
-
-    if (d === parseInt(passingDate) && parseInt(selectedTime) <= parseInt(h)) {
-      toast.error("You can't book table of past time", { autoClose: 1000 });
+    if (info.Person <= 0 || info.Person === "" || (info.Person >= 'a' && info.Person <= 'z')) {
+      toast.error("Invalid persons entry", { autoClose: 1000 });
     } else {
       getTimeSlots(passingDate);
 

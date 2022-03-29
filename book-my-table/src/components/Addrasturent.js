@@ -2,47 +2,57 @@ import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 //import Map from './Map';
 
-let t1, t2, t3, t4, food = "";
+let t1 = "", t2 = "", t3 = "", t4 = "", food = "";  
+
 const Addrasturent = (props) => {
 
     let history = useHistory();
-    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "",Address:"", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
+    const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", Address: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
-        TimeOpen = Time();
-        TimeClose = Time2();
+        console.log(t1, " - ", t2, " - ", t3, " - ", t4);
+        if (t1 !== "" && t2 !== "" && t3 !== "" && t4 !== "") {
+            if (Time() !== Time2() && t2 !== t4) {
+                let { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
+                TimeOpen = Time();
+                TimeClose = Time2();
 
-        const response = await fetch("http://localhost:5000/api/restaurent/addres", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                "auth-token-vendor": localStorage.getItem("vToken"),
-            },
-            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
-        });
-        const json = await response.json();
-        if (json.authtoken) {
-            localStorage.setItem('tTokenadd', json.authtoken);
-        }
-        const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                "auth-token-res": localStorage.getItem("tTokenadd"),
+                const response = await fetch("http://localhost:5000/api/restaurent/addres", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "auth-token-vendor": localStorage.getItem("vToken"),
+                    },
+                    body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
+                });
+                const json = await response.json();
+                if (json.authtoken) {
+                    localStorage.setItem('tTokenadd', json.authtoken);
+                }
+                const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "auth-token-res": localStorage.getItem("tTokenadd"),
+                    }
+                });
+                if (json.authtoken) {
+                    toast.success("Restaurant Added successfully", { autoClose: 1000 });
+                    history.push("/yourRest");
+                }
+                else {
+                    toast.error("Please enter valid details", { autoClose: 1000 });
+                }
+            } else {
+                toast.error("Please enter correct timing details", { autoClose: 1000 });
             }
-        });
-        if (json) {
-            toast.success("Restaurant Added successfully", { autoClose: 1000 });
-            history.push("/yourRest");
-        }
-        else {
-            toast.error("Please enter valid details", { autoClose: 1000 });
+        } else {
+            toast.error("Please enter timing details", { autoClose: 1000 });
         }
     }
 
