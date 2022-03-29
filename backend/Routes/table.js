@@ -222,21 +222,20 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
                         success = true;
-                        res.status(200).send({success,cBooking})
+                        res.status(200).json({success,cBooking})
                     }
 
                 } else {
-                    res.status(404).send({success,error:"time exceed"})
+                    res.status(404).json({success,error:"time exceed"})
                 }
-
             } else {
-                res.status(404).send({success,error:"not available"})
+                res.status(404).json({success,error:"not available"})
             }
         } else {
-            res.status(404).send({success,error:"not available"})
+            res.status(404).json({success,error:"not available"})
         }
     } catch (err) {
-        res.status(500).send({success,error:"server error"});
+        res.status(500).json({success,error:"server error"});
     }
 })
 
