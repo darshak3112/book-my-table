@@ -24,11 +24,9 @@ const SignIn = () => {
         if (json.authtoken) {
             localStorage.setItem('uToken', json.authtoken);
             toast.success("Login successfully",{autoClose:1000});
-            console.log(json);
             history.push("/");
         }
         else {
-            console.log("deny");
             toast.error("Invalid Details",{autoClose:1000});
         }
     }

@@ -18,7 +18,6 @@ const AdminAllVendor = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         SetVendors(json);
     };
 
@@ -35,7 +34,6 @@ const AdminAllVendor = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         toast.success("Delete successfully",{autoClose:1000});
         const newvendorlist = Vendors.filter((vendor) => {
             return vendor._id !== id;

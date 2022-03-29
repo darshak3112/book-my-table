@@ -37,12 +37,7 @@ const Addrasturent = (props) => {
                 "auth-token-res": localStorage.getItem("tTokenadd"),
             }
         });
-      //  const json1 = await response.json();
-      //  console.log(json1);
-
-       // console.log(json);
         if (json) {
-            console.log(json._id);
             toast.success("Restaurant Added successfully", { autoClose: 1000 });
             history.push("/yourRest");
         }

@@ -17,7 +17,6 @@ const AdminActiveRes = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         YoursetRestList(json);
     };
 
@@ -36,7 +35,6 @@ const AdminActiveRes = (props) => {
             body: JSON.stringify({ id }),
         });
         const json = await response.json();
-    console.log(json);
         toast.success("Update successfully and restaurent DeActivated",{autoClose:1000});
         getYourActiveRestaurant();
     };

@@ -42,57 +42,82 @@ export const Tablebooking = () => {
     return date2;
   }
 
+  const reRender = 200;
   useEffect(() => {
-    let timeOpenStamps = myparam.TimeOpen;
-    let timeCloseStamps = myparam.TimeClose;
-    let Onum = 0, Cnum = 0;
-    let tempArray = [];
-    let dateArray = [];
 
-    for (let i = 0; timeOpenStamps[i] !== '\0'; i++) {
-      if (timeOpenStamps[i] === "A") {
-        Onum = parseInt(timeOpenStamps);
-        break;
-      }
-      else if (timeOpenStamps[i] === "P") {
-        Onum = parseInt(timeOpenStamps) + 12;
-        if (Onum === 24) { Onum = 1; break; }
-        break;
-      }
-    }
-    for (let i = 0; timeCloseStamps[i] !== '\0'; i++) {
-      if (timeCloseStamps[i] === "A") {
-        Cnum = parseInt(timeCloseStamps);
-        break;
-      }
-      else if (timeCloseStamps[i] === "P") {
-        Cnum = parseInt(timeCloseStamps) + 12;
-        break;
-      }
-    }
+    const interval = setInterval(() => {
 
-    let temp = 0;
-    for (let i = Onum; i <= Cnum; i++) {
-      if (temp === 0) {
-        setopening_Time(i);
-        temp++;
+      let timeOpenStamps = myparam.TimeOpen;
+      let timeCloseStamps = myparam.TimeClose;
+      let Onum = 0, Cnum = 0;
+      let tempArray = [];
+      let dateArray = [];
+
+      for (let i = 0; timeOpenStamps[i] !== '\0'; i++) {
+        if (timeOpenStamps[i] === "A") {
+          Onum = parseInt(timeOpenStamps);
+          break;
+        }
+        else if (timeOpenStamps[i] === "P") {
+          Onum = parseInt(timeOpenStamps) + 12;
+          if (Onum === 24) { Onum = 1; break; }
+          break;
+        }
       }
-      tempArray.push(i);
-      setclosing_Time(i);
-    }
+      for (let i = 0; timeCloseStamps[i] !== '\0'; i++) {
+        if (timeCloseStamps[i] === "A") {
+          Cnum = parseInt(timeCloseStamps);
+          break;
+        }
+        else if (timeCloseStamps[i] === "P") {
+          Cnum = parseInt(timeCloseStamps) + 12;
+          break;
+        }
+      }
 
-    setTimeArray(tempArray);
+      let temp = 0;
+      for (let i = Onum; i <= Cnum; i++) {
+        var todays = new Date();
+        var currentHour = todays.getHours();
 
-    for (let i = 1; i <= 7; i++) {
-      dateArray.push(i);
-    }
-    setDateArray(dateArray);
-  }, [myparam.TimeClose, myparam.TimeOpen]);
+        if (passingDate === today) {
+
+          if (i >= currentHour) {
+            if (temp === 0) {
+              setopening_Time(i);
+              temp++;
+            } else {
+              tempArray.push(i);
+            }
+            setclosing_Time(i);
+          }
+        } else {
+          if (temp === 0) {
+            setopening_Time(i);
+            temp++;
+          }
+          tempArray.push(i);
+          setclosing_Time(i);
+        }
+
+      }
+
+      setTimeArray(tempArray);
+
+      for (let i = 1; i <= 7; i++) {
+        dateArray.push(i);
+      }
+      setDateArray(dateArray);
+  
+
+    }, reRender);
+    return () => clearInterval(interval);
+
+
+  }, [myparam.TimeClose, myparam.TimeOpen, passingDate, today]);
 
   const handleChange = (time) => {
     setSelectedTime(time);
-
-    console.log(passingDate);
   }
 
   const handleDateChange = (date) => {
@@ -105,7 +130,6 @@ export const Tablebooking = () => {
 
     setSelectedDate(date);
     setPass(day);
-    // console.log(passingDate);
   }
 
   const getTimeSlots = async (d) => {
@@ -138,57 +162,52 @@ export const Tablebooking = () => {
     var h = date.getHours();
     var d = date.getDate();
 
-    console.log("Date - ", d);
-    console.log("Date - ", passingDate);
-    console.log("Hour - ", h);
-    console.log((d === parseInt(passingDate)));
-
     if (d === parseInt(passingDate) && parseInt(selectedTime) <= parseInt(h)) {
-        toast.error("You can't book table of past time", { autoClose: 1000 });
+      toast.error("You can't book table of past time", { autoClose: 1000 });
     } else {
-        getTimeSlots(passingDate);
+      getTimeSlots(passingDate);
 
-        var flag = true;
+      var flag = true;
 
-        for (let element of fullTables) {
-          if (parseInt(element.time) === parseInt(selectedTime)) {
-            flag = false;
-            break;
-          } else {
-            flag = true;
-          }
-        };
-
-        if (flag === false) {
-          toast.error("It is already full!", { autoClose: 1000 });
+      for (let element of fullTables) {
+        if (parseInt(element.time) === parseInt(selectedTime)) {
+          flag = false;
+          break;
         } else {
-          let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
-          Date = passingDate;
-          Time = selectedTime;
-          Restaurant1 = myparam._id;
+          flag = true;
+        }
+      };
 
-          //comment
-          const response = await fetch("http://localhost:5000/api/table/tablebooking", {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              "auth-token-user": localStorage.getItem("uToken"),
-            },
-            body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
-          });
-          const json = await response.json();
-          if (json.success === "completed") {
-            toast.success("Your Table is successfully book", { autoClose: 1000 });
-          }
-          else if (json.fill === "please fill all details") {
-            toast.error("please fill all details", { autoClose: 1000 });
-          }
-          else {
-            toast.error("Booking not available", { autoClose: 1000 });
-          }
+      if (flag === false) {
+        toast.error("It is already full!", { autoClose: 1000 });
+      } else {
+        let { Person, Name, Mobile, Request, Date, Time, Restaurant1 } = info;
+        Date = passingDate;
+        Time = selectedTime;
+        Restaurant1 = myparam._id;
+
+        //comment
+        const response = await fetch("http://localhost:5000/api/table/tablebooking", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            "auth-token-user": localStorage.getItem("uToken"),
+          },
+          body: JSON.stringify({ Person, Name, Mobile, Request, Date, Time, Restaurant1 }),
+        });
+        const json = await response.json();
+        if (json.success === "completed") {
+          toast.success("Your Table is successfully book", { autoClose: 1000 });
+        }
+        else if (json.fill === "please fill all details") {
+          toast.error("please fill all details", { autoClose: 1000 });
+        }
+        else {
+          toast.error("Booking not available", { autoClose: 1000 });
         }
       }
-  } 
+    }
+  }
 
   const onChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });

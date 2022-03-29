@@ -40,7 +40,6 @@ const UserHistory = () => {
         //     toast.error("Booking not cancele successfully", { autoClose: 1000 });
         // }
         getYourRestaurant();
-        console.log(json.status);
         const newrestlist = YourRestList.filter((rest) => {
             return rest._id !== id;
         });
@@ -52,8 +51,6 @@ const UserHistory = () => {
         let today = new Date();
         let todayDateAndTime = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + " " + today.getHours();
         let bookingDateAndTime = bookingDate + " " + bookinTime;
-        console.log(todayDateAndTime)
-        console.log(bookingDateAndTime)
         if (todayDateAndTime < bookingDateAndTime) {
             return true;
         }

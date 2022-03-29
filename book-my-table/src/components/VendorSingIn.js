@@ -24,11 +24,9 @@ const VendorSingIn = () => {
             localStorage.setItem('vToken', json.authtoken);
             toast.success("Login successfully", { autoClose: 1000 });
             history.push("/");
-            //console.log(json);
 
         }
         else {
-            console.log("deny");
             toast.error("Invalid Details", { autoClose: 1000 });
 
         }

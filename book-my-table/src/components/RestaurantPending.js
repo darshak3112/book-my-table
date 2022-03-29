@@ -17,7 +17,6 @@ const RestaurantPending= (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         YoursetRestList(json);
     };
 
@@ -36,7 +35,6 @@ const RestaurantPending= (props) => {
             body: JSON.stringify({ id }),
         });
         const json = await response.json();
-    console.log(json);
         toast.success("Update successfully and restaurent Activated Successfully",{autoClose:1000});
         getYourPendingRestaurant();
     };

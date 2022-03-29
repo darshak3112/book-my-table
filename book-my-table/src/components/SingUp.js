@@ -23,12 +23,10 @@ export const SingUp = () => {
     const json = await response.json();
     if (json.authtoken) {
       localStorage.setItem('uTokenUp', json.authtoken);
-      console.log(json);
       toast.success("Sign Up successfully",{autoClose:1000});
       history.push("/SignIn");
     }
     else {
-      console.log("deny");
       toast.error("Please Fill all details",{autoClose:1000});
     }
   }

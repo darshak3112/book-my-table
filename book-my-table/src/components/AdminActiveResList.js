@@ -4,7 +4,6 @@ import image1 from "./Img/rastLogo.jpg";
 const AdminActiveResList = (props) => {
     const { YourRestItem, Update } = props;
     const handleSwitch = () => {
-        console.log("Changed");
         Update(YourRestItem._id);
     }
 

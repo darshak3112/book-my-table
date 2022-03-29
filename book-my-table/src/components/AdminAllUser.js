@@ -17,7 +17,6 @@ const AdminAllUser = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         SetUsers(json);
     };
 
@@ -34,7 +33,6 @@ const AdminAllUser = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         toast.success("Delete successfully",{autoClose:1000});
         const newuserlist = Users.filter((user) => {
             return user._id !== id;

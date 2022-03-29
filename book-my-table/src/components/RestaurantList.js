@@ -16,7 +16,6 @@ const RestaurantList = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         YoursetRestList(json);
     };
 
@@ -33,7 +32,6 @@ const RestaurantList = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         const newrestlist = YourRestList.filter((rest) => {
             return rest._id !== id;
         });
