@@ -88,7 +88,6 @@ const Navbar = () => {
     }
 
     const updateUser = async (id,Name,Email) => {
-        console.log(id,Name,Email)
         const response = await fetch(`http://localhost:5000/api/userAuth/updateuser/${id}`, {
             method: "PATCH",
             headers: {
@@ -98,7 +97,6 @@ const Navbar = () => {
             body: JSON.stringify({Name,Email}),
         });
         const json = await response.json();
-        console.log(json);
         let newuandv = JSON.parse(JSON.stringify(UandV))
         for (let index = 0; index < newuandv.length; index++) {
             const element = newuandv[index];
@@ -113,7 +111,6 @@ const Navbar = () => {
     }
 
     const updateVendor = async (id,Name,Email) => {
-        console.log(id,Name,Email)
         const response = await fetch(`http://localhost:5000/api/vendorAuth/updatevendor/${id}`, {
             method: "PATCH",
             headers: {
@@ -123,7 +120,6 @@ const Navbar = () => {
             body: JSON.stringify({Name,Email}),
         });
         const json = await response.json();
-        console.log(json);
         let newuandv = JSON.parse(JSON.stringify(UandV))
         for (let index = 0; index < newuandv.length; index++) {
             const element = newuandv[index];
@@ -242,9 +238,9 @@ const Navbar = () => {
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/addRast' ? "active" : ""}`} to="/addRast">Add Restaurant</Link>
                                                 </li>
-                                                <li className="nav-item">
+                                                {/* <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/image' ? "active" : ""}`} to="/image">Images</Link>
-                                                </li>
+                                                </li> */}
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/yourRest' ? "active" : ""}`} to="/yourRest">Your Restaurant</Link>
                                                 </li>

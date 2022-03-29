@@ -6,7 +6,6 @@ const User = () => {
     
     const handlephoto = (e) => {
         e.preventDefault();
-        console.log(e.target.files[0]);
         setFile(e.target.files[0])
       };
 

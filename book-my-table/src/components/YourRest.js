@@ -131,7 +131,6 @@ const YourRest = (props) => {
             body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
         });
         const json = await response.json();
-        console.log(json);
         let newRest = JSON.parse(JSON.stringify(YourRestList))
         for (let index = 0; index < newRest.length; index++) {
             const element = newRest[index];
@@ -171,7 +170,6 @@ const YourRest = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
         const newrestlist = YourRestList.filter((rest) => {
             return rest._id !== id;
         });
