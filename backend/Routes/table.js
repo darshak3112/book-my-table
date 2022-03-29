@@ -229,7 +229,6 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
                         success = true;
                         res.status(200).json({success,cBooking})
                     }
-
                 } else {
                     res.status(404).json({success,error:"time exceed"})
                 }
