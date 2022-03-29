@@ -219,10 +219,7 @@ const Navbar = () => {
                                         </li>
                                         <li className="nav-item">
                                             <Link className={`nav-link ${location.pathname === '/BookingHistory' ? "active" : ""}`} to="/BookingHistory">Booked tables</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
-                                        </li>
+                                        </li>                            
                                     </>
                                     : 
                                         !localStorage.getItem("vToken") ?
@@ -246,10 +243,7 @@ const Navbar = () => {
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link className={`nav-link ${location.pathname === '/BookingHistoryVendors' ? "active" : ""}`} to="/BookingHistoryVendors">Booked tables</Link>
-                                                </li>
-                                                <li className="nav-item">
-                                                    <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} aria-current="page" to="/about">About</Link>
-                                                </li>
+                                                </li>                                        
                                             </>
                                     }
                                     
