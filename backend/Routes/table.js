@@ -44,7 +44,7 @@ router.post('/addtable', async (req, res) => {
         res.json({ success, "done": "table created" });
     } catch (err) {
         console.log(err)
-        res.send(500,"server error");
+        res.send(500, "server error");
     }
 })
 
@@ -52,7 +52,7 @@ router.post('/addtable', async (req, res) => {
 router.post('/showbooking', fetchuser, async (req, res) => {
     try {
         const { restaurent1, Date, oTime, cTime } = req.body;
-       // const newLocal = "622ca4e75deb66d7d9645387";
+        // const newLocal = "622ca4e75deb66d7d9645387";
         let restaurant = await Restaurant.findById(restaurent1);
         console.log(restaurant)
         let history = await Booking.find({ Restaurant: restaurent1, Date })
@@ -63,13 +63,13 @@ router.post('/showbooking', fetchuser, async (req, res) => {
 
         console.log(restaurant)
         for (let i = oTime; i < cTime; i++) {
-           // let ex = i.toString();
+            // let ex = i.toString();
             let data = history.filter(e => e.Time === i.toString());
             let count = Object.keys(data).length;
             if (restaurant === count) {
-                ary.push({"time":i.toString()})
+                ary.push({ "time": i.toString() })
             }
-           // console.log(typeof ex)
+            // console.log(typeof ex)
 
         }
         console.log(ary);
@@ -112,7 +112,7 @@ router.post('/tablebooking', fetchuser, [
                 let Table_No = table.Table_No;
                 let Restaurant_Name = restaurent.Name;
 
-                console.log("thi is ",Date.length);
+                console.log("thi is ", Date.length);
                 if (Person.length > 0 && Name.length > 0 && Mobile.length < 13 && Date.length > 0) {
                     console.log("hello")
                     book = new Booking({
@@ -159,7 +159,7 @@ router.post('/bookinghistory', fetchuser, async (req, res) => {
         }
 
 
-        let book = await Booking.find({ User: req.user.id }).sort({Boking_Date:-1});
+        let book = await Booking.find({ User: req.user.id }).sort({ Boking_Date: -1 });
 
 
         if (book) {
@@ -186,7 +186,7 @@ router.post('/bookinghistoryvendor', fetchvendor, async (req, res) => {
         }
 
 
-        let book = await Booking.find({ Vendor: req.vendor.id }).sort({Boking_Date:-1});
+        let book = await Booking.find({ Vendor: req.vendor.id }).sort({ Boking_Date: -1 });
 
 
         if (book) {
@@ -204,16 +204,19 @@ router.post('/bookinghistoryvendor', fetchvendor, async (req, res) => {
 
 //for canceltable
 router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
-    let success = false;
+
     try {
         let tableData = await Booking.findById(req.params.id);
+
         const getDate = () => {
             let date = new Date();
             let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             return day + "/" + month + "/" + year;
+
         }
+
         const getTime = () => {
             let date = new Date();
             let time = date.getHours();
@@ -221,27 +224,38 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
         }
 
         if (tableData) {
+
             // console.log(tableData.User.toString())
             if (req.user.id === tableData.User.toString()) {
-                if (tableData.Date >= getDate() && tableData.Time > getTime()) {
+                console.log(tableData.Time, getTime())
+                if (tableData.Date === getDate() && tableData.Time > getTime()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
-                        success = true;
-                        res.status(200).json({success,cBooking})
+                        res.status(200).send("booking cancelled")
+                    }
+
+                }
+                else if (tableData.Date > getDate() ) {
+                    let cBooking = await Booking.findByIdAndDelete(req.params.id);
+                    if (cBooking) {
+                        res.status(200).send("booking cancelled")
                     }
 
                 } else {
-                    res.status(404).json({success,error:"time exceed"})
+                    res.status(404).send("time exceed")
                 }
+
             } else {
-                res.status(404).json({success,error:"not available"})
+                res.status(404).send("not available")
             }
         } else {
-            res.status(404).json({success,error:"not available"})
+            res.status(404).send("not available")
         }
+
     } catch (err) {
-        res.status(500).json({success,error:"server error"});
+        res.status(500).send("server error");
     }
+
 })
 
 module.exports = router;

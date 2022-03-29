@@ -24,6 +24,7 @@ const UserHistory = () => {
     }, []);
 
     const deleteBooking = async (id) => {
+        
         // Api call 
         const response = await fetch(`http://localhost:5000/api/table/cancelbooking/${id}`, {
             method: "DELETE",
