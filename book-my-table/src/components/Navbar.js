@@ -22,6 +22,8 @@ const Navbar = () => {
 
     const handleLogout = () => {
         localStorage.clear();
+        toast.success("Logout successfully", { autoClose: 1000 });
+        history.push("/")
     }
 
     const updateUandV = async () => {

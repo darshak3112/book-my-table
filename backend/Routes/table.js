@@ -159,7 +159,7 @@ router.post('/bookinghistory', fetchuser, async (req, res) => {
         }
 
 
-        let book = await Booking.find({ User: req.user.id });
+        let book = await Booking.find({ User: req.user.id }).sort({Boking_Date:-1});
 
 
         if (book) {
@@ -186,7 +186,7 @@ router.post('/bookinghistoryvendor', fetchvendor, async (req, res) => {
         }
 
 
-        let book = await Booking.find({ Vendor: req.vendor.id });
+        let book = await Booking.find({ Vendor: req.vendor.id }).sort({Boking_Date:-1});
 
 
         if (book) {

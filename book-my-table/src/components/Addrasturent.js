@@ -43,6 +43,7 @@ const Addrasturent = (props) => {
                 });
                 if (json.authtoken) {
                     toast.success("Restaurant Added successfully", { autoClose: 1000 });
+                    localStorage.removeItem("tTokenadd");
                     history.push("/yourRest");
                 }
                 else {
