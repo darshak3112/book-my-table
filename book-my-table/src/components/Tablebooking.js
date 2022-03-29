@@ -123,12 +123,12 @@ export const Tablebooking = () => {
     setSelectedTime(time);
   }
 
-  const handleDateChange = (date) => {
-    var dateObj = new Date();
-    var month = dateObj.getMonth() + 1;
-    var day = dateObj.getDate() + (date - 1);
-    var year = dateObj.getFullYear();
-    var d = day + "/" + month + "/" + year;
+  const handleDateChange = (e) => {
+    let date = new Date();
+    let day = date.getDate(date.setDate(date.getDate() + (e - 1)));
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let d = day + "/" + month + "/" + year;
     setPassingDate(d);
 
     setSelectedDate(date);
