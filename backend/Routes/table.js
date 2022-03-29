@@ -204,7 +204,7 @@ router.post('/bookinghistoryvendor', fetchvendor, async (req, res) => {
 
 //for canceltable
 router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
-
+    let success = false;
     try {
         let tableData = await Booking.findById(req.params.id);
 
@@ -231,28 +231,34 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
                 if (tableData.Date === getDate() && tableData.Time > getTime()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
-                        res.status(200).send("booking cancelled")
+                        success = true
+                        res.status(200).json({ success })
                     }
 
                 }
-                else if (tableData.Date > getDate() ) {
+                else if (tableData.Date > getDate()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
-                        res.status(200).send("booking cancelled")
+                        success = true
+                        res.status(200).json({ success })
                     }
                 } else {
-                    res.status(404).send("time exceed")
+                    success = false;
+                    res.status(404).json({ success, error: "time exceed" })
                 }
 
             } else {
-                res.status(404).send("not available")
+                success = false;
+                res.status(404).json({ success, error: "not available" })
             }
         } else {
-            res.status(404).send("not available")
+            success = false;
+            res.status(404).json({ success, error: "not available" })
         }
 
     } catch (err) {
-        res.status(500).send("server error");
+        success = false
+        res.status(500).json({success,error:"server error"});
     }
 
 })
