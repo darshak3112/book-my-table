@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import image1 from "./Img/addrast.png"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 //import Map from './Map';
 
 let t1 = "", t2 = "", t3 = "", t4 = "", food = "";  

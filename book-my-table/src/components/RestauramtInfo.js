@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import image1 from "./Img/RestImg.jpg";
 import image2 from "./Img/veg.png";
 import image3 from "./Img/non-veg.png";
@@ -15,6 +15,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RestauramtInfo = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, []);
+      
     let history = useHistory();
     let location = useLocation();
     const myparam = location.state.RestItem;
