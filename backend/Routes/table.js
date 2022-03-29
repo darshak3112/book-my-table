@@ -227,7 +227,7 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
 
             // console.log(tableData.User.toString())
             if (req.user.id === tableData.User.toString()) {
-                console.log(tableData.Time, getTime())
+                
                 if (tableData.Date === getDate() && tableData.Time > getTime()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
