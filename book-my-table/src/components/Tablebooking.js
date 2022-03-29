@@ -131,7 +131,7 @@ export const Tablebooking = () => {
     let d = day + "/" + month + "/" + year;
     setPassingDate(d);
 
-    setSelectedDate(date);
+    setSelectedDate(e);
     setPass(day);
   }
 
