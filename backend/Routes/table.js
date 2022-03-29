@@ -15,32 +15,37 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 //for table creation
 router.post('/addtable', async (req, res) => {
+    try {
+        let success = false;
+        const token = req.header('auth-token-res');
+        if (!token) {
+            res.status(401).send({ error: "Please authenticate using a valid token " })
+        }
+        const data = jwt.verify(token, JWT_SECRET);
+        //console.log(data.restaurant.id)
 
-    const token = req.header('auth-token-res');
-    if (!token) {
-        res.status(401).send({ error: "Please authenticate using a valid token " })
+        let restaurant = await Restaurant.findById(data.restaurant.id);
+
+        if (!restaurant) {
+            res.status(404).send({ error: "not found" })
+        }
+
+        for (let i = 0; i < restaurant.Table_require; i++) {
+            // console.log(i);
+            let table = new Table({
+                Restaurant: data.restaurant.id,
+                Table_No: i + 1
+            })
+            table = await table.save();
+            //console.log(table)
+
+        }
+        success = true;
+        res.json({ success, "done": "table created" });
+    } catch (err) {
+        console.log(err)
+        res.send(500,"server error");
     }
-    const data = jwt.verify(token, JWT_SECRET);
-    //console.log(data.restaurant.id)
-
-    let restaurant = await Restaurant.findById(data.restaurant.id);
-
-    if (!restaurant) {
-        res.status(404).send({ error: "not found" })
-    }
-
-    for (let i = 0; i < restaurant.Table_require; i++) {
-        // console.log(i);
-        let table = new Table({
-            Restaurant: data.restaurant.id,
-            Table_No: i + 1
-        })
-        table = await table.save();
-        //console.log(table)
-
-    }
-    res.send("table created");
-
 })
 
 //for showing data

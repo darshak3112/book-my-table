@@ -21,30 +21,7 @@ const Navbar = () => {
     })
 
     const handleLogout = () => {
-        if (localStorage.getItem("vToken")) {
-            localStorage.removeItem("vToken")
-            toast.success("Logout successfully", { autoClose: 1000 });
-            history.push("/");
-        }
-        if (localStorage.getItem("vTokenUp")) {
-            localStorage.removeItem("vTokenUp")
-        }
-        if (localStorage.getItem("tTokenadd")) {
-            localStorage.removeItem("tTokenadd")
-        }
-        if (localStorage.getItem("uToken")) {
-            localStorage.removeItem("uToken")
-            toast.success("Logout successfully", { autoClose: 1000 });
-            history.push("/");
-        }
-        if (localStorage.getItem("uTokenUp")) {
-            localStorage.removeItem("uTokenUp")
-        }
-        if (localStorage.getItem("AToken")) {
-            localStorage.removeItem("AToken")
-            toast.success("Logout successfully", { autoClose: 1000 });
-            history.push("/");
-        }
+        localStorage.clear();
     }
 
     const updateUandV = async () => {

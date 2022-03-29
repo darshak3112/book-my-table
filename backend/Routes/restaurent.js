@@ -48,7 +48,7 @@ router.post('/addres', fetchvendor, [
        // console.log(savedRes.id)
     } catch (error) {
         console.error(error.message);
-        res.status(500);//.send("some error occured");
+        res.status(500).send("some error occured");
     }
 })
 
