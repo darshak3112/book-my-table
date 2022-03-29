@@ -46,6 +46,12 @@ const UserHistory = () => {
         YoursetRestList(newrestlist);
     }
 
+    const bookingDateOfTable = (date) => {
+        let d = date.split("T");
+        let t = d[1].split(".");
+        return d[0]
+    }
+
     const checkTableTime = (bookingDate, Time) => {
         let bookinTime = parseInt(Time) - 1;
         let today = new Date();
@@ -69,7 +75,7 @@ const UserHistory = () => {
                         {YourRestList.length === 0 && 'No Restaurant is Booked'}
                     </div>
                     {YourRestList.map((YourRestList) => {
-                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} deleteBooking={deleteBooking} checkTableTime={checkTableTime} />
+                        return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} deleteBooking={deleteBooking} checkTableTime={checkTableTime} bookingDateOfTable={bookingDateOfTable}/>
                     })}
                 </div>
             </div>

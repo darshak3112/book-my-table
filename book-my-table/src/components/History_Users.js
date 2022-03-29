@@ -2,12 +2,8 @@ import React from 'react';
 import image1 from "./Img/rastLogo.jpg";
 
 const History_Users = (props) => {
-    const { YourRestItem, deleteBooking ,checkTableTime} = props;
-    const bookingDateOfTable = (date) => {
-        let d = date.split("T");
-        let t = d[1].split(".");
-        return d[0] + " " + t[0];
-    }
+    const { YourRestItem, deleteBooking ,checkTableTime,bookingDateOfTable} = props;
+    
 
     return (
         <>
