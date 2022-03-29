@@ -18,9 +18,20 @@ const UserHistory = () => {
         YoursetRestList(json);
     };
 
+    // useEffect(() => {
+    //     getYourRestaurant();
+    // }, []);
+
+    const MINUTE_MS = 1000;
+
     useEffect(() => {
-        getYourRestaurant();
-    }, []);
+        const interval = setInterval(() => {
+            console.log('Logs every minute');
+            getYourRestaurant();
+        }, MINUTE_MS);
+
+        return () => clearInterval(interval);
+    }, [])
 
     return (
         <>
