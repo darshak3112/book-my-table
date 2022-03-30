@@ -117,47 +117,55 @@ const YourRest = (props) => {
         return str;
     }
 
+
     const UpdateRest = async (id, Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require) => {
         // Api call
         TimeOpen = Time();
         TimeClose = Time2();
+        if (t1 !== "" && t2 !== "" && t3 !== "" && t4 !== "") {
+            if (Time() !== Time2() && t2 !== t4) {
+                const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token-vendor": localStorage.getItem("vToken"),
+                    },
+                    body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
+                });
+                const json = await response.json();
+                let newRest = JSON.parse(JSON.stringify(YourRestList))
+                for (let index = 0; index < newRest.length; index++) {
+                    const element = newRest[index];
+                    if (element._id === id) {
+                        newRest[index].Name = Name;
+                        newRest[index].City = City;
+                        newRest[index].Area = Area;
+                        newRest[index].FoodType = FoodType;
+                        newRest[index].FooFoodCategory = FoodCategory;
+                        newRest[index].Address = Address;
+                        newRest[index].TimeOpen = TimeOpen;
+                        newRest[index].TimeClose = TimeClose;
+                        newRest[index].Contact = Contact;
+                        newRest[index].Facility = Facility;
+                        newRest[index].Holiday = Holiday;
+                        newRest[index].Active = Active;
+                        newRest[index].Table_require = Table_require;
+                        newRest[index].Holiday = Holiday;
+                        break;
+                    }
 
-        const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token-vendor": localStorage.getItem("vToken"),
-            },
-            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
-        });
-        const json = await response.json();
-        let newRest = JSON.parse(JSON.stringify(YourRestList))
-        for (let index = 0; index < newRest.length; index++) {
-            const element = newRest[index];
-            if (element._id === id) {
-                newRest[index].Name = Name;
-                newRest[index].City = City;
-                newRest[index].Area = Area;
-                newRest[index].FoodType = FoodType;
-                newRest[index].FooFoodCategory = FoodCategory;
-                newRest[index].Address = Address;
-                newRest[index].TimeOpen = TimeOpen;
-                newRest[index].TimeClose = TimeClose;
-                newRest[index].Contact = Contact;
-                newRest[index].Facility = Facility;
-                newRest[index].Holiday = Holiday;
-                newRest[index].Active = Active;
-                newRest[index].Table_require = Table_require;
-                newRest[index].Holiday = Holiday;
-                break;
+                }
+                YoursetRestList(newRest);
+                toast.success("Update successfully", { autoClose: 1000 });
+                // useEffect(() => {
+                getYourRestaurant();
+                // }, []);
+            } else {
+                toast.error("Please enter correct timing details", { autoClose: 1000 });
             }
-
+        } else {
+            toast.error("Please enter timing details", { autoClose: 1000 });
         }
-        YoursetRestList(newRest);
-        toast.success("Update successfully", { autoClose: 1000 });
-        // useEffect(() => {
-        getYourRestaurant();
-        // }, []);
     };
 
     const deleteRest = async (id) => {
@@ -194,7 +202,7 @@ const YourRest = (props) => {
                 Launch demo modal
             </button>
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" style={{ maxWidth: "800px"}}>
+                <div className="modal-dialog" style={{ maxWidth: "800px" }}>
                     <div className="modal-content" style={{ minWidth: "450px" }}>
                         <div className="modal-header">
                             <div style={{ width: "728px", textAlign: "center" }}><h5 className="modal-title" id="exampleModalLabel">Update Your Restaurant Datails</h5></div>
