@@ -8,8 +8,7 @@ const Restaurant_informationSchema = new Schema({
     },
     Name: {
         type: String,
-        require: true,
-        unique: true
+        require: true
     },
     City: {
         type: String,

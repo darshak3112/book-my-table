@@ -123,48 +123,56 @@ const YourRest = (props) => {
         TimeOpen = Time();
         TimeClose = Time2();
         if (t1 !== "" && t2 !== "" && t3 !== "" && t4 !== "") {
-            if (Time() !== Time2() && t2 !== t4) {
-                const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token-vendor": localStorage.getItem("vToken"),
-                    },
-                    body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
-                });
-                const json = await response.json();
-                let newRest = JSON.parse(JSON.stringify(YourRestList))
-                for (let index = 0; index < newRest.length; index++) {
-                    const element = newRest[index];
-                    if (element._id === id) {
-                        newRest[index].Name = Name;
-                        newRest[index].City = City;
-                        newRest[index].Area = Area;
-                        newRest[index].FoodType = FoodType;
-                        newRest[index].FooFoodCategory = FoodCategory;
-                        newRest[index].Address = Address;
-                        newRest[index].TimeOpen = TimeOpen;
-                        newRest[index].TimeClose = TimeClose;
-                        newRest[index].Contact = Contact;
-                        newRest[index].Facility = Facility;
-                        newRest[index].Holiday = Holiday;
-                        newRest[index].Active = Active;
-                        newRest[index].Table_require = Table_require;
-                        newRest[index].Holiday = Holiday;
-                        break;
-                    }
+            if (Time() !== Time2()) {
+                if ((t2 === t4 && parseInt(t1) < parseInt(t3)) || (t2 !== t4)) {
+                    if (Table_require < 0 || (!(Table_require >= 'a' && Table_require <= 'z'))) {
+                        const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
+                            method: "PATCH",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "auth-token-vendor": localStorage.getItem("vToken"),
+                            },
+                            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
+                        });
+                        const json = await response.json();
+                        let newRest = JSON.parse(JSON.stringify(YourRestList))
+                        for (let index = 0; index < newRest.length; index++) {
+                            const element = newRest[index];
+                            if (element._id === id) {
+                                newRest[index].Name = Name;
+                                newRest[index].City = City;
+                                newRest[index].Area = Area;
+                                newRest[index].FoodType = FoodType;
+                                newRest[index].FooFoodCategory = FoodCategory;
+                                newRest[index].Address = Address;
+                                newRest[index].TimeOpen = TimeOpen;
+                                newRest[index].TimeClose = TimeClose;
+                                newRest[index].Contact = Contact;
+                                newRest[index].Facility = Facility;
+                                newRest[index].Holiday = Holiday;
+                                newRest[index].Active = Active;
+                                newRest[index].Table_require = Table_require;
+                                newRest[index].Holiday = Holiday;
+                                break;
+                            }
 
+                        }
+                        YoursetRestList(newRest);
+                        toast.success("Update successfully", { autoClose: 1000 });
+                        // useEffect(() => {
+                        getYourRestaurant();
+                        // }, []);
+                    } else {
+                        toast.error("Please enter correct number of tables", { autoClose: 1000 });
+                    }
+                } else {
+                    toast.error("Please enter opening time less than closing time", { autoClose: 1000 });
                 }
-                YoursetRestList(newRest);
-                toast.success("Update successfully", { autoClose: 1000 });
-                // useEffect(() => {
-                getYourRestaurant();
-                // }, []);
             } else {
-                toast.error("Please enter correct timing details", { autoClose: 1000 });
+                toast.error("Please enter different times", { autoClose: 1000 });
             }
         } else {
-            toast.error("Please enter timing details", { autoClose: 1000 });
+            toast.error("Please enter all timing detail", { autoClose: 1000 });
         }
     };
 
@@ -220,15 +228,15 @@ const YourRest = (props) => {
                                             <hr />
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Rasturent Name</label>
-                                                <input type="text" name="Name" className="form-control" onChange={onChange} value={UpDateRest.Name} id="exampleInputName" placeholder='Enter Rasturent Name' />
+                                                <input type="text" name="Name" className="form-control" required onChange={onChange} value={UpDateRest.Name} id="exampleInputName" placeholder='Enter Rasturent Name' />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">City</label>
-                                                <input type="text" name="City" className="form-control" onChange={onChange} value={UpDateRest.City} id="exampleInputName" placeholder='Enter City' />
+                                                <input type="text" name="City" className="form-control" required onChange={onChange} value={UpDateRest.City} id="exampleInputName" placeholder='Enter City' />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Area</label>
-                                                <input type="text" name="Area" className="form-control" onChange={onChange} value={UpDateRest.Area} id="exampleInputName" placeholder='Enter Area' />
+                                                <input type="text" name="Area" className="form-control" required onChange={onChange} value={UpDateRest.Area} id="exampleInputName" placeholder='Enter Area' />
                                             </div>
                                             <div className="mb-3">
                                                 <label style={{ marginRight: 10 }} htmlFor="exampleInputName" className="form-label">Food-Type : </label>
@@ -241,7 +249,7 @@ const YourRest = (props) => {
                                                     <label className="form-check-label" htmlFor="inlineRadio2">Non-Veg</label>
                                                 </div>
                                                 <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio3" value="Both" />
+                                                    <input className="form-check-input" defaultChecked="checked" onChange={onChange} type="radio" name="FoodType" id="inlineRadio3" value="Both" />
                                                     <label className="form-check-label" htmlFor="inlineRadio3">Both</label>
                                                 </div>
                                             </div>
@@ -368,16 +376,16 @@ const YourRest = (props) => {
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputPhone" className="form-label">contact No</label>
-                                                <input type="text" name="Contact" onChange={onChange} className="form-control" id="exampleInputPhone" value={UpDateRest.Contact} placeholder='Enter Contact No' aria-describedby="phoneHelp" />
+                                                <input type="text" name="Contact" required onChange={onChange} className="form-control" id="exampleInputPhone" value={UpDateRest.Contact} placeholder='Enter Contact No' aria-describedby="phoneHelp" />
                                                 <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Facility</label>
-                                                <input type="text" name="Facility" onChange={onChange} className="form-control" value={UpDateRest.Facility} id="exampleInputName" placeholder='Enter Facility' />
+                                                <input type="text" name="Facility" required onChange={onChange} className="form-control" value={UpDateRest.Facility} id="exampleInputName" placeholder='Enter Facility' />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="exampleInputName" className="form-label">Number of table</label>
-                                                <input type="text" name="Table_require" onChange={onChange} className="form-control" value={UpDateRest.Table_require} id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
+                                                <input type="text" name="Table_require" required onChange={onChange} className="form-control" value={UpDateRest.Table_require} id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
                                             </div>
                                         </form>
                                     </div>
