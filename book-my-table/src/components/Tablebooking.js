@@ -78,32 +78,79 @@ export const Tablebooking = () => {
         }
       }
 
-      let temp = 0;
-      for (let i = Onum; i <= Cnum; i++) {
-        var todays = new Date();
-        var currentHour = todays.getHours();
+      var temp = 0, j = 0;
+      if(Onum > Cnum) {
+        Cnum =  12 - Cnum;
 
-        if (passingDate === today) {
+        j = Onum;
+        for (let i = Onum; i >= Cnum; i--) {
 
-          if (i >= currentHour) {
+          if(j === 24) { j = 1; }
+          var todays = new Date();
+          var currentHour = todays.getHours();
+  
+          if (passingDate === today) {
+  
+            if(i === Onum) {
+              if (j >= currentHour) {
+                if (temp === 0) {
+                  setopening_Time(i);
+                  temp++;
+                } else {
+                  tempArray.push(j);
+                }
+                setclosing_Time(i);
+                j++;
+              }
+            } else {
+              if (temp === 0) {
+                setopening_Time(i);
+                temp++;
+              } else {
+                tempArray.push(j);
+              }
+              setclosing_Time(i);
+              j++;
+            }
+          } else {
+            if (temp === 0) {
+              setopening_Time(j);
+              temp++;
+            }
+            tempArray.push(j);
+            setclosing_Time(j);
+            j++;
+          }
+  
+        }
+      } else {
+        for (let i = Onum; i <= Cnum; i++) {
+          var todays = new Date();
+          var currentHour = todays.getHours();
+  
+          if (passingDate === today) {
+  
+            if (i >= currentHour) {
+              if (temp === 0) {
+                setopening_Time(i);
+                temp++;
+              } else {
+                tempArray.push(i);
+              }
+              setclosing_Time(i);
+            }
+          } else {
             if (temp === 0) {
               setopening_Time(i);
               temp++;
-            } else {
-              tempArray.push(i);
             }
+            tempArray.push(i);
             setclosing_Time(i);
           }
-        } else {
-          if (temp === 0) {
-            setopening_Time(i);
-            temp++;
-          }
-          tempArray.push(i);
-          setclosing_Time(i);
+  
         }
-
       }
+      
 
       setTimeArray(tempArray);
 
