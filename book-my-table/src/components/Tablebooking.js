@@ -21,6 +21,7 @@ export const Tablebooking = () => {
   const [opening_Time, setopening_Time] = useState('');
   const [closing_Time, setclosing_Time] = useState('');
   const [pass, setPass] = useState('');
+  const [checkdate, setcheckdate] = useState('');
   const [prevSelectedDate, setPrevSelectedDate] = useState('');
   let today = 0;
 
@@ -49,6 +50,19 @@ export const Tablebooking = () => {
 
   const reRender = 0;
   useEffect(() => {
+    const incDate = (da) => {
+      var di = da+1;
+      let date = new Date();
+      date.setDate(di);
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let d = day + "/" + month + "/" + year;
+
+      setPassingDate(d);
+      setPass(day); 
+    }
+
     const interval = setInterval(() => {
       let timeOpenStamps = myparam.TimeOpen;
       let timeCloseStamps = myparam.TimeClose;
@@ -80,12 +94,15 @@ export const Tablebooking = () => {
 
       var temp = 0, j = 0;
       if(Onum > Cnum) {
-        Cnum =  12 - Cnum;
+        Cnum =  12 - Cnum+1;
 
         j = Onum;
-        for (let i = Onum; i >= Cnum; i--) {
+        for (let i = Onum; i > Cnum; i--) {
 
-          if(j === 24) { j = 1; }
+          if(j === 24) { 
+            j = 1; 
+            incDate(pass);
+          }
           var todays = new Date();
           var currentHour = todays.getHours();
   
@@ -124,7 +141,7 @@ export const Tablebooking = () => {
   
         }
       } else {
-        for (let i = Onum; i <= Cnum; i++) {
+        for (let i = Onum; i < Cnum; i++) {
           var todays = new Date();
           var currentHour = todays.getHours();
   
