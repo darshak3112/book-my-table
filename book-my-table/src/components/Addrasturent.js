@@ -5,55 +5,76 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from "react-router-dom";
 //import Map from './Map';
 
-let t1 = "", t2 = "", t3 = "", t4 = "", food = "";  
+let t1 = "", t2 = "", t3 = "", t4 = "", food = "";
 
 const Addrasturent = (props) => {
 
     let history = useHistory();
     const [info, setInfo] = useState({ Name: "", City: "", Area: "", FoodType: "", FoodCategory: "", Address: "", TimeOpen: "", TimeClose: "", Contact: "", Facility: "", Holiday: "", Table_require: "" });
+    let selected = false;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(t1, " - ", t2, " - ", t3, " - ", t4);
-        if (t1 !== "" && t2 !== "" && t3 !== "" && t4 !== "") {
-            if (Time() !== Time2() && t2 !== t4) {
-                let { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
-                TimeOpen = Time();
-                TimeClose = Time2();
+        // var dropDown = document.getElementById("Otime");
+        // dropDown.selectedIndex = 0;
+        // var dropDown2 = document.getElementById("OTimeZone");
+        // dropDown2.selectedIndex = 0;
+        // var dropDown3 = document.getElementById("Ctime");
+        // dropDown3.selectedIndex = 0;
+        // var dropDown4 = document.getElementById("CTimeZone");
+        // dropDown4.selectedIndex = 0;
+        // var dropDown5 = document.getElementById("Holiday");
+        // dropDown5.selectedIndex = 0;
 
-                const response = await fetch("http://localhost:5000/api/restaurent/addres", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "auth-token-vendor": localStorage.getItem("vToken"),
-                    },
-                    body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
-                });
-                const json = await response.json();
-                if (json.authtoken) {
-                    localStorage.setItem('tTokenadd', json.authtoken);
-                }
-                const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "auth-token-res": localStorage.getItem("tTokenadd"),
+        let { Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require } = info;
+
+        if (t1 !== "" && t2 !== "" && t3 !== "" && t4 !== "") {
+            if (Time() !== Time2()) {
+                if ((t2 === t4 && parseInt(t1) < parseInt(t3)) || (t2 !== t4)) {
+                    if (Table_require < 0 || (!(Table_require >= 'a' && Table_require <= 'z'))) {
+                        TimeOpen = Time();
+                        TimeClose = Time2();
+
+                        const response = await fetch("http://localhost:5000/api/restaurent/addres", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                "auth-token-vendor": localStorage.getItem("vToken"),
+                            },
+                            body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Table_require }),
+                        });
+                        const json = await response.json();
+                        
+                        if (json.authtoken) {
+                            localStorage.setItem('tTokenadd', json.authtoken);
+                        }
+                        const tResponse = await fetch("http://localhost:5000/api/table/addtable", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                "auth-token-res": localStorage.getItem("tTokenadd"),
+                            }
+                        });
+                        if (json.authtoken) {
+                            toast.success("Restaurant Added successfully", { autoClose: 1000 });
+                            localStorage.removeItem("tTokenadd");
+                            history.push("/yourRest");
+                        }
+                        else {
+                            toast.error("Please enter valid details", { autoClose: 1000 });
+                        }
+                    } else {
+                        toast.error("Please enter correct number of tables", { autoClose: 1000 });
                     }
-                });
-                if (json.authtoken) {
-                    toast.success("Restaurant Added successfully", { autoClose: 1000 });
-                    localStorage.removeItem("tTokenadd");
-                    history.push("/yourRest");
-                }
-                else {
-                    toast.error("Please enter valid details", { autoClose: 1000 });
+                } else {
+                    toast.error("Please enter opening time less than closing time", { autoClose: 1000 });
                 }
             } else {
-                toast.error("Please enter correct timing details", { autoClose: 1000 });
+                toast.error("Please enter different times", { autoClose: 1000 });
             }
         } else {
-            toast.error("Please enter timing details", { autoClose: 1000 });
+            toast.error("Please enter all timing detail", { autoClose: 1000 });
         }
     }
 
@@ -61,8 +82,7 @@ const Addrasturent = (props) => {
         if (e.target.name === "FoodCategory") {
             food = food + e.target.value + ", ";
             setInfo({ ...info, [e.target.name]: food });
-        }
-        else {
+        } else {
             setInfo({ ...info, [e.target.name]: e.target.value });
         }
     }
@@ -107,15 +127,15 @@ const Addrasturent = (props) => {
                             <hr />
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label">Restaurant Name</label>
-                                <input type="text" name="Name" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Name' />
+                                <input type="text" name="Name" className="form-control" required onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Name' />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label">City</label>
-                                <input type="text" name="City" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter City' />
+                                <input type="text" name="City" className="form-control" required="required" onChange={onChange} id="exampleInputName" placeholder='Enter City' />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label">Area</label>
-                                <input type="text" name="Area" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Area' />
+                                <input type="text" name="Area" className="form-control" required="required" onChange={onChange} id="exampleInputName" placeholder='Enter Area' />
                             </div>
                             <div className="mb-3">
                                 <label style={{ marginRight: 10 }} htmlFor="exampleInputName" className="form-label">Food-Type : </label>
@@ -128,7 +148,7 @@ const Addrasturent = (props) => {
                                     <label className="form-check-label" htmlFor="inlineRadio2">Non-Veg</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" onChange={onChange} type="radio" name="FoodType" id="inlineRadio3" value="Both" />
+                                    <input className="form-check-input" defaultChecked="checked" onChange={onChange} type="radio" name="FoodType" id="inlineRadio3" value="Both" />
                                     <label className="form-check-label" htmlFor="inlineRadio3">Both</label>
                                 </div>
                             </div>
@@ -190,7 +210,7 @@ const Addrasturent = (props) => {
                             <br />
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label">Address</label>
-                                <input type="text" name="Address" className="form-control" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
+                                <input type="text" name="Address" className="form-control" required="required" onChange={onChange} id="exampleInputName" placeholder='Enter Rasturent Address' />
                             </div>
                             <div className="row my-2">
                                 <div className="col-md-6">
@@ -264,16 +284,16 @@ const Addrasturent = (props) => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPhone" className="form-label">contact No</label>
-                                <input type="text" name="Contact" onChange={onChange} className="form-control" id="exampleInputPhone" placeholder='Enter Contact No' aria-describedby="phoneHelp" />
+                                <input type="text" name="Contact" required="required" onChange={onChange} className="form-control" id="exampleInputPhone" placeholder='Enter Contact No' aria-describedby="phoneHelp" />
                                 <div id="phoneHelp" className="form-text">We'll never share your Phone No with anyone else.</div>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label">Facility</label>
-                                <input type="text" name="Facility" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Facility' />
+                                <input type="text" name="Facility" required="required" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Facility' />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName" className="form-label">Number of table</label>
-                                <input type="text" name="Table_require" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
+                                <input type="text" name="Table_require" required="required" onChange={onChange} className="form-control" id="exampleInputName" placeholder='Enter Number of table you want to show on website' />
                             </div>
                             <center><button type="submit" className="btn btn-dark btn-lg ">Submit</button></center>
                         </form>
