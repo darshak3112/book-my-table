@@ -45,15 +45,15 @@ export const Rasturent = () => {
           <hr />
 
           <div className="row">
-            <div className="col-4">
-              <input type="text" className="form-control" placeholder="Search Restaurant Name ..." onChange={SearchName} name="SearchRestName" id="SearchRestName" />
+            <div className="col-md-6" style={{textAlign:"center"}}>
+              <input type="text" style={{width:"60%",height:"30px",borderRadius:"10px"}} placeholder="  Search Restaurant Name ..." onChange={SearchName} name="SearchRestName" id="SearchRestName" />
             </div>
-            <div className="col-4">
-              <input type="text" className="form-control" placeholder="Search City ......" onChange={SearchCity} name="SearchRestName" id="SearchRestName" />
+            <div className="col-md-6" style={{textAlign:"center"}}>
+              <input type="text" style={{width:"60%",height:"30px",borderRadius:"10px"}} placeholder="  Search City ......" onChange={SearchCity} name="SearchRestName" id="SearchRestName" />
             </div>
-            <div className="col-4">
+            {/* <div className="col-4">
               <input type="text" className="form-control" placeholder="Table occupancy..." onChange={SearchTOccu} name="SearchRestName" id="SearchRestName" />
-            </div>
+            </div> */}
           </div>
           <div className="container">
             {RestList.length === 0 && 'No Restaurant Added'}

@@ -45,9 +45,6 @@ const RestaurantPending= (props) => {
                 <div className="row" >
                     <h1><center>Pending Restaurant List</center></h1>
                     <hr />
-                    <div className="container mx-3">
-                        {YourRestList.length === 0 && 'No Restaurant Added'}
-                    </div>
                     {YourRestList.map((YourRestItem) => {
                         return <YorRestItem key={YourRestList._id} YourRestItem={YourRestItem} Update={UpdateRes}/>
                     })}

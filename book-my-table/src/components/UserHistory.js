@@ -24,7 +24,7 @@ const UserHistory = () => {
     }, []);
 
     const deleteBooking = async (id) => {
-        
+
         // Api call 
         const response = await fetch(`http://localhost:5000/api/table/cancelbooking/${id}`, {
             method: "DELETE",
@@ -54,14 +54,25 @@ const UserHistory = () => {
     }
 
     const checkTableTime = (bookingDate, Time) => {
-        let bookinTime = parseInt(Time) - 1;
+        let bookingTime = (parseInt(Time) - 1).toString();
         let today = new Date();
-        let todayDateAndTime = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + " " + today.getHours();
-        let bookingDateAndTime = bookingDate + " " + bookinTime;
-        if (todayDateAndTime < bookingDateAndTime) {
-            return true;
+        let todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        let todaytime = today.getHours().toString();
+        let bookingD = bookingDate.split("/")
+        let bookingdate = bookingD[2] + '-' + bookingD[1] + '-' + bookingD[0];
+        if (todayDate <= bookingdate) {
+            // console.log(todayDate, bookingdate, "true")
+            if (todaytime < bookingTime) {
+                // console.log(todaytime, bookingTime, "true")
+                return true;
+            }
+            else{
+                // console.log(todaytime, bookingTime, "false")
+                return false;
+            }
         }
         else {
+            // console.log(todayDate, bookingdate, "false")
             return false;
         }
     }
@@ -72,9 +83,6 @@ const UserHistory = () => {
                 <div className="row" >
                     <h1><center>Booked Tables</center></h1>
                     <hr />
-                    <div className="container mx-3">
-                        {YourRestList.length === 0 && 'No Restaurant is Booked'}
-                    </div>
                     {YourRestList.map((YourRestList) => {
                         return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} deleteBooking={deleteBooking} checkTableTime={checkTableTime} bookingDateOfTable={bookingDateOfTable} />
                     })}

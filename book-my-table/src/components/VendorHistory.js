@@ -39,9 +39,6 @@ const UserHistory = () => {
                 <div className="row" >
                     <h1><center>Booked Tables</center></h1>
                     <hr />
-                    <div className="container mx-3">
-                        {YourRestList.length === 0 && 'No Restaurant is Booked'}
-                    </div>
                     {YourRestList.map((YourRestList) => {
                         return <YorRestItem key={YourRestList._id} YourRestItem={YourRestList} />
                     })}
