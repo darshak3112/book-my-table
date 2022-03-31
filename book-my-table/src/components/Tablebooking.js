@@ -20,9 +20,8 @@ export const Tablebooking = () => {
   const [fullTables, setFullTables] = useState('');
   const [opening_Time, setopening_Time] = useState('');
   const [closing_Time, setclosing_Time] = useState('');
-  const [pass, setPass] = useState('');
-  const [checkdate, setcheckdate] = useState('');
-  const [prevSelectedDate, setPrevSelectedDate] = useState('');
+  const [date, setdate] = useState('');
+  const [prevSelectedDate, setprev] = useState('');
   let today = 0;
 
   let location = useLocation();
@@ -53,14 +52,13 @@ export const Tablebooking = () => {
     const incDate = (da) => {
       var di = da+1;
       let date = new Date();
-      date.setDate(di);
-      let day = date.getDate();
+      let day = date.getDate(date.setDate(date.getDate() + (di)));
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
       let d = day + "/" + month + "/" + year;
+      setPassingDate(d);
 
       setPassingDate(d);
-      setPass(day); 
     }
 
     const interval = setInterval(() => {
@@ -101,7 +99,9 @@ export const Tablebooking = () => {
 
           if(j === 24) { 
             j = 1; 
-            incDate(pass);
+          }
+          if(j >= 24) {
+            incDate(date);
           }
           var todays = new Date();
           var currentHour = todays.getHours();
@@ -196,7 +196,7 @@ export const Tablebooking = () => {
     setPassingDate(d);
 
     setSelectedDate(e);
-    setPass(day);
+    setdate(day);
   }
 
   const getTimeSlots = async (d) => {
