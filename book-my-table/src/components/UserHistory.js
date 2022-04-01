@@ -54,18 +54,20 @@ const UserHistory = () => {
     }
 
     const checkTableTime = (bookingDate, Time) => {
-        let bookingTime = (parseInt(Time) - 1).toString();
+        let bookingTime = parseInt(Time) - 1 //).toString();
         let today = new Date();
         let todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        let todaytime = today.getHours().toString();
+        let todaytime = parseInt(today.getHours())  //.toString();
         let bookingD = bookingDate.split("/")
         let bookingdate = bookingD[2] + '-' + bookingD[1] + '-' + bookingD[0];
         if (todayDate < bookingdate) {
             console.log(todayDate, bookingdate, "true")
             return true;
-        }
-        else if (todayDate === bookingdate) {
-            if (todaytime < bookingTime) {
+        }else {
+            // console.log(todayDate, bookingdate, "false")
+            // return false;
+            if (todayDate == bookingdate) {
+                if (todaytime < bookingTime) {
                     console.log(todaytime, bookingTime, "true")
                     return true;
                 }
@@ -73,10 +75,7 @@ const UserHistory = () => {
                     console.log(todaytime, bookingTime, "false")
                     return false;
                 }
-        }
-        else {
-            console.log(todayDate, bookingdate, "false")
-            return false;
+            }
         }
     }
 
