@@ -32,14 +32,14 @@ router.patch('/updatetable/:id', fetchvendor, async (req, res) => {
             res.status(200).json({ success });
         }
         else {
-            for (let i = restaurant.Table_require+1; i <table_no; i++) {
-                // console.log(i);
+            for (let i = restaurant.Table_require+1; i <=table_no; i++) {
+                console.log(i);
                 let table = new Table({
                     Restaurant: req.params.id,
                     Table_No: i + 1
                 })
                 table = await table.save();
-                //console.log(table)
+                console.log(table)
     
             }
             success = true;
