@@ -43,7 +43,7 @@ const UserHistory = () => {
             YoursetRestList(newrestlist);
         }
         else {
-            toast.error("Booking not cancele successfully", { autoClose: 1000 });
+            toast.error("you Can't cancle booking", { autoClose: 1000 });
         }
     }
 
@@ -60,19 +60,22 @@ const UserHistory = () => {
         let todaytime = today.getHours().toString();
         let bookingD = bookingDate.split("/")
         let bookingdate = bookingD[2] + '-' + bookingD[1] + '-' + bookingD[0];
-        if (todayDate <= bookingdate) {
-            // console.log(todayDate, bookingdate, "true")
+        if (todayDate < bookingdate) {
+            console.log(todayDate, bookingdate, "true")
+            return true;
+        }
+        else if (todayDate === bookingdate) {
             if (todaytime < bookingTime) {
-                // console.log(todaytime, bookingTime, "true")
-                return true;
-            }
-            else {
-                // console.log(todaytime, bookingTime, "false")
-                return false;
-            }
+                    console.log(todaytime, bookingTime, "true")
+                    return true;
+                }
+                else {
+                    console.log(todaytime, bookingTime, "false")
+                    return false;
+                }
         }
         else {
-            // console.log(todayDate, bookingdate, "false")
+            console.log(todayDate, bookingdate, "false")
             return false;
         }
     }
