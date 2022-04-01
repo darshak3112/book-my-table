@@ -66,7 +66,7 @@ const UserHistory = () => {
                 // console.log(todaytime, bookingTime, "true")
                 return true;
             }
-            else{
+            else {
                 // console.log(todaytime, bookingTime, "false")
                 return false;
             }
