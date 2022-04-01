@@ -26,6 +26,7 @@ router.patch('/updatetable/:id', fetchvendor, async (req, res) => {
         }
 
         let table = await Table.find({ Request: req.params.id });
+console.log(req.params.id)
 
         if (restaurant.Table_require > table_no) { 
             success = true;
