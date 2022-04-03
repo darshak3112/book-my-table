@@ -76,6 +76,9 @@ const UserHistory = () => {
                     return false;
                 }
             }
+            else{
+                return false;
+            }
         }
     }
 
