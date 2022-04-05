@@ -13,8 +13,49 @@ const { findByIdAndDelete } = require('../models/User');
 require('dotenv').config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
+//for table update
+router.patch('/updatetable/:id', fetchvendor, async (req, res) => {
+    try {
+
+        let success = false;
+        const { table_no } = req.body;
+        let restaurant = await Restaurant.findById(req.params.id);
+
+        if (!restaurant) {
+            res.status(404).send({ error: "not found" });
+        }
+
+        let table = await Table.find({ Request: req.params.id });
+console.log(req.params.id)
+
+        if (restaurant.Table_require > table_no) { 
+            success = true;
+            res.status(200).json({ success });
+        }
+        else {
+            for (let i = restaurant.Table_require+1; i <=table_no; i++) {
+                console.log(i);
+                let table = new Table({
+                    Restaurant: req.params.id,
+                    Table_No: i + 1
+                })
+                table = await table.save();
+                console.log(table)
+    
+            }
+            success = true;
+            res.json({ success, "done": "table created" });
+        }
+
+       
+    } catch (err) {
+        console.log(err)
+        res.send(500, "server error");
+    }
+})
+
 //for table creation
-router.post('/addtable', async (req, res) => {
+router.post('/addtable', fetchvendor, async (req, res) => {
     try {
         let success = false;
         const token = req.header('auth-token-res');
@@ -227,7 +268,7 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
 
             // console.log(tableData.User.toString())
             if (req.user.id === tableData.User.toString()) {
-                
+
                 if (tableData.Date === getDate() && tableData.Time > getTime()) {
                     let cBooking = await Booking.findByIdAndDelete(req.params.id);
                     if (cBooking) {
@@ -258,7 +299,7 @@ router.delete('/cancelbooking/:id', fetchuser, async (req, res) => {
 
     } catch (err) {
         success = false
-        res.status(500).json({success,error:"server error"});
+        res.status(500).json({ success, error: "server error" });
     }
 
 })

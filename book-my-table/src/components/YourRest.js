@@ -11,6 +11,7 @@ const YourRest = (props) => {
 
     const RestInitial = []
     const [YourRestList, YoursetRestList] = useState(RestInitial);
+    let table_no = 0;
 
     const [UpDateRest, setUpDateRest] = useState({
         id: "",
@@ -126,6 +127,7 @@ const YourRest = (props) => {
             if (Time() !== Time2()) {
                 if ((t2 === t4 && parseInt(t1) < parseInt(t3)) || (t2 !== t4)) {
                     if (Table_require < 0 || (!(Table_require >= 'a' && Table_require <= 'z'))) {
+                        table_no = Table_require;
                         const response = await fetch(`http://localhost:5000/api/restaurent/updateres/${id}`, {
                             method: "PATCH",
                             headers: {
@@ -134,6 +136,20 @@ const YourRest = (props) => {
                             },
                             body: JSON.stringify({ Name, City, Area, FoodType, FoodCategory, Address, TimeOpen, TimeClose, Contact, Facility, Holiday, Active, Table_require }),
                         });
+
+
+                        const tresponse = await fetch(`http://localhost:5000/api/table/updatetable/${id}`, {
+                            method: "PATCH",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "auth-token-vendor": localStorage.getItem("vToken"),
+                            },
+                            body: JSON.stringify({ table_no }),
+                        });
+                        const json1 = await tresponse.json();
+                        console.log(json1)
+
+
                         const json = await response.json();
                         let newRest = JSON.parse(JSON.stringify(YourRestList))
                         for (let index = 0; index < newRest.length; index++) {
@@ -175,6 +191,17 @@ const YourRest = (props) => {
             toast.error("Please enter all timing detail", { autoClose: 1000 });
         }
     };
+
+    const updateTable = async (id) => {
+        const response = await fetch(`http://localhost:5000/api/table/updatetable/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token-vendor": localStorage.getItem("vToken"),
+            },
+            body: JSON.stringify({ table_no }),
+        });
+    }
 
     const deleteRest = async (id) => {
         // Api call 

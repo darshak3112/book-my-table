@@ -22,7 +22,7 @@ const UserHistory = () => {
     //     getYourRestaurant();
     // }, []);
 
-    const MINUTE_MS = 1000;
+    const MINUTE_MS = 0;
 
     useEffect(() => {
         const interval = setInterval(() => {
