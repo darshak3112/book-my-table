@@ -47,21 +47,20 @@ export const Tablebooking = () => {
     return date2;
   }
 
-  const reRender = 0;
+  const incDate = (da) => {
+    var di = da+1;
+    let date = new Date();
+    let day = date.getDate(date.setDate(date.getDate() + (di)));
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let d = day + "/" + month + "/" + year;
+    setPassingDate(d);
+
+    setPassingDate(d);
+  }
+
   useEffect(() => {
-    const incDate = (da) => {
-      var di = da+1;
-      let date = new Date();
-      let day = date.getDate(date.setDate(date.getDate() + (di)));
-      let month = date.getMonth() + 1;
-      let year = date.getFullYear();
-      let d = day + "/" + month + "/" + year;
-      setPassingDate(d);
 
-      setPassingDate(d);
-    }
-
-    const interval = setInterval(() => {
       let timeOpenStamps = myparam.TimeOpen;
       let timeCloseStamps = myparam.TimeClose;
       let Onum = 0, Cnum = 0;
@@ -175,13 +174,8 @@ export const Tablebooking = () => {
         dateArray.push(i);
       }
       setDateArray(dateArray);
-  
 
-    }, reRender);
-    return () => clearInterval(interval);
-
-
-  }, [myparam.TimeClose, myparam.TimeOpen, passingDate, today]);
+  }, [date, myparam.TimeClose, myparam.TimeOpen, passingDate, today]);
 
   const handleChange = (time) => {
     setSelectedTime(time);
