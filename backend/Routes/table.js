@@ -147,7 +147,7 @@ router.post('/tablebooking', fetchuser, [
             const rSize = restaurent.Table_require;
             //console.log("size : ", size)
             if (rSize !== size) {
-                let table = await Table.findOne({ Restaurant: Restaurant1, Table_No: size + 1 });
+                let table = await new Table({ Restaurant: Restaurant1, Table_No: size + 1 });
                 //let sTable = await Table.findOne({ Restaurant: Restaurant1, Table_No: size });
                 let sTable = table._id;
                 let Table_No = table.Table_No;
